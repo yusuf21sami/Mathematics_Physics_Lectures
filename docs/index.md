@@ -1,8 +1,8 @@
-# Physics 2024/25 Summer
+# Lecture Notes
 
 ## Welcome to the Physics Resource Hub!
 
-This repository serves as a comprehensive resource for the **Physics 2024/25 Summer Course**. It is organized into several sections, each designed to help students explore different areas of physics in a structured and accessible way. Below is a brief overview of the repository's contents:
+This repository serves as a comprehensive resource for the **Physics and Mathematics** courses. It is organized into several sections, each designed to help students explore different areas of physics in a structured and accessible way. Below is a brief overview of the repository's contents:
 
 ### Main Sections
 
