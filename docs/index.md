@@ -28,7 +28,7 @@ This repository serves as a comprehensive resource for the **Physics 2024/25 Sum
 
 ## How to Use This Page
 
-This webpage is generated from the following GitHub repository:  [GitHub](https://github.com/dchorazkiewicz/Physics-2024-25-Summer) 
+This webpage is generated from the following GitHub repository:  [GitHub](https://dchorazkiewicz.github.io/Mathematics_Physics_Lectures/) 
 
 All sections, except for Exercises for Students, contain one or more lecture notes related to the subject. 
 These lecture notes will be used during classes and are intended to help students learn and understand the covered topics.
