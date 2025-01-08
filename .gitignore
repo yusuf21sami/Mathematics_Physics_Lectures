@@ -1,11 +1,5 @@
-# Ignorowanie całego folderu 'site'
 /site/
-
-# Ignorowanie wszystkich plików .html
 *.html
-
-# Ignorowanie logów systemowych
 *.log
-
-# Ignorowanie plików z rozszerzeniem .idea
+*.pyc
 .idea/
