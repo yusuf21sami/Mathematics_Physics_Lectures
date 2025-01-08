@@ -7,7 +7,7 @@ format:
     toc-depth: 4
     highlight-style: tango
     code-line-numbers: true
-    code-fold: show
+    code-fold: true
     code-summary: "Show the code"
     code-tools: true
     code-block-bg: "rgba(42, 174, 42, 0.02)"
