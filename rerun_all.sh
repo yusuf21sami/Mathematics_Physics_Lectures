@@ -1,5 +1,7 @@
 #!/bin/bash
 
+## RERUN Physics Lecture Notes
+
 # Directory containing the .qmd files
 TARGET_DIR="Lecture_Notes/Physics"
 
@@ -53,6 +55,51 @@ ln -sf ../../../Lecture_Notes/Physics/Statistics.html Statistics.html
 cd "$ROOT_DIR/docs/Physics/Modern_Physics" || exit
 ln -sf ../../../Lecture_Notes/Physics/Quantum_mechanics.html Quantum_mechanics.html
 ln -sf ../../../Lecture_Notes/Physics/Cosmology.html Cosmology.html
+
+# Powrót do katalogu głównego
+cd "$ROOT_DIR" || exit
+
+## RERUN Mathematics Lecture Notes
+
+# Directory containing the .qmd files
+TARGET_DIR="Lecture_Notes/Mathematics"
+
+# Check if the directory exists
+if [ ! -d "$TARGET_DIR" ]; then
+  echo "Error: Directory $TARGET_DIR does not exist."
+  exit 1
+fi
+
+# Change to the target directory
+cd "$TARGET_DIR" || exit
+
+# Iterate over all .qmd files in the directory
+for qmd_file in *.qmd; do
+  # Check if there are any .qmd files
+  if [ -e "$qmd_file" ]; then
+    echo "Rendering $qmd_file..."
+    quarto render "$qmd_file"
+  else
+    echo "No .qmd files found in $TARGET_DIR."
+    exit 0
+  fi
+done
+
+# Change back to the original directory
+cd ../../
+
+# Automatyczne ustawienie katalogu głównego na bieżący katalog
+ROOT_DIR=$(pwd)
+
+# print the current directory
+echo "Current directory: $ROOT_DIR"
+
+# Tworzenie linków w katalogu Mathematics
+cd "$ROOT_DIR/docs/Mathematics" || exit
+
+ln -sf ../../Lecture_Notes/Mathematics/Linear_Algebra.html Linear_Algebra.html
+ln -sf ../../Lecture_Notes/Mathematics/Analytic_Geometry.html Analytic_Geometry.html
+ln -sf ../../Lecture_Notes/Mathematics/Calculus.html Calculus.html
 
 # Powrót do katalogu głównego
 cd "$ROOT_DIR" || exit
