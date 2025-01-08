@@ -1,0 +1,462 @@
+---
+title: Measurements
+format:
+  html:
+    theme: flatly
+    toc: true
+    toc-depth: 4
+    highlight-style: tango
+    code-line-numbers: true
+    code-fold: show
+    code-summary: "Show the code"
+    code-tools: true
+    code-block-bg: "rgba(42, 174, 42, 0.02)"
+    code-block-border-left: "#2aae2a"
+    code-language-label: true
+    css: styles.css
+    math: mathjax
+    self-contained: true
+    other-links:
+      - text: Main page
+        href: https://dchorazkiewicz.github.io/Physics-2024-25-Summer/        
+---
+
+*"Man started from measuring himself and finished weighing the stars."*
+
+## 1. Measurement
+
+Measurement is the process of determining the size, length, or amount of something. It is a fundamental aspect of physics and other sciences, as it allows us to quantify and compare physical quantities. Today we will discuss some of the most important measurements in the history of physics and describe the importance and details of making measurements.
+
+### Types of measurements in physics
+
+- **Direct measurements**: Measuring a physical quantity directly using a measuring instrument, such as a ruler, thermometer, or voltmeter.
+
+- **Indirect measurements**: Measuring a physical quantity indirectly by using other measurements and mathematical relationships, such as calculating the volume of a sphere from its diameter, or determining the speed of an object from its position and time.
+
+### Difference between accuracy and precision
+
+- **Accuracy** is the degree to which a measurement is close to the true value of the quantity being measured. It is a measure of how well the measurement reflects the actual physical quantity.
+
+- **Precision** is the degree to which repeated measurements of the same quantity give consistent results. It is a measure of the reproducibility and consistency of the measurement process.
+
+### Why do we measure? 
+
+- To capture relations within the physical world
+
+- To make predictions about the behavior of the natural world
+
+- To understand the physical world
+
+- To confirm and refine our understanding of the laws of physics
+
+Measurement is essential in physics and other sciences because it allows us to describe and understand the physical world. Without measurement, we would not be able to quantify physical quantities, compare different objects or events, or make predictions about the behavior of the natural world.
+
+### Units of measurement
+
+To make meaningful measurements, we need to use standardized units of measurement (SI units). These units are defined by international agreements and are used by scientists around the world. 
+
+**SI Units in physics include only seven units:**
+
+- meter (m) for length
+
+- kilogram (kg) for mass
+
+- second (s) for time
+
+- Kelvin (K) for temperature
+
+- ampere (A) for electric current
+
+- mole (mol) for the amount of substance
+
+- candela (cd) for luminous intensity
+
+All other units are derived from these base units. For example, the unit of force, the Newton (N), is derived from the base units of mass, length, and time.
+
+**Examples of derived units in physics include:**
+
+- Acceleration: $[\frac{m}{s^2}]$
+
+- Force: Newton $[N=\frac{kg\,m}{s^2}]$
+
+- Energy: Joule $[J=\frac{kg\,m^2}{s^2}]$
+
+- Power: Watt $[W=\frac{J}{s}=\frac{kg\,m^2}{s^3}]$
+
+- Pressure: Pascal $[Pa=\frac{N}{m^2}=\frac{kg}{m\,s^2}]$
+
+- Electric charge: Coulomb $[C=A s]$
+
+- Electric potential: Volt $[V=\frac{J}{C}=\frac{kg\,m^2}{A\,s^3}]$
+
+- Electric resistance: Ohm $[\Omega=\frac{V}{A}=\frac{kg\,m^2}{A^2\,s^3}]$
+
+## 2. Uncertainty in measurement
+
+### Difference between Error and Uncertainty
+
+- **Error** is the difference between a measured value and the true value. It can be caused by a variety of factors, including limitations of measuring instruments, the nature of the physical quantity being measured, and the presence of random errors in the measurement process. Errors can be reduced by calibrating instruments, using multiple measurements, and applying correction factors.
+
+- **Uncertainty** is a measure of the range of values within which the true value of a measurement is likely to lie. It is a more general concept than error and includes both systematic and random errors. Uncertainty can be estimated using statistical methods, such as the standard deviation of a set of measurements, or by using the total derivative to estimate the uncertainty in a measurement due to uncertainties in the variables that affect it.
+
+### Scheme of presenting uncertainty
+
+Quantity = Value $\pm$ Uncertainity [Units]
+
+**Example:**
+
+Resistance = $R \pm \Delta R = 10.0 \pm  0.1~~[Ohm]$
+
+### Uncertainty of devices and measurements
+
+Measurement devices have a resolution, which is the smallest change in the quantity being measured that the device can detect. The uncertainty in a measurement made with a device is typically (and on our course) **half of the resolution of the device**. 
+
+For example, if a ruler has a resolution of 1 mm, by having markings every 1 mm, the uncertainty in a measurement made with the ruler is 0.5 mm. This is because the true value of the quantity being measured could be anywhere within the range of the resolution of the device.
+
+If the watch with markings every 1 minute shows 12:00, it means that the true time is between 11:59:30 and 12:00:30. 
+
+Other example lets take voltmeter with resolution of 0.1 V. If the voltmeter shows 96.6 V, the true value of the voltage is between 96.55 and 96.65 V. One can write it as 96.6 V $\pm$ 0.05 V.
+
+### Total derivative
+
+The *total derivative* is a mathematical concept that describes how a function changes with respect to changes in its variables. 
+
+In the context of measurement, the total derivative can be used to quantify the so-called **propagation of uncertainty** in a physical quantity due to uncertainties in the variables that affect it.
+
+$$
+d f(x_1,x_2,...,x_n) = \frac{\partial f}{\partial x_1} dx_1 + \frac{\partial f}{\partial x_2} dx_2 + ... + \frac{\partial f}{\partial x_n} dx_n
+$$
+
+For example for fucntion dependent on two variables, $f(x,y)$:
+
+$$d f(x,y) = \frac{\partial f}{\partial x} dx + \frac{\partial f}{\partial y} dy
+$$ 
+
+### Uncertainty from the Total Derivative
+
+In the context of measurement, the total derivative can be used to quantify the so-called **propagation of uncertainty** in a physical quantity due to uncertainties in the variables that affect it.
+
+To estimate the uncertainty in measurement using the total derivative , you can follow these steps:
+
+1. Identify the physical quantity that you want to measure and the variables that affect it.
+
+2. Determine the uncertainties in the variables that affect the physical quantity.
+
+3. Calculate the total derivative of the physical quantity with respect to the variables that affect it.
+
+4. Use the total derivative to estimate the uncertainty in the physical quantity due to uncertainties in the variables.
+ 
+For example, if a physical quantity $f(x,y)$ is a function of variables x and y, then the total derivative of $f$ with respect to $x$ and $y$ can be used to estimate the uncertainty in $f$ due to uncertainties in $x$ and $y$ (i.e. $\Delta x$ and $\Delta y$).
+
+$$\Delta f(x,y) = | \frac{\partial f}{\partial x} \Delta x| + |\frac{\partial f}{\partial y} \Delta y|\qquad \qquad\text{University formula}
+$$
+
+$$\Delta f(x,y) = \sqrt{(\frac{\partial f}{\partial x} \Delta x)^2 + (\frac{\partial f}{\partial y} \Delta y)^2}\qquad\text{Engineering formula (use this one!)}
+$$
+
+**Uncertainty** is an unavoidable aspect of measurement in physics and other sciences. It arises from a variety of sources, including the limitations of measuring instruments, the nature of the physical quantity being measured, and the presence of random errors in the measurement process.
+
+### Example 1
+
+**Estimating Uncertainty in Volume Measurement of a Ball**
+
+The diameter of a certain ball was measured to be $L = 42 \pm 1$ cm. Using this measurement, lets estimate the volume of the ball $V$, and then calculate the uncertainty in this volume estimation $\Delta V$.
+
+**Calculations of Ball's Volume**
+
+- Diameter of the ball, $Length = L\pm \Delta L= 42 \pm 1$ cm
+- Formula for the volume of a sphere: 
+  $$V = \frac{4}{3} \pi r^3
+  $$
+  where $r$ is the radius of the ball. Since the radius $r$ is half of the diameter,
+$$r = \frac{L}{2} = \frac{42}{2} = 21 \text{ cm}
+$$
+volume of the ball $V$ can be calculated as:
+$$V(L) = \frac{4}{3} \pi \left(\frac{L}{2}\right)^3 = \frac{\pi L^3}{6}  \approx 38808 \text{ cm}^3
+$$
+
+**Estimating Volume Uncertainty**
+
+The uncertainty in the volume, $\Delta V$, can be estimated using the propagation of uncertainty formula for functions of a single variable since the volume $V$ depends on the radius $r$, which in turn depends on $L$. Note the use of absolute value here. The formula is:
+$$
+\Delta V = \left| \frac{\partial V}{\partial L} \right| \Delta L
+$$
+where first term is partial derivative $\frac{\partial V}{\partial L}$ and $\Delta L = 1$ cm is the uncertainty in the diameter.
+
+**Step 1:** Derive the partial derivative $\frac{\partial V}{\partial L}$:
+$$
+\frac{\partial V}{\partial L} = \frac{\pi}{6} (3 L^2) = \frac{\pi}{2} L^2\approx 2772 \, \text{cm}^2
+$$
+
+**Step 2:** Calculate $\Delta V$:
+$$
+\Delta V = 2772 \times 1 \approx 2772 \, \text{cm}^3
+$$
+
+**Conclusion**
+
+The volume of the ball is $38808 \, \text{cm}^3$ with an uncertainty of $\pm 2772 \, \text{cm}^3$. We can write is as $V=38808 \, \text{cm}^3 \pm 2772 \, \text{cm}^3$.
+
+**Uncertainty as a percentage of the value**
+
+Often people write the uncertainty as a percentage of the value. 
+
+In this case it would be $\Delta V/V \times 100 \%  =2772/38808 \times 100 \% \approx 7 \%$.
+
+Similarly, relative uncertainty can be written as $\Delta V/V = 2772/38808 \approx 0.07$.
+
+Here’s an improved and slightly reorganized version of your markdown notes:
+
+
+### Example 2
+
+**Calculating Resistance and Its Uncertainty**
+
+We calculate the resistance $R$ of a resistor using **Ohm's Law**, which relates resistance $R$, voltage $V$, and current $I$ in a circuit:
+$$
+R = \frac{V}{I}
+$$
+
+If the voltage $V$ and current $I$ are measured with uncertainties $\Delta V$ and $\Delta I$, the uncertainty in the resistance $\Delta R$ can be estimated using the total derivative method.
+  $$
+  Voltage = V \pm \Delta V
+  $$
+  $$
+  Current = I \pm \Delta I
+  $$
+
+The resistance $R$ is given by:
+$$
+R = \frac{V}{I}
+$$
+
+The uncertainty $\Delta R$ can be calculated in two ways:
+
+1. **Simplified Linear Approximation**:
+   $$
+   \Delta R = \left| \frac{\partial R}{\partial V} \Delta V \right| + \left| \frac{\partial R}{\partial I} \Delta I \right|
+   $$
+
+2. **Quadrature Method (Preferred in Engineering)**:
+   $$
+   \Delta R = \sqrt{\left( \frac{\partial R}{\partial V} \Delta V \right)^2 + \left( \frac{\partial R}{\partial I} \Delta I \right)^2}
+   $$
+
+Using the formula $R = \frac{V}{I}$, the partial derivatives are:
+
+- With respect to $V$:
+  $$
+  \frac{\partial R}{\partial V} = \frac{\partial \left( \frac{V}{I} \right)}{\partial V} = \frac{1}{I}
+  $$
+
+- With respect to $I$:
+  $$
+  \frac{\partial R}{\partial I} = \frac{\partial \left( \frac{V}{I} \right)}{\partial I} = -\frac{V}{I^2}
+  $$
+
+Substituting the partial derivatives into the uncertainty formula, we get:
+$$
+\Delta R = \sqrt{\left( \frac{\Delta V}{I} \right)^2 + \left( -\frac{V \Delta I}{I^2} \right)^2}
+$$
+
+The resistance with its uncertainty is expressed as:
+$$
+Resistance = R \pm \Delta R
+$$
+where:
+$$
+R = \frac{V}{I}, \quad \Delta R = \sqrt{\left( \frac{\Delta V}{I} \right)^2 + \left( \frac{V \Delta I}{I^2} \right)^2}
+$$
+
+## Average and standard deviation
+
+The **average of N measurements** of a physical quantity x_n is given by:
+
+$$\bar x = \frac{1}{N} \sum_{n=1}^{N} x_n $$
+where $n=1,2,3,...,N$.
+
+The **standard deviation** of the N measurements is given by:
+
+$$\Delta x = \sqrt{\frac{1}{N-1} \sum_{n=1}^{N} (x_n - \bar x)^2} $$
+
+Be careful as in literature people use:
+
+- **standard diviation** $\Delta x = \sqrt{\frac{1}{N-1} \sum_{n=1}^{N} (x_n - \bar x)^2}$ 
+  
+- **standard diviation of the mean** $\Delta x = \sqrt{\frac{1}{N(N-1)} \sum_{n=1}^{N} (x_n - \bar x)^2}$.
+  
+The standard deviation is a measure of the spread or dispersion of the measurements around the average value. A small standard deviation indicates that the measurements are close to the average value, while a large standard deviation indicates that the measurements are spread out over a wider range of values.
+
+Mean of the measurements is the average value of the measurements, while the standard deviation is a measure of the spread or dispersion of the measurements around the mean value. The standard deviation is a measure of the uncertainty in the measurements and can be used to estimate the error in the average value.
+
+The average and standard deviation are important statistical quantities that are used to describe the distribution of measurements and to make comparisons between different sets of data. By calculating the average and standard deviation of a set of measurements, scientists can determine the accuracy and reliability of their experimental data and make more meaningful conclusions about the physical quantity being measured.
+
+### Example of mean and standard deviation
+
+**Pizza delivery time**
+
+Consider measuring the time it takes for a pizza to be delivered to your house. You order a pizza from a local restaurant and record the delivery times for 10 different orders. The delivery times are recorded in the following table:
+
+| Measurement n | Delivery $t_n$ [min]  |
+|---------------|-----------------------|
+| 1             | 30                    |
+| 2             | 25                    |
+| 3             | 31                    |
+| 4             | 40                    |
+| 5             | 23                    |
+| 6             | 45                    |
+| 7             | 30                    |
+| 8             | 25                    |
+| 9             | 35                    |
+| 10            | 47                    |
+
+Lets find the shortest and longest delivery time, the average delivery time, and the standard deviation of the delivery times.
+
+**Shortest and Longest Delivery Time:**
+
+- Shortest delivery time: 23 minutes
+- Longest delivery time: 47 minutes
+
+**Average Delivery Time:**
+
+$$\small
+\begin{align}
+\text{Average delivery time} &= \frac{1}{N} \sum_{n=1}^{N} t_n\\
+&= \frac{1}{10} (30 + 25 + 31 + 40 + 23 + 45 + 30 + 25 + 35 + 47)\\
+&= 32.6 \text{ minutes}
+\end{align}
+$$
+
+**Standard Deviation:**
+$$\small
+\begin{align}
+\text{Standard deviation} &= \sqrt{\frac{1}{N-1} \sum_{n=1}^{N} (t_n - \bar{t})^2}\\
+&= \sqrt{\frac{(30 - 32.6)^2 + (25 - 32.6)^2 + \ldots + (47 - 32.6)^2}{9}}\\
+&\approx 8.9 \text{ minutes}
+\end{align}
+$$
+
+In conclusion, the average delivery time is 32.6 minutes, with a standard deviation of 8.9 minutes.
+
+## Error bar
+
+Error bars are a graphical representation of the uncertainty in a measurement. They are typically shown as vertical or horizontal lines on a graph that indicate the range of values within which the true value of the measurement is likely to lie. Error bars are used to visualize the uncertainty in a measurement and to make comparisons between different data points.
+
+### Example of error bar in python 
+
+```{python}
+import matplotlib.pyplot as plt
+
+# Data
+x = [1, 2, 3, 4, 5]
+y = [10, 15, 20, 25, 30]
+y_err = [1, 2, 1.5, 2.5, 1]
+
+# Plot with error bars
+plt.errorbar(x, y, yerr=y_err, fmt='o', capsize=5)
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Error Bar Example')
+plt.show()
+```
+
+## Few nice examples of measurements in physics
+
+### Earth's Circumference
+
+Eratosthenes was a Greek mathematician, geographer, poet, astronomer, and music theorist who lived in the third century BC. He is famous for accurately [calculating the Earth's circumference](https://youtu.be/Mw30CgaXiQw?si=uFrM9bP4S2BAhL87) using simple geometry.
+
+**Observation in Syene (modern-day Aswan, Egypt):**
+
+At noon on the summer solstice, the Sun was directly overhead, casting no shadow and reflecting in a well. This indicated that Syene lay on the Tropic of Cancer.
+
+**Measurement in Alexandria:**
+
+In Alexandria, north of Syene, Eratosthenes measured the Sun's angle at noon during the summer solstice: **7°**.
+
+**Distance Between Cities:**
+
+He hired a man to measure the distance between Syene and Alexandria: **800 km**.
+
+**Calculation:**
+
+He assumed the Earth is a sphere and used the fraction of the Earth's circumference that 7° represents:
+     $$
+     \frac{7^\circ}{360^\circ} = \frac{800 \, \text{km}}{\text{Earth's circumference}}
+     $$
+
+Earth's circumference:
+  $$
+  \text{Circumference} = \frac{800 \, \text{km}}{\frac{7}{360}} = 40,000 \, \text{km}
+  $$
+Earth's radius:
+  $$
+  R = \frac{40,000 \, \text{km}}{2 \pi} \approx 6370 \, \text{km}
+  $$
+
+Eratosthenes' measurement was remarkably close to the actual value of the Earth's circumference: **40,075 km**.
+
+### Measuring Earth's Mass with a Pendulum
+
+The Earth's mass can be calculated using a pendulum $g = \frac{4 \pi^2 R}{T^2}$
+and Newton's law of gravitation $mg = \frac{G m M}{R^2}$.
+
+$$
+mg = \frac{G m M}{R^2}
+$$
+Rearranging for $M$ (Earth's mass):
+$$
+M = \frac{g R^2}{G} = \frac{4 \pi^2 R^2}{G} \frac{L}{T^2}
+$$
+
+Given Values:
+
+- Gravitational constant: $G = 6.674 \times 10^{-11} \, \text{m}^3 \text{kg}^{-1} \text{s}^{-2}$
+- Earth's radius: $R = 6370 \, \text{km}$
+
+By measuring the pendulum's length ($L$) and period ($T$), we can calculate the Earth's mass:
+$$
+\text{Mass of Earth} \approx 5.97 \times 10^{24} \, \text{kg}
+$$
+
+Henry Cavendish first [measured Earth's mass](https://en.wikipedia.org/wiki/Cavendish_experiment) using his experiment to determine $G$ in the Newtonian gravity formula.
+
+### Speed of Light Using a Microwave Oven
+
+The speed of light, $c$, can be measured using a microwave oven and chocolate (or cheese). Check links: [here](https://youtu.be/kp33ZprO0Ck?si=GE5QrnY2P1YDdrTS) and [here](https://youtu.be/3hm1CW8SX08?si=x7xOcxzKE8l4UChS).
+
+1. Remove the rotating plate and place chocolate inside the oven.
+2. Heat until the chocolate starts to melt.
+3. Measure the distance ($L$) between the melting points (one wavelength of the microwave standing wave).
+
+Formulas:
+
+- Wavelength: $\lambda = 2L$
+- Speed of light: $c = f \lambda$
+
+Calculations:
+
+- Frequency of microwave oven: $f = 2.45 \, \text{GHz}$
+- Measured distance: $L = 0.065 \, \text{m}$ (half-wavelength)
+$$
+c = 2.45 \times 10^9 \times 0.13 = 3.185 \times 10^8 \, \text{m/s}
+$$
+
+Percentage error:
+$$
+\frac{3.185 \times 10^8 - 2.99792458 \times 10^8}{2.99792458 \times 10^8} \times 100 \% \approx 6.3 \%
+$$
+
+### Geometry of the Universe
+
+By measuring the sum of angles in a triangle, we can determine the geometry of the universe.
+
+The sum of angles in a triangle depends on the geometry of the space:
+
+1. **Flat Space**: Sum of angles = $180^\circ$
+
+2. **Spherical Space**: Sum of angles > $180^\circ$
+
+3. **Hyperbolic Space**: Sum of angles < $180^\circ$
+
+Link: ![](https://upload.wikimedia.org/wikipedia/commons/9/98/End_of_universe.jpg)

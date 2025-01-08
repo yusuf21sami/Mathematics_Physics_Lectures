@@ -1,0 +1,91 @@
+site_name: Physics 2024/25 Summer
+nav:
+  - 🏠 Home: index.md
+  - Physics:
+    - ⚙️ Mechanics:
+      - 🎓 Lecture Notes:
+        - Language of Physics: Physics/Mechanics/Language_of_physics.html
+        - Mechanics: Physics/Mechanics/Mechanics.html
+        - Waves: Physics/Mechanics/Waves.html
+      - Student Projects:
+        - Logistic Equation: Physics/Mechanics/sp/logistic_equation_bifurcation.md
+        - Double Pendulum: Physics/Mechanics/sp/double_pendulum_trajectories.md
+        - Lorenz Attractor: Physics/Mechanics/sp/lorenz_system_and_attractor.md
+        - Predator-Prey Model: Physics/Mechanics/sp/predator_prey_model.md
+        - Duffing Oscillator: Physics/Mechanics/sp/duffing_oscillator.md
+        - Henon Map: Physics/Mechanics/sp/henon_map.md
+        - Chua's Circuit: Physics/Mechanics/sp/chuas_circuit.md
+        - Pendulum with Damping: Physics/Mechanics/sp/pendulum_with_damping_and_forcing.md
+        - Three Body Problem: Physics/Mechanics/sp/three_body_problem.md
+    - ⚡ Electromagnetism:
+      - 🎓 Lecture Notes:
+        - Electromagnetism: Physics/Electromagnetism/Electromagnetism.html
+        - Circuits: Physics/Electromagnetism/Circuits.html
+      - Student Projects:
+        - Kirchhoff Laws: Physics/Electromagnetism/sp/Kirchhoff_laws.md
+        - Aurora Borealis: Physics/Electromagnetism/sp/solar_wind.md
+    - 🔬 Experiments:
+      - 🎓 Lecture Notes:
+        - Statistics 101: Physics/Experiments_Statistics/Statistics.html
+        - Measurements: Physics/Experiments_Statistics/Measurement.html
+      - Student Projects:
+        - Estiamting Pi: Physics/Experiments_Statistics/sp/estimation_of_pi.md
+    - ⚛️ Modern Physics:
+      - 🎓 Lecture Notes:
+        - Quantum Mechanics: Physics/Modern_Physics/Quantum_mechanics.html
+        - Cosmology: Physics/Modern_Physics/Cosmology.html
+      - Student Projects:
+        - Quantum Harmonic Oscillator: Physics/Modern_Physics/sp/quantum_harmonic_oscillator.md
+    - ✏️ Exercises for Students:
+      - Problem list: Physics/Exercises_for_Students/exercises_dch.md
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo # dostępne kolory: red, pink, purple, deep purple, indigo, blue, light blue, cyan, teal, green, light green, lime, yellow, amber, orange, deep orange, brown, grey, blue grey, black, white
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Przełącz na tryb ciemny
+    - scheme: slate
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Przełącz na tryb jasny
+  features:
+    - content.code.copy
+  toc:
+    depth: 3
+
+markdown_extensions:
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - tables
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.highlight
+  - pymdownx.superfences
+
+plugins:
+  - search
+  - mkdocstrings
+  - mermaid2
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js
+
+extra_css:
+  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css
+
+extra:
+  highlightjs: true
+  hljs_languages:
+    - yaml
+    - rust
+    - python
+    - bash

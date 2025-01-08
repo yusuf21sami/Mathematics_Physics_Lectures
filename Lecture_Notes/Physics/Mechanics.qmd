@@ -1,0 +1,1278 @@
+---
+title: Mechanics
+format:
+  html:
+    theme: flatly
+    toc: true
+    toc-depth: 3
+    highlight-style: tango
+    code-line-numbers: true
+    code-fold: show
+    code-summary: "Show the code"
+    code-tools: true
+    code-block-bg: "rgba(42, 174, 42, 0.02)"
+    code-block-border-left: "#2aae2a"
+    code-language-label: true
+    css: styles.css
+    math: mathjax
+    self-contained: true
+    other-links:
+      - text: Main page
+        href: https://dchorazkiewicz.github.io/Physics-2024-25-Summer/    
+---
+
+
+## Description of motion
+
+### Movement in 2D Cartesian coordinates
+
+We could start considering moving particle in 1D but 2D examples are more interesting.
+First we have to define the position of the particle in 2D Cartesian coordinates. 
+The position of the particle is given by the vector $\mathbf{r} = (x, y)$, where $x$ and $y$ are the coordinates of the particle in the $x$ and $y$ axes, respectively. If these coordinates are functions of time, we can write the position vector as $\mathbf{r}(t) = (x(t), y(t))$. This function describes the trajectory of the particle in the $xy$ plane.
+
+$$
+[a,b]\rightarrow \mathcal{R}^2:
+t\rightarrow \mathbf{r}(t) = (x(t), y(t))
+$$
+
+#### Explanation of Symbols:
+
+- $\mathbf{r}$: Position vector of the particle.
+- $(x, y)$: Cartesian coordinates representing the particle's position in the $x$ and $y$ axes.
+- $\mathbf{r}(t)$: Position vector as a function of time, describing the particle's motion.
+- $x(t), y(t)$: Time-dependent functions representing the particle's coordinates in the $x$ and $y$ axes.
+- $[a, b]$: Interval of time during which the particle's motion is considered.
+- $\mathcal{R}^2$: Two-dimensional Cartesian coordinate space.
+- $t$: Time variable, used as a parameter for the position function.
+
+#### How Mathematicians Read This Notation:
+
+Mathematicians interpret the notation as follows:
+
+- "$[a,b] \rightarrow \mathcal{R}^2$" means "a mapping (or function) is defined from the interval $[a, b]$ in time to the two-dimensional Cartesian space $\mathcal{R}^2$."
+- "$t \rightarrow \mathbf{r}(t) = (x(t), y(t))$" specifies that for each time $t$ within the interval $[a, b]$, there exists a corresponding position vector $\mathbf{r}(t)$ in $\mathcal{R}^2$, which consists of the time-dependent coordinates $x(t)$ and $y(t)$. 
+- The overall expression describes a trajectory as a continuous function of time, mapping the progression of time to the corresponding locations in 2D space.
+
+#### Examples 
+
+Let us consider two examples of the particle motion in 2D Cartesian coordinates.
+
+$$
+\begin{align*}
+\mathbf{r}_1(t) &= (t, -t^2 + t) \\
+\mathbf{r}_2(t) &= (\cos(t), \sin(t))
+\end{align*}
+$$
+
+##### Python implementation
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+def r1(t):
+    return np.array([t, -t**2 + t])
+
+def r2(t):
+    return np.array([2 * np.cos(t), 2 * np.sin(t)])
+
+# Define the time ranges
+t1 = np.linspace(0, 2, 100)
+t2 = np.linspace(0, 2 * np.pi, 100)
+
+# Create a side-by-side plot layout
+fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(12, 5))  # One row, two columns
+
+# First plot
+axes[0].plot(r1(t1)[0], r1(t1)[1])
+axes[0].set_xlabel('x')
+axes[0].set_ylabel('y')
+axes[0].set_title('Plot 1: r1(t)')
+
+# Second plot
+axes[1].plot(r2(t2)[0], r2(t2)[1])
+axes[1].set_xlabel('x')
+axes[1].set_ylabel('y')
+axes[1].set_title('Plot 2: r2(t)')
+
+# Adjust aspect ratios if needed
+axes[0].set_aspect('equal', 'box')
+axes[1].set_aspect('equal', 'box')
+
+# Optimize layout
+plt.tight_layout()
+plt.show()
+
+```
+
+##### Geogebra example
+
+
+::: {.geogebra-instruction}
+* c1 = Curve[t, -t^2+t, t, 0, 10]
+* c2 = Curve[cos(t), sin(t), t, 0, 2*pi]
+* s = Slider[0,10,.001]
+* P = (x(c1(s)),y(c1(s)))
+* Q = (x(c2(s)),y(c2(s)))
+:::
+
+where
+
+* c1 is a curve $t\rightarrow (t, -t^2+t)$
+* c2 is a curve $t\rightarrow (\cos(t), \sin(t))$
+* s is a slider from 0 to 10
+* P is a point on c1
+* Q is a point on c2
+
+
+Check additional examples in geogebra:
+
+::: {.geogebra-instruction}
+* a=Slider[1,10,1]
+* b=Slider[1,10,1]
+* Curve[cos(a\*t), b\*sin(t), t, 0, 20*pi]
+:::
+
+Compare following curves:
+
+::: {.geogebra-instruction}
+* Curve[t,t,0,10]
+* Curve[t\^2,t\^2,0,sqrt(10)]
+* Curve[t\^3,t\^3,0,10\^(1/3)]
+:::
+
+In geberal when we create any curve in Geogebra we can create additional point which will
+be moving along the curve. This is very useful to visualize the motion of the particle.
+
+## Velocity
+
+The velocity of the particle is the derivative of the position vector with respect to time. The velocity vector is defined as
+
+$$
+\mathbf{v}(t) = \frac{d\mathbf{r}(t)}{dt} = \left(\frac{dx(t)}{dt}, \frac{dy(t)}{dt}\right)
+$$
+
+The velocity vector describes the speed and direction of the particle at any time $t$. The magnitude of the velocity vector is the speed of the particle. The direction of the velocity vector is the direction of motion of the particle.
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+def r(t):
+    return np.array([t, -t**2 + t])
+
+def v(t):
+    return np.array([1, -2*t + 1])
+
+t = np.linspace(0, 10, 100)
+
+fig, axes = plt.subplots(figsize=(8, 6))
+
+# whole curve
+axes.plot(r(t)[0], r(t)[1], label='r(t)')
+
+# velocity vector at t=3
+axes.quiver(r(3)[0], r(3)[1], v(3)[0], v(3)[1], angles='xy', scale_units='xy', scale=1, color='red', label='v(3)')
+axes.text(r(3)[0] + v(3)[0], r(3)[1] + v(3)[1], 'v(3)', color='red')
+#velocity vector at t=6
+axes.quiver(r(6)[0], r(6)[1], v(6)[0], v(6)[1], angles='xy', scale_units='xy', scale=1, color='blue', label='v(6)')
+axes.text(r(6)[0] + v(6)[0], r(6)[1] + v(6)[1], 'v(6)', color='blue')
+
+axes.set_xlabel('x')
+axes.set_ylabel('y')
+axes.legend()
+plt.show()
+```
+
+we can realze that the in geogebra
+
+* c1 = Curve[t, -t^2+t, t, 0, 10]
+* v1 = Derivative[c1]
+* s = Slider[0,10,.001]
+* P = (x(c1(s)),y(c1(s)))
+* vel = Vector[P, P+v1(s)]
+
+where
+
+* c1 is a curve $t\rightarrow (t, -t^2+t)$
+* v1 is a velocity function
+* s is a slider from 0 to 10
+* P is a point on c1
+* vel is a velocity vector
+
+## Acceleration
+
+The acceleration of the particle is the derivative of the velocity vector with respect to time. The acceleration vector is defined as
+
+$$
+\mathbf{a}(t) = 
+\frac{d\mathbf{v}(t)}{dt} =
+\left(\frac{dv_x(t)}{dt}, \frac{dv_y(t)}{dt}\right) = 
+\left(\frac{d^2x(t)}{dt^2}, \frac{d^2y(t)}{dt^2}\right)
+$$
+
+The acceleration vector describes the rate of change of the velocity of the particle at any time $t$. The magnitude of the acceleration vector is the rate of change of the speed of the particle. The direction of the acceleration vector is the direction of the change of the velocity of the particle.
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+def r(t):
+    return np.array([t, -t**2 + t])
+
+def v(t):
+    return np.array([1, -2*t + 1])
+
+def a(t):
+    return np.array([0, -2])
+
+t = np.linspace(0, 4, 100)
+
+fig, axes = plt.subplots(figsize=(8, 6))
+
+# whole curve
+axes.plot(r(t)[0], r(t)[1], label='r(t)')
+# velocity vector at t=3
+axes.quiver(r(3)[0], r(3)[1], v(3)[0], v(3)[1], angles='xy', scale_units='xy', scale=1, color='red', label='v(3)')
+axes.text(r(3)[0] + v(3)[0], r(3)[1] + v(3)[1], 'v(3)', color='red')
+# acceleration vector at t=3
+axes.quiver(r(3)[0], r(3)[1], a(3)[0], a(3)[1], angles='xy', scale_units='xy', scale=1, color='blue', label='a(3)')
+axes.text(r(3)[0] + a(3)[0], r(3)[1] + a(3)[1], 'a(3)', color='blue')
+
+axes.set_xlabel('x')
+axes.set_ylabel('y')
+axes.legend()
+plt.show()
+```
+
+we can realze that the in geogebra
+
+* c1 = Curve[t, -t^2+t, t, 0, 10]
+* v1 = Derivative[c1]
+* a1 = Derivative[v1]
+* s = Slider[0,10,.001]
+* P = (x(c1(s)),y(c1(s)))
+* vel = Vector[P, P+v1(s)]
+* acc = Vector[P, P+a1(s)]
+
+where
+
+* c1 is a curve $t\rightarrow (t, -t^2+t)$
+* v1 is a velocity function
+* a1 is an acceleration function
+* s is a slider from 0 to 10
+* P is a point on c1
+* vel is a velocity vector
+* acc is an acceleration vector
+
+
+
+## Newton's laws of motion
+
+Revolutions in physics started with Newton's laws of motion. These laws describe the motion of particles in space. The first law states that a particle moves with constant velocity if no external forces act on it. The second law states that the acceleration of a particle is proportional to the force acting on it. The third law states that forces always occur in pairs. If one object exerts a force on another object, the second object exerts an equal and opposite force on the first object. These laws are the foundation of classical mechanics.
+
+### Newton's first law
+
+Newton's first law states that a particle moves with constant velocity if no external forces act on it. This law is also known as the law of inertia. The law of inertia states that an object at rest stays at rest and an object in motion stays in motion with the same speed and in the same direction unless acted upon by an external force. This law is a consequence of the conservation of momentum. The momentum of a particle is the product of its mass and velocity. The momentum of a particle is conserved if no external forces act on it.
+
+### Newton's second law
+
+Newton's second law states that the acceleration of a particle is proportional to the force acting on it. The acceleration of a particle is the rate of change of its velocity. The force acting on a particle is the product of its mass and acceleration. The force acting on a particle is equal to the rate of change of its momentum. The second law can be written as
+
+
+$$
+\mathbf{F}(x, y, z, t) = m \mathbf{a}(x, y, z, t)
+$$
+
+where $\mathbf{F}(t)=(F_x(t), F_y(t), F_z(t))$ is the force acting on the particle, $m$ is the mass of the particle, and 
+$\mathbf{a}=(x''(t), y''(t),z''(t))$ is the acceleration of the particle.
+
+Above equation can be written as a set of three equations
+
+$$
+\begin{align*}
+\frac{d^2 x(t)}{dt^2} &= \frac{F_x(x, y, z, t)}{m} \\
+\frac{d^2 y(t)}{dt^2} &= \frac{F_y(x, y, z, t)}{m}\\
+\frac{d^2 z(t)}{dt^2} &= \frac{F_z(x, y, z, t)}{m}
+\end{align*}
+$$
+
+#### Bounduary conditions
+
+To solve these equations we need to know the initial position and velocity of the particle. These are the boundary conditions of the problem. The boundary conditions are the initial values of the position and velocity of the particle. The boundary conditions determine the trajectory of the particle in space. The boundary conditions can be used to solve the differential equations of motion.
+
+### Newton's third law
+
+Newton's third law states that forces always occur in pairs. If one object exerts a force on another object, the second object exerts an equal and opposite force on the first object. This law is also known as the law of action and reaction. The law of action and reaction states that for every action there is an equal and opposite reaction. This law is a consequence of the conservation of momentum. The momentum of a system is conserved if no external forces act on it.
+
+### Solving the Second-Order Equation Iteratively
+
+#### 1. Rewriting the Second-Order Equation
+
+The second-order equation is:
+
+$$
+\frac{d^2 x(t)}{dt^2} = \frac{F_x(x, y, z, t)}{m}.
+$$
+
+We introduce $v_x(t)$, the velocity in the $x$-direction, such that:
+
+$$
+v_x(t) = \frac{dx(t)}{dt}.
+$$
+
+This converts the equation into a system of two first-order equations:
+
+$$
+\begin{align}
+\frac{dx(t)}{dt} &= v_x(t), \\
+&\\
+\frac{dv_x(t)}{dt} &= \frac{F_x(x, y, z, t)}{m}.
+\end{align}
+$$
+
+ 
+
+#### 2. Iterative Procedure
+
+We solve these equations step-by-step using numerical methods. For simplicity, let's use **Euler's method**:
+
+- Let $x_n = x(t_n)$ and $v_{x,n} = v_x(t_n)$.
+- Given a small time step $\Delta t$, the update rules are:
+  $$
+  \begin{align}
+  x_{n+1} &= x_n + v_{x,n} \Delta t, \\
+  v_{x,n+1} &= v_{x,n} + \frac{F_x(x_n, y_n, z_n, t_n)}{m} \Delta t.
+  \end{align}
+  $$
+
+We iterate these equations to compute the trajectory.
+
+ 
+
+#### 3. Focus on the $x$-Component
+
+To make this concrete, let's assume:
+
+- A force $F_x(x, y, z, t) = -kx^3$, where $k$ is a constant.
+- We ignore $y$ and $z$ for simplicity (focus on $x$-component only).
+
+This gives:
+
+$$
+\frac{dv_x(t)}{dt} = \frac{-k (x(t))^3}{m}.
+$$
+
+The iterative update rules become:
+
+$$
+\begin{cases}
+  x_{n+1} = x_n + v_{x,n} \Delta t, \\
+  v_{x,n+1} = v_{x,n} - \frac{k x_n^3}{m} \Delta t.
+\end{cases}
+$$
+
+ 
+
+#### 4. Numerical Implementation
+
+Here's how we can implement this:
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+k = 1.0        # Spring constant
+m = 1.0        # Mass
+dt = 0.01      # Time step
+steps = 1000   # Number of steps
+x0 = 1.0       # Initial position
+v0 = 0.0       # Initial velocity
+
+def force(x):
+    return -k * x*x*x
+
+# Arrays to store time, position, and velocity
+time = np.linspace(0, steps * dt, steps)
+x = np.zeros(steps)
+v = np.zeros(steps)
+
+# Initial conditions
+x[0] = x0
+v[0] = v0
+
+# Iterative solution using Euler's method
+for n in range(steps - 1):
+    # Update position
+    x[n + 1] = x[n] + v[n] * dt
+    # Update velocity
+    v[n + 1] = v[n] + force(x[n]) / m * dt
+
+# Plot results
+plt.figure(figsize=(10, 5))
+plt.plot(time, x, label='Position (x)')
+plt.plot(time, v, label='Velocity (v)')
+plt.xlabel('Time (t)')
+plt.ylabel('Position/Velocity')
+plt.title('Harmonic Oscillator Solution')
+plt.legend()
+plt.grid()
+plt.show()
+```
+
+
+## Basic examples
+
+### Projectile motion
+
+Equations of motion for a particle in free fall are
+
+$$
+\begin{align*}
+\frac{d^2 x(t)}{dt^2} &= 0 \\
+\frac{d^2 y(t)}{dt^2} &= -g
+\end{align*}
+$$
+
+where $g$ is the acceleration due to gravity. The acceleration of the particle in the $x$ direction is zero. The acceleration of the particle in the $y$ direction is equal to the acceleration due to gravity. The force acting on the particle is the force of gravity. The force of gravity is equal to the mass of the particle times the acceleration due to gravity. The force of gravity is equal to the weight of the particle. The weight of the particle is the force of gravity acting on the particle.
+
+
+#### Analytical solution
+
+The analytical solution of the equations of motion for a particle in free fall is
+
+$$
+\begin{align*}
+x(t) &= v_{0x} t + x_0 \\
+y(t) &= -\frac{1}{2} g t^2 + v_{0y} t + y_0
+\end{align*}
+$$
+
+where $v_{0x}$ and $v_{0y}$ are the initial velocities of the particle in the $x$ and $y$ directions, respectively, and $x_0$ and $y_0$ are the initial positions of the particle in the $x$ and $y$ directions, respectively. The initial velocities and positions of the particle are the boundary conditions of the problem. The boundary conditions determine the trajectory of the particle in space.
+
+
+#### Numerical solution
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+F = (0, -9.81)  # Force of gravity (N)
+m = 1  # Mass of the particle (kg)
+x_0, y_0 = 0, 100  # Initial position (m)
+v_x0, v_y0 = 1, 0  # Initial velocity (m/s)
+
+def simulate_trajectory(F, m, x_0, y_0, v_x0, v_y0, t_max, steps):
+    # Time discretization
+    t = np.linspace(0, t_max, steps)
+    h = t[1] - t[0]  # Time step
+
+    # Initialize position and velocity
+    x = [x_0]
+    y = [y_0]
+    v_x, v_y = v_x0, v_y0
+
+    # Euler integration
+    for i in range(1, len(t)):
+        a_x, a_y = F[0] / m, F[1] / m  # Acceleration
+        v_x += a_x * h  # Update velocity
+        v_y += a_y * h
+        x_next = x[-1] + v_x * h  # Update position
+        y_next = y[-1] + v_y * h
+        
+        # Stop if the particle hits the ground
+        if y_next < 0:
+            break
+
+        x.append(x_next)
+        y.append(y_next)
+    
+    return x, y, t[:len(x)]  # Return trajectory and corresponding time
+
+# Simulate the trajectory
+x, y, t = simulate_trajectory(F, m, x_0, y_0, v_x0, v_y0, t_max=5, steps=100)
+
+# Create grid for vector field
+X, Y = np.meshgrid(np.linspace(-1, 6, 10), np.linspace(0, 120, 5))
+U = np.zeros_like(X)  # Horizontal component of g is 0
+V = -9.81 * np.ones_like(Y)  # Vertical component of g is constant
+
+# Time to display the ball and force
+t_display = 2.0  # Time at which to show the ball and force
+idx = np.argmin(np.abs(t - t_display))  # Find the closest index for the given time
+
+# Visualization
+fig, ax = plt.subplots(figsize=(10, 6))
+ax.plot(x, y, label="Trajectory")
+ax.axhline(0, color='green', linestyle='dashed', label='Ground level')
+ax.scatter(x_0, y_0, color='red', label='Initial position')
+
+# Add vector field
+ax.quiver(X, Y, U, V, color='blue', alpha=0.3, scale=200
+, width=0.002,label='Gravitational field')
+
+# Add the ball at the selected time
+ball_x, ball_y = x[idx], y[idx]
+ax.scatter(ball_x, ball_y, color='orange', s=100, label='Ball (t=2s)')
+
+# Add the force vector acting on the ball
+force_x, force_y = F[0] / m, F[1] / m  # Force per unit mass
+ax.quiver(ball_x, ball_y, force_x, force_y, color='red', angles='xy', scale_units='xy', scale=0.5, label='Force on Ball')
+
+# Labels and title
+ax.set_xlabel('x (m)')
+ax.set_ylabel('y (m)')
+ax.set_title('Particle Trajectory with Gravitational Field and Force on Ball')
+ax.legend()
+
+plt.show()
+```
+
+
+### Harmonic oscillation
+
+Let $\mathbb{F}=-k x$ be the force acting on the particle. The equation of motion is
+
+$$
+\frac{d^2 x(t)}{dt^2} = -\frac{k}{m} x(t)
+$$
+
+where $k$ is the spring constant and $m$ is the mass of the particle. The acceleration of the particle is proportional to its position, and the force acting on the particle is the force of a spring, equal to the spring constant times the position of the particle.
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+# Updated constant
+k = 0.5  # Updated spring constant
+displacements = [1, 2, 3, 4, 5]  # Displacements (x)
+forces = [-k * x for x in displacements]  # Corresponding forces (F)
+
+# Positions for visualization
+y_positions = np.linspace(1, len(displacements) + 1, len(displacements))  # Avoid overlapping
+
+
+# Visualization
+fig, ax = plt.subplots(figsize=(8, 6))
+
+# Draw force vectors for each displacement
+for x, F, y in zip(displacements, forces, y_positions):
+    # Draw ball position
+    ax.scatter(x, y, color='orange', s=100, label=f"x = {x}, F = {F:.2f}" if y == y_positions[0] else "")
+    # Draw force vector
+    ax.quiver(x, y, F, 0, angles='xy', scale_units='xy', scale=1, color='blue', width=0.005)
+    # Add annotation for calculations
+    ax.text(x + F / 2, y + 0.2, f"F = {-k:.1f}*{x} = {F:.2f}", fontsize=9, color='black', alpha=.8)
+
+# Labels and title
+ax.axhline(0, color='black', linewidth=0.5, linestyle='dashed')  # Equilibrium line
+ax.set_xlim(0, 6)
+ax.set_ylim(0, len(displacements) + 2)
+ax.set_xlabel("Displacement $x$")
+ax.set_ylabel("Vertical position (for clarity)")
+ax.set_title("Force Linearly Dependent on Displacement with Annotations")
+
+plt.grid(True, linestyle='--', alpha=0.6)
+plt.show()
+```
+
+#### Analytical solution
+
+The analytical solution of the equation of motion for a particle in simple harmonic motion is
+
+$$
+x(t) = A \sin(\omega t) + B \cos(\omega t)
+$$
+
+where $A$ and $B$ are the amplitudes of the particle, and $\omega$ is the angular frequency of the particle
+
+$$
+\omega = \sqrt{\frac{k}{m}}
+$$
+
+The angular frequency is equal to the square root of the spring constant divided by the mass of the particle. The phase angle $\phi$ determines the initial phase of the particle.
+
+#### Geogebra example
+
+::: {.geogebra-instruction}
+* t=Slider[1, 100, 0.1]
+* P=Point[0, sin(t)]
+:::
+
+
+#### Numerical solution
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+k = 1  # Spring constant
+m = 1  # Mass of the particle
+x_0 = 1  # Initial position
+v_0 = 0  # Initial velocity
+
+# Derived parameters
+omega = np.sqrt(k / m)  # Angular frequency
+
+# Time array
+t = np.linspace(0, 50, 500)
+dt = t[1] - t[0]
+
+# Numerical solution (Euler method)
+x_num = [x_0]
+v = v_0
+
+for i in range(1, len(t)):
+    a = -k / m * x_num[-1]  # Acceleration
+    v += a * dt            # Update velocity
+    x_num.append(x_num[-1] + v * dt)  # Update position
+
+# Analytical solution
+A = x_0
+B = v_0 / omega
+x_analytical = B * np.sin(omega * t) + A * np.cos(omega * t)
+
+# Plotting the position vs time
+plt.figure(figsize=(8, 4))
+plt.plot(t, x_num, label="Numerical Solution", linestyle='--')
+plt.plot(t, x_analytical, label="Analytical Solution", linestyle='-')
+plt.xlabel('Time (t)')
+plt.ylabel('Position (x)')
+plt.title('Harmonic Motion in One Dimension')
+plt.legend()
+plt.grid()
+plt.show()
+```
+
+
+### Pendulum Motion
+
+#### Introduction
+
+The motion of a simple pendulum is a classic example of harmonic motion. A pendulum consists of a mass $m$ (called the bob) attached to a string or rod of length $L$, which is fixed at one end and free to swing back and forth under the influence of gravity. For small angles, the motion can be approximated as simple harmonic motion.
+
+#### Equations of Motion
+
+The equation of motion for a pendulum is derived from Newton's second law. The force acting on the pendulum is the component of the gravitational force tangential to the arc of its swing:
+
+$$
+F = -mg \sin(\theta)
+$$
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Constants
+pivot = (0, 10)  # Point of attachment of the pendulum
+L = 10  # Length of the pendulum
+theta1 = np.radians(30)  # First angle of displacement (in radians)
+theta2 = np.radians(60)  # Second angle of displacement (in radians)
+g = 9.81  # Gravitational acceleration
+m = 0.5  # Mass of the pendulum bob
+
+# Calculate bob position for both angles
+x_bob1 = pivot[0] + L * np.sin(theta1)  # x-coordinate for θ=30°
+y_bob1 = pivot[1] - L * np.cos(theta1)  # y-coordinate for θ=30°
+x_bob2 = pivot[0] + L * np.sin(theta2)  # x-coordinate for θ=60°
+y_bob2 = pivot[1] - L * np.cos(theta2)  # y-coordinate for θ=60°
+
+# Calculate forces for both angles
+F_gravity = m * g  # Magnitude of gravitational force
+F_tangential1 = F_gravity * np.sin(theta1)  # Tangential force for θ=30°
+F_tangential2 = F_gravity * np.sin(theta2)  # Tangential force for θ=60°
+
+# Circle parameters for light shading
+circle = plt.Circle(pivot, L, color='gray', fill=False, linestyle='dashed', alpha=0.5)
+
+# Visualization setup
+fig, ax = plt.subplots(figsize=(8, 8))
+
+# Add circular path for the pendulum (single circle for both cases)
+ax.add_artist(circle)  # Add the circular path
+
+# Draw pendulum lines for both cases
+ax.plot([pivot[0], x_bob1], [pivot[1], y_bob1], color='black', linewidth=1.5, label='Pendulum (θ=30°)')
+ax.plot([pivot[0], x_bob2], [pivot[1], y_bob2], color='black', linewidth=1.5, linestyle='dotted', label='Pendulum (θ=60°)')
+
+# Draw bobs as larger circles for both cases
+bob1 = plt.Circle((x_bob1, y_bob1), 0.5, color='orange', zorder=5)  # Bob for θ=30°
+bob2 = plt.Circle((x_bob2, y_bob2), 0.5, color='green', zorder=5)  # Bob for θ=60°
+ax.add_artist(bob1)
+ax.add_artist(bob2)
+
+# Draw force vectors for θ=30°
+ax.quiver(x_bob1, y_bob1, 0, -F_gravity, angles='xy', scale_units='xy', scale=1, color='red', label='Gravitational Force (mg)')
+ax.quiver(
+    x_bob1, y_bob1,
+    -F_tangential1 * np.cos(theta1), -F_tangential1 * np.sin(theta1),
+    angles='xy', scale_units='xy', scale=1, color='blue', label=r'Tangential Force ($-mg \sin(\theta)$)'
+)
+
+# Draw force vectors for θ=60°
+ax.quiver(x_bob2, y_bob2, 0, -F_gravity, angles='xy', scale_units='xy', scale=1, color='darkred')
+ax.quiver(
+    x_bob2, y_bob2,
+    -F_tangential2 * np.cos(theta2), -F_tangential2 * np.sin(theta2),
+    angles='xy', scale_units='xy', scale=1, color='darkblue', label=r'Tangential Force ($-mg \sin(\theta)$, θ=60°)'
+)
+
+# Labels and title
+ax.set_xlim(-L - 2, L + 2)
+ax.set_ylim(-5, 12)
+ax.set_aspect('equal', adjustable='box')
+ax.axhline(pivot[1], color='black', linestyle='dashed', linewidth=1.5)  # Horizontal reference
+ax.set_title("Forces Acting on a Pendulum (Two Positions)")
+ax.set_xlabel("Horizontal Position")
+ax.set_ylabel("Vertical Position")
+ax.legend()
+
+plt.grid(True, linestyle='--', alpha=0.6)
+plt.show()
+
+``` 
+
+
+Using the relationship $F = ma$ and the angular acceleration $a = L \frac{d^2 \theta}{dt^2}$, we get:
+
+$$
+L \frac{d^2 \theta}{dt^2} = -g \sin(\theta)
+$$
+
+Dividing through by $L$, the equation becomes:
+
+$$
+\frac{d^2 \theta}{dt^2} + \frac{g}{L} \sin(\theta) = 0
+$$
+
+For small angles ($\sin(\theta) \approx \theta$), the equation simplifies to:
+
+$$
+\frac{d^2 \theta}{dt^2} + \frac{g}{L} \theta = 0
+$$
+
+This is the equation for simple harmonic motion with angular frequency:
+
+$$
+\omega = \sqrt{\frac{g}{L}}
+$$
+
+#### Analytical Solution
+
+The analytical solution for small angles is:
+
+$$
+\theta(t) = \theta_0 \cos(\omega t + \phi)
+$$
+
+where:
+- $\theta_0$ is the initial angular displacement.
+- $\phi$ is the phase constant, determined by initial conditions.
+
+#### Numerical Solution
+
+For larger angles, the small-angle approximation does not hold, and we need to solve the original nonlinear equation numerically. We can use the finite difference method to approximate the solution.
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+g = 9.81  # Acceleration due to gravity (m/s^2)
+L = 1.0   # Length of the pendulum (m)
+theta_0 = np.pi / 4  # Initial angle (radians)
+
+# Time settings
+T = 10  # Total time (s)
+N = 10_000  # Number of time steps
+dt = T / N
+
+# Arrays to store values
+t = np.linspace(0, T, N)
+theta_full = np.zeros(N)
+omega_full = np.zeros(N)  # Angular velocity for full sin(theta)
+
+theta_approx = np.zeros(N)
+omega_approx = np.zeros(N)  # Angular velocity for sin(theta) ~ theta
+
+# Initial conditions
+theta_full[0] = theta_0
+omega_full[0] = 0
+
+theta_approx[0] = theta_0
+omega_approx[0] = 0
+
+# Numerical integration (Euler method)
+for i in range(1, N):
+    # Full sin(theta)
+    alpha_full = -(g / L) * np.sin(theta_full[i - 1])
+    omega_full[i] = omega_full[i - 1] + alpha_full * dt
+    theta_full[i] = theta_full[i - 1] + omega_full[i] * dt
+
+    # Approximation sin(theta) ~ theta
+    alpha_approx = -(g / L) * theta_approx[i - 1]
+    omega_approx[i] = omega_approx[i - 1] + alpha_approx * dt
+    theta_approx[i] = theta_approx[i - 1] + omega_approx[i] * dt
+
+# Plotting
+plt.figure(figsize=(12, 6))
+plt.plot(t, theta_full, label="Full sin(theta)", color="blue")
+plt.plot(t, theta_approx, label="sin(theta) ~ theta", color="red", linestyle="--")
+plt.title("Pendulum Motion: Full sin(theta) vs Approximation")
+plt.xlabel("Time (s)")
+plt.ylabel("Angle (radians)")
+plt.grid()
+plt.legend()
+plt.show()
+
+```
+
+
+#### Energy Analysis
+
+The total mechanical energy of the pendulum is conserved (assuming no damping). The total energy is the sum of kinetic and potential energy:
+
+$$
+E = K + U
+$$
+
+- Kinetic energy: $K = \frac{1}{2} m v^2$
+- Potential energy: $U = m g h$
+
+For a pendulum:
+
+$$
+v = L \frac{d\theta}{dt}, \quad h = L (1 - \cos\theta)
+$$
+
+Thus, the total energy becomes:
+
+$$
+E = \frac{1}{2} m L^2 \left(\frac{d\theta}{dt}\right)^2 + m g L (1 - \cos\theta)
+$$
+
+The energy remains constant over time, which can be verified numerically.
+
+```{python}
+# Calculate energies
+m=1
+kinetic_energy = 0.5 * m * (L * omega_full)**2
+potential_energy = m * g * L * (1 - np.cos(theta_full))
+total_energy = kinetic_energy + potential_energy
+
+# Plot energies
+plt.figure(figsize=(10, 6))
+plt.plot(t, kinetic_energy, label="Kinetic Energy")
+plt.plot(t, potential_energy, label="Potential Energy")
+plt.plot(t, total_energy, label="Total Energy", linestyle="dashed")
+plt.title("Energy of the Pendulum")
+plt.xlabel("Time (s)")
+plt.ylabel("Energy (J)")
+plt.grid()
+plt.legend()
+plt.show()
+```
+
+
+### Circular Motion
+
+#### Introduction
+
+Circular motion refers to the movement of an object along a circular path. This motion can be uniform (constant speed) or non-uniform (variable speed). For simplicity, we will consider uniform circular motion, where the speed of the object is constant. The position, velocity, and acceleration vectors in circular motion exhibit interesting properties:
+
+- The velocity vector is always tangent to the circle.
+- The acceleration vector (centripetal acceleration) always points toward the center of the circle.
+
+#### Equations of Motion
+
+Assume an object moves along a circular path of radius $R$ with constant angular velocity $\omega$.
+
+##### Position Vector
+
+The position of the object at time $t$ can be described in terms of the angle $\theta(t)$ it makes with the reference axis:
+
+$$
+\mathbf{r}(t) = R \cos(\omega t) \hat{i} + R \sin(\omega t) \hat{j}
+$$
+
+#### Velocity Vector
+
+The velocity is the derivative of the position vector with respect to time:
+
+$$
+\mathbf{v}(t) = \frac{d\mathbf{r}(t)}{dt} = -R \omega \sin(\omega t) \hat{i} + R \omega \cos(\omega t) \hat{j}
+$$
+
+The magnitude of the velocity is constant and equals:
+
+$$
+|\mathbf{v}(t)| = R \omega
+$$
+
+**Velocity and Position Perpendicularity:**
+
+The dot product of the position vector $\mathbf{r}(t)$ and velocity vector $\mathbf{v}(t)$ is:
+
+$$
+\mathbf{r}(t) \cdot \mathbf{v}(t) = \left[R \cos(\omega t)\right] \left[-R \omega \sin(\omega t)\right] + \left[R \sin(\omega t)\right] \left[R \omega \cos(\omega t)\right]
+$$
+
+Simplifying:
+
+$$
+\mathbf{r}(t) \cdot \mathbf{v}(t) = -R^2 \omega \cos(\omega t) \sin(\omega t) + R^2 \omega \sin(\omega t) \cos(\omega t) = 0
+$$
+
+This confirms that $\mathbf{r}(t)$ and $\mathbf{v}(t)$ are perpendicular.
+
+
+#### Acceleration Vector
+
+The acceleration is the derivative of the velocity vector with respect to time:
+
+$$
+\mathbf{a}(t) = \frac{d\mathbf{v}(t)}{dt} = -R \omega^2 \cos(\omega t) \hat{i} - R \omega^2 \sin(\omega t) \hat{j} = -R \omega^2 \mathbf{r}(t)
+$$
+
+The acceleration vector always points toward the center of the circle (centripetal acceleration), and its magnitude is:
+
+$$
+|\mathbf{a}(t)| = R \omega^2 = \frac{v^2}{R}
+$$
+
+Last relation is very important because it shows that the acceleration is proportional to the square of the velocity and inversely proportional to the radius of the circle.
+This result will we very useful in the next section when we will discuss the gravity.
+
+
+#### Numerical Example
+
+We will visualize the position, velocity, and acceleration at two distinct points along the circular path.
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+R = 1  # Radius of the circle
+omega =  np.pi/4  # Angular velocity (rad/s)
+T = 1  # Time period (s)
+t_points = [0, T]  # Time points to analyze
+
+# Calculate vectors at specific points
+positions = [(R * np.cos(omega * t), R * np.sin(omega * t)) for t in t_points]
+velocities = [(-R * omega * np.sin(omega * t), R * omega * np.cos(omega * t)) for t in t_points]
+accelerations = [(-R * omega**2 * np.cos(omega * t), -R * omega**2 * np.sin(omega * t)) for t in t_points]
+
+# Plot the circle and vectors
+fig, ax = plt.subplots(figsize=(8, 8))
+theta = np.linspace(0, 2 * np.pi, 100)
+x_circle = R * np.cos(theta)
+y_circle = R * np.sin(theta)
+ax.plot(x_circle, y_circle, label="Circular Path")
+
+for i, t in enumerate(t_points):
+    x, y = positions[i]
+    vx, vy = velocities[i]
+    axx, axy = accelerations[i]
+
+    ax.quiver(x, y, vx, vy, color="red", angles="xy", scale_units="xy", scale=1, label=f"Velocity at t={t:.2f}s" if i == 0 else None)
+    ax.quiver(x, y, axx, axy, color="blue", angles="xy", scale_units="xy", scale=1, label=f"Acceleration at t={t:.2f}s" if i == 0 else None)
+
+ax.set_aspect('equal', adjustable='box')
+ax.set_title("Circular Motion: Velocity and Acceleration")
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+ax.set_xlim(-2, 2)
+ax.set_ylim(-2, 2)
+ax.legend()
+ax.grid()
+plt.show()
+```
+
+
+## Gravity
+
+### Introduction
+
+The Universal Law of Gravitation, formulated by Sir Isaac Newton, describes the gravitational force between two masses. It states that every particle of matter in the universe attracts every other particle with a force that is directly proportional to the product of their masses and inversely proportional to the square of the distance between their centers.
+
+### Mathematical Formulation
+
+The gravitational force $\mathbf{F}$ between two masses $m_1$ and $m_2$ separated by a distance $r$ is given by:
+
+$$
+\mathbf{F} = -G \frac{m_1 m_2}{r^2} \hat{r}
+$$
+
+Where:
+
+- $G$ is the gravitational constant ($6.674 \times 10^{-11} \ \mathrm{Nm^2/kg^2}$),
+- $\hat{r}$ is the unit vector pointing from one mass to the other,
+- $m_1$ and $m_2$ are the masses of the two bodies,
+- $r$ is the distance between the centers of the masses.
+
+### Gravitational Field
+
+The gravitational field $\mathbf{g}$ at a distance $r$ from a mass $M$ is defined as the force per unit mass exerted by $M$:
+
+$$
+\mathbf{g} = -G \frac{M}{r^2} \hat{r}
+$$
+
+This field points toward the mass $M$ and has a magnitude:
+
+$$
+|\mathbf{g}| = G \frac{M}{r^2}
+$$
+
+#### Visualization: Gravitational Field
+
+We visualize the gravitational field of a central mass $M$ in 2D slice.
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+M = 2e22  # Mass of central body (kg)
+G = 6.674e-11  # Gravitational constant
+
+# Grid for visualization
+x = np.linspace(-100, 100, 25)
+y = np.linspace(-100, 100, 25)
+X, Y = np.meshgrid(x, y)
+R = np.sqrt(X**2 + Y**2)
+
+# Avoid division by zero
+R[R == 0] = np.nan
+R[R <35] = np.nan
+
+# Gravitational field
+Fx = -G * M * X / R**3
+Fy = -G * M * Y / R**3
+
+# Plot field
+plt.figure(figsize=(8, 8))
+plt.quiver(X, Y, Fx, Fy, scale=1e10, color='blue')
+plt.xlabel('x (m)')
+plt.ylabel('y (m)')
+plt.title('Gravitational Field')
+plt.grid()
+plt.gca().set_aspect('equal', adjustable='box')
+plt.show()
+```
+
+### Orbital Motion
+
+Gravitational force is responsible for the orbital motion of planets, moons, and satellites. The centripetal force required for circular motion is provided by gravity:
+
+$$
+F = \frac{mv^2}{r} = G \frac{mM}{r^2}
+$$
+
+From this, the orbital velocity $v$ of a body of mass $m$ around a central mass $M$ is:
+
+$$
+v = \sqrt{G \frac{M}{r}}
+$$
+
+The orbital period $T$ of the body can also be derived:
+
+$$
+T = 2\pi \sqrt{\frac{r^3}{GM}}
+$$
+
+### Escape Velocity
+
+Escape velocity is the minimum velocity required for an object to escape the gravitational pull of a planet or celestial body without further propulsion. It is given by:
+
+$$
+v_\text{escape} = \sqrt{2G \frac{M}{R}}
+$$
+
+where $M$ is the mass of the celestial body and $R$ is its radius.
+
+### Numerical Example: Escape Velocity for Earth
+
+- Mass of Earth ($M_\text{Earth}$): $5.972 \times 10^{24} \ \mathrm{kg}$
+- Radius of Earth ($R_\text{Earth}$): $6.371 \times 10^6 \ \mathrm{m}$
+```{python}
+# Constants
+G = 6.674e-11  # Gravitational constant (N m^2/kg^2)
+M_earth = 5.972e24  # Mass of Earth (kg)
+R_earth = 6.371e6  # Radius of Earth (m)
+
+# Escape velocity calculation
+v_escape = np.sqrt(2 * G * M_earth / R_earth)
+print(f"Escape velocity for Earth: {v_escape/1000:.1f} km/s")
+```
+
+
+### Gravitational Potential Energy
+
+The gravitational potential energy $U$ of a two-body system is given by:
+
+$$
+U = -G \frac{m_1 m_2}{r}
+$$
+
+This energy is negative because the gravitational force is attractive, and the potential energy is zero at infinite separation.
+
+### Applications of Universal Gravitation
+
+1. **Planetary Orbits:** Predicting the motion of planets and moons in their orbits.
+2. **Space Travel:** Calculating escape velocities and transfer orbits for spacecraft.
+3. **Tidal Effects:** Understanding the gravitational interaction between Earth and Moon causing ocean tides.
+4. **Astrophysics:** Studying gravitational interactions in galaxies and black holes.
+
+### Small body around the Earth
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parametry
+G = 6.674e-11  # Stała grawitacyjna (m^3/kg/s^2)
+M = 5.972e24   # Masa większego ciała, np. Ziemi (kg)
+m = 1000       # Masa mniejszego ciała, np. satelity (kg)
+
+# Warunki początkowe
+r0 = 7e6  # Początkowa odległość od środka masy większego ciała (m)
+v0 = 5200  # Początkowa prędkość orbitalna (m/s)
+theta0 = 0  # Początkowy kąt w radianach
+
+# Czas
+T = 6000  # Czas symulacji (s)
+N = 100_000  # Liczba kroków czasowych
+dt = T / N
+
+# Tablice dla pozycji i prędkości
+x = np.zeros(N)
+y = np.zeros(N)
+vx = np.zeros(N)
+vy = np.zeros(N)
+
+# Warunki początkowe
+x[0] = r0 * np.cos(theta0)
+y[0] = r0 * np.sin(theta0)
+vx[0] = -v0 * np.sin(theta0)
+vy[0] = v0 * np.cos(theta0)
+
+# Numeryczna integracja (metoda Eulera)
+for i in range(1, N):
+    r = np.sqrt(x[i - 1]**2 + y[i - 1]**2)  # Odległość od środka masy
+    ax = -G * M * x[i - 1] / r**3          # Przyspieszenie w osi x
+    ay = -G * M * y[i - 1] / r**3          # Przyspieszenie w osi y
+    
+    # Aktualizacja prędkości
+    vx[i] = vx[i - 1] + ax * dt
+    vy[i] = vy[i - 1] + ay * dt
+    
+    # Aktualizacja pozycji
+    x[i] = x[i - 1] + vx[i - 1] * dt
+    y[i] = y[i - 1] + vy[i - 1] * dt
+
+# Wizualizacja trajektorii
+plt.figure(figsize=(8, 8))
+plt.plot(x, y, label="Trajektoria")
+plt.plot(0, 0, 'ro', label="Centralne ciało (np. Ziemia)")
+plt.xlabel("x (m)")
+plt.ylabel("y (m)")
+plt.title("Trajektoria orbitalna małego ciała")
+plt.legend(loc='lower right')
+plt.grid()
+plt.axis('equal')
+plt.show()
+
+```
+
+
+### Earth-Moon System with small body
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+G = 6.674e-11  # Gravitational constant (m^3/kg/s^2)
+M_earth = 5.972e24  # Mass of Earth (kg)
+M_moon = 7.348e22  # Mass of Moon (kg)
+R_earth_moon = 3.844e8  # Distance between Earth and Moon (m)
+m_probe = 1000  # Mass of the probe (kg)
+
+# Initial positions
+x_earth, y_earth = 0, 0
+x_moon, y_moon = R_earth_moon, 0
+
+# Launch parameters
+launch_angle = 5  # Launch angle in degrees (relative to +x-axis)
+initial_speed = 1500  # Initial speed of the probe (m/s)
+
+# Convert launch angle to radians
+launch_angle_rad = np.radians(launch_angle)
+
+# Probe initial position and velocity
+x_probe, y_probe = R_earth_moon / 2, 0  # Start halfway between Earth and Moon
+vx_probe = initial_speed * np.cos(launch_angle_rad)
+vy_probe = initial_speed * np.sin(launch_angle_rad)
+
+# Time settings
+T =15 * 24 * 3600  # Total simulation time (s)
+N = 500000  # Number of time steps
+dt = T / N  # Time step (s)
+
+# Arrays to store positions
+x_positions = []
+y_positions = []
+
+# Simulation loop
+for i in range(N):
+    # Distance between probe and Earth
+    r_earth = np.sqrt((x_probe - x_earth)**2 + (y_probe - y_earth)**2)
+
+    # Distance between probe and Moon
+    r_moon = np.sqrt((x_probe - x_moon)**2 + (y_probe - y_moon)**2)
+
+    # Gravitational accelerations
+    ax_earth = -G * M_earth * (x_probe - x_earth) / r_earth**3
+    ay_earth = -G * M_earth * (y_probe - y_earth) / r_earth**3
+
+    ax_moon = -G * M_moon * (x_probe - x_moon) / r_moon**3
+    ay_moon = -G * M_moon * (y_probe - y_moon) / r_moon**3
+
+    # Total acceleration
+    ax = ax_earth + ax_moon
+    ay = ay_earth + ay_moon
+
+    # Update velocities
+    vx_probe += ax * dt
+    vy_probe += ay * dt
+
+    # Update positions
+    x_probe += vx_probe * dt
+    y_probe += vy_probe * dt
+
+    # Store positions
+    x_positions.append(x_probe)
+    y_positions.append(y_probe)
+
+# Convert to arrays
+x_positions = np.array(x_positions)
+y_positions = np.array(y_positions)
+
+# Plot the results
+plt.figure(figsize=(8, 8))
+plt.plot(x_positions, y_positions, label="Probe Trajectory")
+plt.plot(x_earth, y_earth, 'bo', label="Earth", markersize=10)
+plt.plot(x_moon, y_moon, 'go', label="Moon", markersize=7)
+plt.xlabel("x (m)")
+plt.ylabel("y (m)")
+plt.title("Trajectory of the Probe in the Earth-Moon System")
+plt.legend()
+plt.grid()
+plt.axis('equal')
+plt.show()
+
+```

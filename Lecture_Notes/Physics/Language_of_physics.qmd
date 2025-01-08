@@ -1,0 +1,731 @@
+---
+title: Language of Physics
+format:
+  html:
+    theme: flatly
+    toc: true
+    toc-depth: 3
+    highlight-style: tango
+    code-line-numbers: true
+    code-fold: show
+    code-summary: "Show the code"
+    code-tools: true
+    code-block-bg: "rgba(42, 174, 42, 0.02)"
+    code-block-border-left: "#2aae2a"
+    code-language-label: true
+    css: styles.css
+    math: mathjax
+    self-contained: true
+    other-links:
+      - text: Main page
+        href: https://dchorazkiewicz.github.io/Physics-2024-25-Summer/       
+---
+
+## Introduction
+
+Physics often describes the universe and its phenomena using the language of mathematics, where the Cartesian 3D space serves as the natural stage for physical events. This spatial representation, defined by three orthogonal axes $x$, $y$, and $z$, is the starting point for our exploration. By reducing the dimensionality to 2D, we simplify the analysis, enabling a focused study of structures that arise in such spaces. This reduction is not merely an abstraction but also a practical tool for understanding the behaviors and interactions within physical systems.
+
+
+## Weather Data Visualization
+
+Interactive weather maps serve as an excellent introduction to the fundamental ideas required to study physics. If one can interpret these maps, they will find it easier to grasp the basic concepts of scalar and vector fields, which are central to understanding physical systems.
+
+On such maps, temperature is represented using a color gradient, where each color corresponds to a specific value at a given point in space. This visualization aligns with the definition of a **scalar field**, which assigns a single numerical value to each point in space. 
+
+Similarly, wind patterns are illustrated using moving line segments, where their length and direction represent the speed and direction of the wind at various points. These segments directly depict **vector fields**, as they assign a vector—defined by both magnitude and direction—to each point in space. Since the magnitude is expressed as a numerical value, the background color can be used to represent the magnitude of the vector field.
+
+
+```{=html}
+<iframe width="650" height="450" src="https://embed.windy.com/embed2.html" frameborder="0" data-external="1"></iframe>
+
+```
+
+[www.windy.com](https://www.windy.com/)
+
+
+Having this background, we can now delve into the mathematical representations of scalar and vector fields in 2D space. Let us use more formal definitions to understand these concepts better.
+
+## Scalar Fields
+
+A scalar field associates a single real value to every point in a given space. In 2D, this can be represented as a function $T(x, y)$, where $T$ could represent a physical property like temperature.
+
+### Example: Temperature on a surface
+
+Consider a simple model where the temperature of a surface varies with both position and time:
+
+$$
+T(x, y) = 5 \sin(x) \cos(y)
+$$
+
+Below is a Python code of this scalar field:
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Scalar field definition
+def scalar_field(x, y):
+    return  5 * np.sin(x) * np.cos(y)
+
+# Generate grid points
+x = np.linspace(-5, 5, 100)
+y = np.linspace(-5, 5, 100)
+x, y = np.meshgrid(x, y)
+
+# Compute scalar field values
+T = scalar_field(x, y)
+
+# Plot the scalar field
+plt.figure(figsize=(8, 6))
+plt.imshow(T, extent=[-5, 5, -5, 5], origin='lower', cmap="coolwarm")
+plt.colorbar(label="Temperature")
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.title("Temperature Distribution on a Surface")
+plt.show()
+
+```
+
+Above example defines a scalar field that do not depend on time. As we can see on weather maps, scalar fields can also be time-dependent, where the value of the field changes with time.
+
+To define a time-dependent scalar field, we can modify the previous example by adding explicit time dependence:
+
+$$
+T(x, y, t) = 5 \sin(x) \cos(y) e^{-t}
+$$
+
+Now the temperature at each point $(x, y)$ decays exponentially with time. To visualize this field, we can use the following Python or Geogebra code in 3D calculator:
+
+::: {.geogebra-instruction}
+* t=Slider[0,10,0.01]
+* T(x,y)=5*sin(x)*cos(y)*exp(-t)
+:::
+
+Or we can use the following Python code to grasp 4 time steps:
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Scalar field definition
+def scalar_field(x, y, t):
+    return 5 * np.sin(x) * np.cos(y) * np.exp(-t)
+
+# Generate grid points
+x = np.linspace(-5, 5, 100)
+y = np.linspace(-5, 5, 100)
+x, y = np.meshgrid(x, y)
+
+# Compute scalar field values for 4 time steps
+T = np.zeros((100, 100, 4))
+for i in range(4):
+    T[:, :, i] = scalar_field(x, y, i)
+
+# Determine common color scale
+vmin = np.min(T)
+vmax = np.max(T)
+
+# Plot the scalar field for 4 time steps
+fig, axs = plt.subplots(2, 2, figsize=(12, 12))
+
+# Store the last image for the colorbar
+im = None
+
+for i, ax in enumerate(axs.flat):
+    ax.grid(False)  # Explicitly disable gridlines
+    im = ax.imshow(T[:, :, i], extent=[-5, 5, -5, 5], origin='lower', cmap="coolwarm", vmin=vmin, vmax=vmax)
+    ax.set_title(f"Temperature Distribution at t={i}")
+    ax.set_xlabel("X-axis")
+    ax.set_ylabel("Y-axis")
+
+# Adjust layout to fit a colorbar outside the plots
+fig.subplots_adjust(right=0.85)
+cbar_ax = fig.add_axes([0.88, 0.15, 0.02, 0.7])  # Define a new axis for the colorbar
+cbar = fig.colorbar(im, cax=cbar_ax)
+cbar.set_label("Temperature")
+
+plt.show()
+
+```
+
+## Vector Fields
+
+A vector field assigns a vector to every point in space. In 2D, such a field can be represented as 
+
+$$\vec{F}(x, y) = (F_x(x, y), F_y(x, y))$$
+
+where $F_x$ and $F_y$ are the components of the vector field. Both may depend on the position $(x, y)$.
+
+### Example: Static vector field
+
+Let us examine a vector field that depends on both space and time:
+
+$$
+\vec{F}(x, y) = (\sin(y), \sqrt{\frac{|x|}{5}})
+$$
+
+This field might represent the velocity of a fluid at each point $(x, y)$ in a 2D space. Below is a Python code to visualize this vector field:
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Definition of the vector field
+def vector_field(x, y):
+    Fx = np.sin(y)
+    Fy = np.sqrt(np.abs(x)/5)
+    return Fx, Fy
+
+# Generating a grid of points
+x = np.linspace(-15, 15, 16)
+y = np.linspace(-15, 15, 16)
+x, y = np.meshgrid(x, y)
+
+# Calculating the vector field
+Fx, Fy = vector_field(x, y)
+
+# Calculating the lengths of the vectors
+d_lengths = np.sqrt(Fx**2 + Fy**2)
+
+# Initializing the plot
+fig, ax = plt.subplots(figsize=(6, 6))
+quiver = ax.quiver(
+    x, y, Fx, Fy, d_lengths, angles='xy', scale_units='xy', scale=1, cmap='viridis'
+)
+cb = fig.colorbar(quiver, ax=ax, label="Vector length")
+ax.set_xlim(-15, 15)
+ax.set_ylim(-15, 15)
+ax.set_xlabel("X axis")
+ax.set_ylabel("Y axis")
+ax.set_title("2D vector field with color dependent on vector length")
+
+plt.show()
+```
+
+
+Stream plot
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Definition of the vector field
+def vector_field(x, y):
+    Fx = np.sin(y)
+    Fy = np.sqrt(np.abs(x)/5)
+    return Fx, Fy
+
+# Generating a grid of points
+x = np.linspace(-15, 15, 100)  # Higher resolution for streamlines
+y = np.linspace(-15, 15, 100)
+x, y = np.meshgrid(x, y)
+
+# Calculating the vector field
+Fx, Fy = vector_field(x, y)
+d_lengths = np.sqrt(Fx**2 + Fy**2)
+
+# Streamplot (Streamlines)
+fig, ax = plt.subplots(figsize=(6, 6))
+stream = ax.streamplot(
+    x[0, :], y[:, 0], Fx, Fy, color=d_lengths, cmap='viridis', linewidth=1.5
+)
+cb = fig.colorbar(stream.lines, ax=ax, label="Vector length")
+ax.set_xlim(-15, 15)
+ax.set_ylim(-15, 15)
+ax.set_xlabel("X axis")
+ax.set_ylabel("Y axis")
+ax.set_title("2D Vector Field with Streamlines")
+plt.show()
+```
+
+## Derivatives and Integrals
+
+### Derivatives
+
+#### Derivative of functions of one variable
+
+The derivative of a function $f(x)$ with respect to $x$ is defined as
+
+$$
+\frac{df(x)}{dx} = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h}
+$$
+
+This limit represents the rate of change of the function $f(x)$ with respect to $x$.
+
+#### Derivative of functions of two variables
+
+The derivative of a function $f(x, y)$ with respect to $x$ is defined as
+
+$$
+\frac{\partial f(x, y)}{\partial x} = \lim_{h \to 0} \frac{f(x + h, y) - f(x, y)}{h}
+$$
+
+This limit represents the rate of change of the function $f(x, y)$ with respect to $x$. The derivative is a measure of how the function changes as $x$ changes for a fixed value of $y$. This describes how the function changes in the $x$ direction.
+
+Similarly, the derivative of a function $f(x, y)$ with respect to $y$ is defined as
+
+$$
+\frac{\partial f(x, y)}{\partial y} = \lim_{h \to 0} \frac{f(x, y + h) - f(x, y)}{h}
+$$
+
+This limit represents the rate of change of the function $f(x, y)$ with respect to $y$ and describes how the function changes in the $y$ direction for a fixed value of $x$.
+
+### Integrals
+
+At the simplest level, an integral is the reverse of a derivative. The integral of a function $f(x)$ with respect to $x$ is defined as
+
+$$
+\int f(x) dx = F(x) + C
+$$
+
+where $F(x)$ is the antiderivative of $f(x)$ and $C$ is an integration constant. The antiderivative is a function whose derivative is equal to $f(x)$:
+
+$$
+\frac{dF(x)}{dx} = f(x)
+$$
+
+The integral is a measure of the area under the curve of the function $f(x)$. The integral is a function that gives the area under the curve of the function $f(x)$ up to a given point.
+
+## Differential equations
+
+### Starting example
+
+Let's consider the first order differential equation
+
+::: {.equation-box}
+$$
+\frac{dy(x)}{dx} = 2x
+$$
+:::
+
+Let us think how we should read this equation. The left hand side is the derivative of the function $y(x)$ with respect to $x$. This derivative is equal to $2x$. This equation tells us how the function $y(x)$ changes with $x$. The function $y(x)$ changes at a rate of $2x$ with respect to $x$. This is a simple differential equation that can be solved by integration.
+$$
+y(x) = x^2 + C
+$$
+
+where $C$ is an integration constant. This is the general solution of the differential equation. The solution is not unique because the constant $C$ can take any value. 
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+def y(x, C):
+    return x**2 + C
+
+x = np.linspace(0, 10, 100)
+
+fig, ax = plt.subplots(figsize=(6, 4))
+
+for C in range(-50, 50, 10):
+    plt.plot(x, y(x, C), label=f'C={C}')
+
+plt.xlabel('x')
+plt.ylabel('y')
+plt.show()
+```
+
+#### Check in geogebra:
+
+::: {.geogebra-instruction}
+* f(x) =  x^2 + 3
+:::
+
+##### Numerical solution
+
+Remember that derivatives can be approximated by finite differences. The derivative of a function $f(x)$ can be approximated by
+
+$$
+\frac{df(x)}{dx} \approx \frac{f(x + h) - f(x)}{h}
+$$
+
+where $h$ is a small number. This is a simple way to approximate the derivative of a function. Let's use this approximation to solve the differential equation
+
+$$
+\frac{dy(x)}{dx} = 2x
+$$
+
+We can approximate the derivative by
+
+$$
+\frac{y(x + h) - y(x)}{h} = 2x
+$$
+
+This equation can be solved for $y(x + h)$
+
+$$
+y(x + h) = y(x) + 2xh
+$$
+
+This equation can be used to solve the differential equation numerically. We can start from an initial value of $y(x)$ and use the equation above to calculate the value of $y(x + h)$. This value can be used to calculate the next value of $y(x + 2h)$ and so on. This is a simple numerical method to solve differential equations.
+
+Let us compare the numerical solution with the analytical solution.
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Define the derivative dy/dx
+def dy_dx(x):
+    return 2 * x
+
+# Define the exact analytical solution y(x) for comparison
+def y_analytical(x):
+    return x**2
+
+# Define a numerical solution for y(x) using the forward Euler method
+def y_numerical(x, h):
+    y = [0]  # Initialize y with the starting value, assuming y(0) = 0
+    for i in range(len(x) - 1):
+        y.append(y[-1] + dy_dx(x[i]) * h)  # Update y using dy/dx
+    return y
+
+# Set up the x values
+plot_x = np.linspace(0, 10, 100)
+x = np.linspace(0, 10, 10)
+h = x[1] - x[0]  # Step size
+
+# Compute the difference between analytical and numerical solutions
+difference = y_analytical(x) - np.array(y_numerical(x, h))
+
+# Set up the figure with two subplots
+fig, axs = plt.subplots(2,1, figsize=(10,8))
+
+# Left plot: Analytical and numerical solutions
+axs[0].plot(plot_x, y_analytical(plot_x), label='Analytical', linestyle='dashed', linewidth=2)
+axs[0].scatter(x, y_numerical(x, h), label='Numerical', linestyle='solid', color='red')
+axs[0].set_title('Analytical vs Numerical')
+axs[0].set_xlabel('x')
+axs[0].set_ylabel('y')
+axs[0].legend()
+
+# Right plot: Difference between solutions
+axs[1].scatter(x, difference, label='Difference', color='red')
+axs[1].set_title('Difference (Analytical - Numerical)')
+axs[1].set_xlabel('x')
+axs[1].set_ylabel('Difference')
+axs[1].legend()
+
+# Adjust layout and show the plots
+plt.tight_layout()
+plt.show()
+
+```
+
+Difference between the analytical and numerical solutions depends on the step size $h$. 
+
+### Second order differential equations
+
+Let's consider the second order differential equation
+
+$$
+\frac{d^2y(x)}{dx^2} = -y(x)
+$$
+
+This is a simple differential equation that can be solved by integration. The solution is
+
+$$
+y(x) = A \sin(x) + B \cos(x)
+$$
+
+where $A$ and $B$ are integration constants. This is the general solution of the differential equation. The solution is not unique because the constants $A$ and $B$ can take any value. The solution is a sinusoidal function. The constants $A$ and $B$ determine the amplitude and phase of the sinusoidal function.
+
+#### Numerical solution
+
+From Taylor's theorem, we know that the second derivative of a function $f(x)$ can be approximated by
+
+$$
+f(x + h) = f(x) + h \frac{df(x)}{dx} + \frac{h^2}{2} \frac{d^2f(x)}{dx^2} + \ldots
+$$
+
+also
+
+$$
+f(x - h) = f(x) - h \frac{df(x)}{dx} + \frac{h^2}{2} \frac{d^2f(x)}{dx^2} + \ldots
+$$
+
+adding these two equations we get
+
+$$
+f(x + h) + f(x - h) = 2 f(x) + h^2 \frac{d^2f(x)}{dx^2}
+$$
+
+so we can approximate the second derivative by
+
+$$
+\frac{f(x + h) + f(x - h) - 2 f(x)}{h^2} \approx \frac{d^2f(x)}{dx^2}
+$$
+
+Let's use this approximation to solve the differential equation
+
+$$
+\frac{d^2y(x)}{dx^2} = -y(x)
+$$
+
+We can approximate the second derivative by
+
+$$
+\frac{y(x + h) + y(x - h) - 2 y(x)}{h^2} = -y(x)
+$$
+
+This equation can be solved for $y(x + h)$
+
+$$
+y(x + h) = 2 y(x) - y(x - h) - h^2 y(x)
+$$
+
+This equation can be used to solve the differential equation numerically. We can start from an initial value of $y(x)$ and $y(x - h)$ and use the equation above to calculate the value of $y(x + h)$. This value can be used to calculate the next value of $y(x + 2h)$ and so on. This is a simple numerical method to solve differential equations.
+
+Let us compare the numerical solution with the analytical solution.
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Define the second derivative d^2y/dx^2
+def d2y_dx2(x):
+    return -x
+
+# Define the exact analytical solution y(x) for comparison
+def y_analytical(x):
+    return -np.sin(x)
+
+# Define a numerical solution for y(x) using the forward Euler method
+def y_numerical(x, h):
+    y = [0, np.sin(-h)]  # Initialize y with the starting values, assuming y(0) = 0 and y(-h) = sin(-h)
+    for i in range(1, len(x) - 1):
+        y.append(2 * y[-1] - y[-2] - h**2 * y[-1])  # Update y using d^2y/dx^2
+    return y
+
+# Set up the x values
+plot_x = np.linspace(0, 10, 100)
+x = np.linspace(0, 10, 20)
+h = x[1] - x[0]  # Step size
+
+# Compute the difference between analytical and numerical solutions
+difference = y_analytical(x) - np.array(y_numerical(x, h))
+
+# Set up the figure with two subplots
+fig, axs = plt.subplots(2,1, figsize=(10,8))
+
+# Left plot: Analytical and numerical solutions
+axs[0].plot(plot_x, y_analytical(plot_x), label='Analytical', linestyle='dashed', linewidth=2)
+axs[0].scatter(x, y_numerical(x, h), label='Numerical', color='red')
+axs[0].set_title('Analytical vs Numerical')
+axs[0].set_xlabel('x')
+
+axs[0].set_ylabel('y')
+axs[0].legend()
+
+# Right plot: Difference between solutions
+axs[1].scatter(x, difference, label='Difference')
+axs[1].set_title('Difference (Analytical - Numerical)')
+axs[1].set_xlabel('x')
+axs[1].set_ylabel('Difference')
+axs[1].legend()
+
+# Adjust layout and show the plots
+plt.tight_layout()
+plt.show()
+```
+
+
+## Gradient
+
+The **gradient** of a scalar field is itself a vector field that points in the direction of the greatest rate of increase of that scalar field. Its magnitude indicates how rapidly the value of the scalar field changes. Formally, for a function $f(x, y, z)$, the gradient is:
+
+$$
+\nabla f = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \right).
+$$
+
+If a function $f$ is defined in 2D space as $f(x, y)$, then
+
+$$
+\nabla f(x, y) = \left( \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y} \right).
+$$
+
+::: warning
+Any scalar field $f(x, y)$ has a corresponding gradient field $\nabla f$. **However**, not every vector field is necessarily the gradient of some scalar field.  
+:::
+
+---
+
+### 1D Example
+
+For a one-dimensional function $f(x) = \sin(x)$ on the interval $[0, 10]$, the gradient (or in this 1D case, simply the derivative) is:
+
+$$
+f'(x) = \cos(x).
+$$
+
+Below is a Python example that illustrates how to compute these derivatives at a few sample points. We then represent them as small vectors placed at $y = 2$ in a plot, pointing upward if $f'(x)$ is positive and downward if $f'(x)$ is negative, with a scaled magnitude.
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 1D function
+def f(x):
+    return np.sin(x)
+
+# Its derivative (gradient in 1D)
+def df(x):
+    return np.cos(x)
+
+# Sample points on [0, 10]
+xs = np.linspace(0, 10, 100)
+values_f = f(xs)
+
+# Choose a few points to visualize gradient vectors
+sample_points = np.linspace(0, 10, 20)
+grad_values = df(sample_points)
+
+fig, ax = plt.subplots(figsize=(8, 4))
+
+# Plot sin(x)
+ax.plot(xs, values_f, label='f(x) = sin(x)')
+
+# Plot gradient vectors at y=2 for each sample point
+for x_i, grad in zip(sample_points, grad_values):
+    # We'll scale the arrow length by 0.5 for visibility
+    ax.arrow(
+        x_i, f(x_i), grad,0 ,
+        head_width=0.1, head_length=0.1, length_includes_head=True,
+        fc='green', ec='red'
+    )
+
+ax.set_ylim(-1.5, 2)
+ax.set_xlabel('x')
+ax.set_ylabel('f(x)')
+ax.set_title('1D Gradient (Derivative) of sin(x)')
+ax.legend()
+plt.show()
+```
+
+In this plot:
+- The blue curve is $\sin(x)$.
+- The red arrows at show the derivative $f'(x) = \cos(x)$ at the chosen sample points.
+  - Arrows pointing up indicate a positive derivative.
+
+
+---
+
+### 2D Example
+
+Now let’s consider a scalar field in two variables. For instance:
+
+$$
+f(x, y) = \sin(x)\cos(y).
+$$
+
+Its gradient is:
+
+$$
+\nabla f(x, y) = 
+\Bigl(
+\frac{\partial}{\partial x}[\sin(x)\cos(y)],\; 
+\frac{\partial}{\partial y}[\sin(x)\cos(y)]
+\Bigr)
+=
+\bigl(\cos(x)\cos(y),\; -\sin(x)\sin(y)\bigr).
+$$
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# Define the 2D scalar field
+def f2d(x, y):
+    return np.sin(x) * np.cos(y)
+
+# Create a grid for plotting
+nx, ny = 60, 60
+x_vals = np.linspace(0, 2*np.pi, nx)
+y_vals = np.linspace(0, 2*np.pi, ny)
+X, Y = np.meshgrid(x_vals, y_vals)
+Z = f2d(X, Y)
+
+# --- 3D Surface Plot ---
+fig3d = plt.figure(figsize=(8, 6))
+ax3d = fig3d.add_subplot(111, projection='3d')
+
+# Create a surface plot
+surf = ax3d.plot_surface(
+    X, Y, Z, 
+    cmap='coolwarm', 
+    edgecolor='none',
+    alpha=0.9
+)
+fig3d.colorbar(surf, ax=ax3d, shrink=0.6, label='f(x,y) = sin(x)*cos(y)')
+ax3d.set_xlabel('x')
+ax3d.set_ylabel('y')
+# ax3d.set_zlabel('f(x,y)')
+ax3d.set_title('3D Surface of f(x, y) = sin(x)*cos(y)')
+plt.show()
+```
+
+
+Below is a Python example that:
+1. Plots a heatmap of $f(x, y)$.
+2. Overlays gradient vectors (arrows) on a grid of points.
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Define the 2D scalar field
+def f2d(x, y):
+    return np.sin(x) * np.cos(y)
+
+# Define partial derivatives (gradient)
+def grad_f2d(x, y):
+    # df/dx = cos(x)*cos(y)
+    # df/dy = -sin(x)*sin(y)
+    return np.cos(x)*np.cos(y), -2*np.sin(x)*np.sin(y)
+
+# Create a grid for plotting
+nx, ny = 60, 60
+x_vals = np.linspace(0, 2*np.pi, nx)
+y_vals = np.linspace(0, 2*np.pi, ny)
+X, Y = np.meshgrid(x_vals, y_vals)
+Z = f2d(X, Y)
+
+# Compute gradient on a coarser grid for quiver plot
+skip = 3
+x_quiv = X[::skip, ::skip]
+y_quiv = Y[::skip, ::skip]
+Fx, Fy = grad_f2d(x_quiv, y_quiv)
+
+fig, ax = plt.subplots(figsize=(8, 6))
+
+# Heatmap of f(x,y)
+c = ax.imshow(
+    Z, 
+    extent=[x_vals.min(), x_vals.max(), y_vals.min(), y_vals.max()],
+    origin='lower',
+    cmap='coolwarm'
+)
+fig.colorbar(c, ax=ax, label='f(x,y) = sin(x)*cos(y)')
+
+# Quiver plot of gradient vectors
+ax.quiver(
+    x_quiv, y_quiv, Fx, Fy, 
+    color='black', 
+    pivot='mid', 
+    alpha=0.8,
+    width=0.003,
+    scale=50
+)
+
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_title('Gradient of f(x, y) = sin(x)*cos(y)')
+plt.show()
+```
+
+**Interpretation**:
+
+- The **heatmap** shows the values of $f(x,y)$. Red/blue corresponds to high/low values of the scalar field.
+- The **arrows** show the local direction and magnitude of the gradient, i.e., where $f(x, y)$ increases the most and how quickly.
+
+This demonstrates how any scalar field (like temperature, potential, or pressure) naturally defines a vector field via its gradient. However, **not every vector field arises as a gradient** of a scalar field—certain mathematical conditions (like having zero curl in a simply connected domain) must be satisfied for a vector field to be the gradient of some scalar field.

@@ -1,0 +1,741 @@
+---
+title: Introduction to Statistics with Python Simulations
+format:
+  html:
+    theme: flatly
+    toc: true
+    toc-depth: 3
+    highlight-style: tango
+    code-line-numbers: true
+    code-fold: show
+    code-summary: "Show the code"
+    code-tools: true
+    code-block-bg: "rgba(42, 174, 42, 0.02)"
+    code-block-border-left: "#2aae2a"
+    code-language-label: true
+    css: styles.css
+    math: mathjax
+    self-contained: true
+    other-links:
+      - text: Main page
+        href: https://dchorazkiewicz.github.io/Physics-2024-25-Summer/       
+---
+
+## Basic Concepts
+
+### Experiment with a Die
+
+Let us perform an experiment with a die. We will roll a die 5 times and record the outcomes. The outcomes are the numbers from 1 to 6. We will record the number of times each number appears. The experiment is repeated 10 times. The results are shown in the table below.
+
+```{python}
+import pandas as pd
+import numpy as np
+
+np.random.seed(0)
+data = np.random.randint(1, 7, (10, 5))
+df = pd.DataFrame(data, columns=['Roll 1', 'Roll 2', 'Roll 3', 'Roll 4', 'Roll 5'])
+df.index = ['Experiment ' + str(i) for i in range(1, 11)]
+df
+```
+
+One thing we can observe is that the outcomes are different in each experiment. This is due to the randomness of the outcomes. However, some patterns can still be observed. Let us explore some questions.
+
+We have computers, so we can simulate the experiment many times. Let us simulate the experiment 10,000 times.
+
+---
+
+#### Question 1
+
+**Let us compute the sum of the outcomes in each experiment. Next, we will count the number of times each sum appears in the 10,000 experiments and plot the results.**
+
+```{python}
+df = np.random.randint(1, 7, (10000, 5))
+sums = df.sum(axis=1)
+counts = pd.Series(sums).value_counts().sort_index()
+counts.plot(kind='bar', figsize=(10, 5))
+```
+
+---
+
+#### Question 2
+
+**Maybe we can change the number of times we roll the die. Let us repeat the experiment with 42 rolls. We will simulate the experiment 10,000 times and plot the results.**
+
+```{python}
+df = np.random.randint(1, 7, (10000, 42))
+sums = df.sum(axis=1)
+counts = pd.Series(sums).value_counts().sort_index()
+counts.plot(kind='bar', figsize=(10, 5))
+```
+
+The plot is not ideal. Let us try running 100,000 experiments.
+
+```{python}
+df = np.random.randint(1, 7, (100000, 42))
+sums = df.sum(axis=1)
+counts = pd.Series(sums).value_counts().sort_index()
+counts.plot(kind='bar', figsize=(10, 5))
+```
+
+This is much better. We can see that the distribution of the sums looks similar. This kind of behavior is what we are looking for. Even though you cannot predict the outcome of a single experiment, you can predict the distribution of outcomes and use it to make informed decisions.
+
+---
+
+#### Question 3
+
+**Let us compute how many times outcomes 1, 2, 3, 4, 5, and 6 appear in the 10,000 experiments. We will plot the results.**
+
+```{python}
+df = np.random.randint(1, 7, (10000, 42))
+counts = pd.DataFrame(df).stack().value_counts().sort_index()
+counts.plot(kind='bar', figsize=(10, 5))
+```
+
+We can see that the chances are equal.
+
+---
+
+#### Question 4
+
+**Let us compute the chances of getting each outcome in the first, second, third, ..., 42nd roll. We will plot the results.**
+
+```{python}
+df = np.random.randint(1, 7, (10000, 42))
+counts = pd.DataFrame(df).apply(lambda x: x.value_counts(normalize=True)).T
+counts.plot(kind='bar', stacked=True, figsize=(10, 5))
+```
+
+
+## Definition of Probability
+
+The classical definition of probability is rooted in the concept of equally likely outcomes. For an event $A$, its probability is calculated as:
+
+$$
+P(A) = \frac{\text{Number of favorable outcomes}}{\text{Total number of possible outcomes}}.
+$$
+
+This definition works well for problems where all outcomes are equally likely, such as rolling a die or drawing a card from a well-shuffled deck. However, calculating probabilities analytically becomes difficult for more complex systems. Here, simulation methods like Monte Carlo become invaluable.
+
+### Simulating Classical Probability with Monte Carlo
+
+Monte Carlo simulation allows us to approximate probabilities by performing random experiments multiple times. Instead of enumerating all possible outcomes, we rely on repeated random sampling to estimate probabilities. Let us demonstrate this with an example.
+
+### Example: Estimating the Probability of Rolling a Sum Greater Than 8 with Two Dice
+
+#### Analytical Solution
+The total number of outcomes when rolling two dice can be calculated programmatically. The favorable outcomes for a sum greater than 8 can also be determined directly:
+
+```{python}
+from itertools import product
+
+# All possible outcomes for two dice
+all_outcomes = list(product(range(1, 7), repeat=2))
+
+# Total number of possible outcomes
+total_outcomes = len(all_outcomes)
+
+# Favorable outcomes (sum > 8)
+favorable_outcomes = [outcome for outcome in all_outcomes if sum(outcome) > 8]
+
+# Number of favorable outcomes
+num_favorable = len(favorable_outcomes)
+
+# Analytical probability
+analytical_probability = num_favorable / total_outcomes
+print(f"Analytical Probability: {analytical_probability:.4f}")
+```
+
+#### Monte Carlo Simulation
+We can estimate this probability by simulating the rolls of two dice many times:
+
+```{python}
+import numpy as np
+
+# Set random seed for reproducibility
+np.random.seed(42)
+
+# Number of simulations
+n_simulations = 100000
+
+# Simulate rolling two dice
+rolls = np.random.randint(1, 7, (n_simulations, 2))
+
+# Calculate sums of rolls
+sums = rolls.sum(axis=1)
+
+# Count favorable outcomes (sum > 8)
+favorable = (sums > 8).sum()
+
+# Estimate probability
+estimated_probability = favorable / n_simulations
+
+print(f"Estimated Probability (Monte Carlo): {estimated_probability:.4f}")
+```
+
+### Results
+The Monte Carlo simulation uses the defined variables and programmatic logic to estimate the probability. This value should converge to the analytical result as the number of simulations increases.
+
+This example illustrates the power of Monte Carlo methods in approximating probabilities, especially for scenarios where analytical solutions are challenging or impossible to compute.
+
+
+---
+
+## Estimating the Probability
+
+Let us estimate the probability of getting 7 heads in 10 coin tosses using both analytical and Monte Carlo methods.
+
+When flipping a fair coin 10 times, each flip has two equally likely outcomes: heads or tails. To calculate the probability of getting exactly 7 heads, we can use the binomial probability formula:
+
+$$
+P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k},
+$$
+
+where:
+- $n$ is the number of trials (10 in this case),
+- $k$ is the number of successes (7 heads),
+- $p$ is the probability of success for a single trial (0.5 for a fair coin).
+
+#### Analytical Solution
+We can calculate the analytical probability using Python:
+
+```{python}
+from math import comb
+
+# Parameters
+n_trials = 10
+k_successes = 7
+p_success = 0.5
+
+# Binomial probability
+analytical_probability = comb(n_trials, k_successes) * (p_success ** k_successes) * ((1 - p_success) ** (n_trials - k_successes))
+
+print(f"Analytical Probability of 7 Heads in 10 Tosses: {analytical_probability:.4f}")
+```
+
+#### Monte Carlo Simulation
+We can estimate the probability using a Monte Carlo simulation:
+
+```{python}
+import numpy as np
+
+# Set random seed for reproducibility
+np.random.seed(42)
+
+# Number of simulations
+n_simulations = 100000
+
+# Simulate coin tosses (1 for heads, 0 for tails)
+tosses = np.random.choice([0, 1], size=(n_simulations, n_trials), p=[0.5, 0.5])
+
+# Count number of heads in each simulation
+heads_count = tosses.sum(axis=1)
+
+# Count favorable outcomes (exactly 7 heads)
+favorable = (heads_count == k_successes).sum()
+
+# Estimate probability
+estimated_probability = favorable / n_simulations
+
+print(f"Estimated Probability (Monte Carlo): {estimated_probability:.4f}")
+```
+
+### Results
+Both the analytical and Monte Carlo methods provide an estimate of the probability. The Monte Carlo simulation demonstrates how repeated random sampling can approximate probabilities, converging to the analytical result as the number of simulations increases.
+
+This example showcases the flexibility and power of Monte Carlo simulations in estimating probabilities for complex scenarios. Real problems are often too intricate for direct analytical solutions, making simulation methods a valuable tool in statistical analysis.
+
+## Probability Distributions
+
+### Introduction to Probability Distributions
+
+In statistics, a probability distribution describes how the values of a random variable are spread across different outcomes. There are many types of probability distributions, each with unique characteristics and applications. Let's explore some common probability distributions and their properties.
+
+### Discrete Probability Distributions
+
+Discrete probability distributions are defined for discrete random variables, which take on a countable number of distinct values. Some well-known discrete distributions include the Bernoulli, Binomial, Poisson, and Geometric distributions.
+
+#### Bernoulli Distribution
+
+The Bernoulli distribution models a single binary outcome (e.g., success/failure) with a probability $p$. It is a special case of the Binomial distribution with $n = 1$.
+
+$$
+P(X = k) = \begin{cases} 1 - p & \text{if } k = 0 \\ p & \text{if } k = 1 \end{cases}
+$$
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Parameters
+p = 0.3
+
+# Possible outcomes
+outcomes = [0, 1]
+
+# Probabilities
+probabilities = [1 - p, p]
+
+# Plotting the Bernoulli distribution
+plt.figure(figsize=(8, 5))
+plt.bar(outcomes, probabilities, color='skyblue', edgecolor='black', width=0.4)
+plt.title("Bernoulli Distribution")
+plt.xlabel("Outcome")
+plt.ylabel("Probability")
+plt.xticks(outcomes, ['Failure (0)', 'Success (1)'])
+plt.ylim(0, 1)
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+```
+
+#### Binomial Distribution
+
+The Binomial distribution models the number of successes in $n$ independent Bernoulli trials with probability $p$. It is characterized by two parameters: $n$ (number of trials) and $p$ (probability of success). 
+
+$$
+P(X = k) = \binom{n}{k} p^k (1 - p)^{n - k}
+$$
+
+Monte Carlo simulations can also be used to generate above distributions. Let us simulate the Binomial distribution with $n = 10$ and $p = 0.3$:
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import binom
+
+# Number of simulations
+n_simulations = 10_000
+
+# Simulate Binomial distribution by counting successes in n trials
+n_trials = 10
+
+# Probability of success
+p_success = 0.3
+
+# List to store number of successes in each simulation
+successes = []
+
+# Simulate Binomial distribution
+for i in range(n_simulations):
+    # Simulate n independent Bernoulli trials
+    trials = np.random.choice([0, 1], size=n_trials, p=[1 - p_success, p_success])
+    
+    # Count number of successes
+    num_successes = trials.sum()
+    
+    # Store number of successes
+    successes.append(num_successes)
+
+# Plotting the simulated Binomial distribution
+plt.figure(figsize=(10, 6))
+plt.hist(successes, bins=np.arange(n_trials + 2) - 0.5, color='skyblue', edgecolor='black', alpha=0.7)
+#theoretical probabilities
+plt.scatter(np.arange(n_trials + 1), binom.pmf(np.arange(n_trials + 1), n_trials, p_success) * n_simulations, color='red', zorder=5)
+plt.title("Simulated Binomial Distribution")
+plt.xlabel("Number of Successes")
+plt.ylabel("Frequency")
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.legend(['Theoretical Probabilities', 'Simulated Frequencies'])
+plt.show()
+```
+
+#### Poisson Distribution
+
+The Poisson distribution models the number of events occurring in a fixed interval of time or space. It is characterized by a single parameter $\lambda$, which represents the average rate of occurrence. The Poisson distribution is often used to model rare events with a known average rate.
+
+$$
+P(X = k) = \frac{e^{-\lambda} \lambda^k}{k!}
+$$
+
+Let us visualize the Poisson distribution with $\lambda = 3$:
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.special import factorial
+
+# Poisson distribution parameters
+lambda_val = 3
+
+# Possible outcomes
+outcomes = np.arange(0, 20)
+
+# Calculate Poisson probabilities
+probabilities = np.exp(-lambda_val) * (lambda_val ** outcomes) / factorial(outcomes)
+
+# Plotting the Poisson distribution
+plt.figure(figsize=(10, 6))
+plt.bar(outcomes, probabilities, color='skyblue', edgecolor='black', width=0.4)
+plt.title("Poisson Distribution (λ = 3)")
+plt.xlabel("Number of Events (k)")
+plt.ylabel("Probability")
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+```
+
+### Continuous Probability Distributions
+
+Continuous probability distributions are defined for continuous random variables, which can take on any value within a range. Some common continuous distributions include the Uniform, Normal (Gaussian), Exponential, and Beta distributions.
+
+#### What is a histogram?
+
+A histogram is a graphical representation of the distribution of numerical data. It consists of bars that represent the frequency or proportion of data points falling within specific intervals (bins) along the range of values. Histograms are useful for visualizing the shape, center, and spread of data.
+
+#### Normal (Gaussian) Distribution
+
+The Normal distribution is one of the most widely used distributions in statistics. It is characterized by two parameters: the mean $\mu$ and the standard deviation $\sigma$. The probability density function (PDF) of the Normal distribution is given by:
+
+$$
+f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x - \mu)^2}{2\sigma^2}}
+$$
+
+Let us visualize the Normal distribution with $\mu = 0$ and $\sigma = 1$. We will generate random samples from a standard Normal distribution and compare the histogram to the theoretical PDF:
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import norm
+
+# Parameters of the Normal distribution
+mu = 0
+sigma = 1
+
+# Generate random samples from a standard Normal distribution
+samples = np.random.normal(mu, sigma, 10_000)
+
+# Theoretical PDF of the Normal distribution
+x = np.linspace(-4, 4, 1000)
+pdf = norm.pdf(x, mu, sigma)
+
+# Plotting the Normal distribution
+plt.figure(figsize=(10, 6))
+plt.hist(samples, bins=50, density=True, color='skyblue', edgecolor='black', alpha=0.7)
+plt.plot(x, pdf, color='red', linewidth=2)
+plt.title("Normal Distribution (μ = 0, σ = 1)")
+plt.xlabel("Value")
+plt.ylabel("Density")
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.legend(['Theoretical PDF', 'Sampled Data'])
+plt.show()
+```
+
+#### Exponential Distribution
+
+The Exponential distribution models the time between events in a Poisson process, where events occur continuously and independently at a constant average rate. It is characterized by a single parameter $\lambda$, which represents the rate of occurrence. The PDF of the Exponential distribution is given by:
+
+$$
+f(x) = \lambda e^{-\lambda x}
+$$
+
+Let us visualize the Exponential distribution with $\lambda = 0.5$:
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import expon
+
+# Exponential distribution parameter
+lambda_val = 0.5
+
+# Generate random samples from an Exponential distribution
+samples = np.random.exponential(1 / lambda_val, 10_000)
+
+# Theoretical PDF of the Exponential distribution
+x = np.linspace(0, 10, 1000)
+pdf = expon.pdf(x, scale=1 / lambda_val)
+
+# Plotting the Exponential distribution
+plt.figure(figsize=(10, 6))
+plt.hist(samples, bins=50, density=True, color='skyblue', edgecolor='black', alpha=0.7)
+plt.plot(x, pdf, color='red', linewidth=2)
+plt.title("Exponential Distribution (λ = 0.5)")
+plt.xlabel("Value")
+plt.ylabel("Density")
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.legend(['Theoretical PDF', 'Sampled Data'])
+plt.show()
+```
+
+#### Beta Distribution
+
+The Beta distribution is a continuous probability distribution defined on the interval [0, 1]. It is characterized by two shape parameters $\alpha$ and $\beta$, which control the shape of the distribution. The PDF of the Beta distribution is given by:
+
+$$
+f(x) = \frac{x^{\alpha - 1} (1 - x)^{\beta - 1}}{B(\alpha, \beta)}
+$$
+
+where $B(\alpha, \beta)$ is the Beta function. Let us visualize the Beta distribution with $\alpha = 2$ and $\beta = 2$:
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import beta
+
+# Beta distribution parameters
+alpha = 2
+beta_val = 3
+
+# Generate random samples from a Beta distribution
+samples = np.random.beta(alpha, beta_val, 10_000)
+
+# Theoretical PDF of the Beta distribution
+x = np.linspace(0, 1, 1000)
+pdf = beta.pdf(x, alpha, beta_val)
+
+# Plotting the Beta distribution
+plt.figure(figsize=(10, 6))
+plt.hist(samples, bins=50, density=True, color='skyblue', edgecolor='black', alpha=0.7)
+plt.plot(x, pdf, color='red', linewidth=2)
+plt.title("Beta Distribution (α = 2, β = 3)")
+plt.xlabel("Value")
+plt.ylabel("Density")
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.legend(['Theoretical PDF', 'Sampled Data'])
+plt.show()
+```
+The Beta distribution is commonly used in Bayesian statistics and modeling proportions or probabilities.
+It can simulate a wide range of shapes, from uniform to U-shaped to J-shaped distributions, depending on the values of $\alpha$ and $\beta$. Below are some examples of Beta distributions with different shape parameters:
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import beta
+
+# Beta distribution parameters
+alphas = [0.5, 2, 2, 2]
+betas = [0.5, 2, 3, 0.5]
+
+# Theoretical PDFs of the Beta distributions
+x = np.linspace(0, 1, 1000)
+pdfs = [beta.pdf(x, alpha, beta_param) for alpha, beta_param in zip(alphas, betas)]
+
+# Plotting the Beta distributions
+plt.figure(figsize=(12, 8))
+for i, (alpha, beta_param, pdf) in enumerate(zip(alphas, betas, pdfs), 1):
+    plt.subplot(2, 2, i)
+    plt.plot(x, pdf, color='red', linewidth=2)
+    plt.title(f"Beta Distribution (α = {alpha}, β = {beta_param})")
+    plt.xlabel("Value")
+    plt.ylabel("Density")
+    plt.grid(axis='y', linestyle='--', alpha=0.7)
+
+plt.tight_layout()
+plt.show()
+```
+
+### Mean and Variance
+
+The mean and variance of a probability distribution provide important insights into the central tendency and spread of the distribution. The mean (expected value) represents the average value of the random variable, while the variance measures the dispersion of values around the mean.
+
+#### Mean of a Probability Distribution
+
+The mean of a probability distribution is calculated as the weighted average of all possible values of the random variable, with the probabilities serving as weights. For a discrete random variable $X$ with probability mass function $P(X = x)$, the mean $\mu$ is given by:
+
+$$
+\mu = \sum_{x} x \cdot P(X = x)
+$$
+
+For a continuous random variable with probability density function $f(x)$, the mean is calculated as:
+
+$$
+\mu = \int_{-\infty}^{\infty} x \cdot f(x) \, dx
+$$
+
+If we have a sample of data, the sample mean is calculated as the average of the observed values
+
+$$
+\bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i=\frac{x_1+x_2+\cdots+x_n}{n}
+$$
+
+#### Variance of a Probability Distribution
+
+The variance of a probability distribution measures the spread or dispersion of values around the mean. It is calculated as the average of the squared differences between each value and the mean. For a discrete random variable $X$ with mean $\mu$, the variance $\sigma^2$ is given by:
+
+$$
+\sigma^2 = \sum_{x} (x - \mu)^2 \cdot P(X = x)
+$$
+
+For a continuous random variable with mean $\mu$, the variance is calculated as:
+
+$$
+\sigma^2 = \int_{-\infty}^{\infty} (x - \mu)^2 \cdot f(x) \, dx
+$$
+
+If we have a sample of data, the sample variance is calculated as the average of the squared differences between each observed value and the sample mean.
+
+$$
+\sigma^2 = \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2=\frac{(x_1-\bar{x})^2+(x_2-\bar{x})^2+\cdots+(x_n-\bar{x})^2}{n}
+$$
+
+#### Example: Mean and Variance of the Beta Distribution
+
+Let us assume a Beta distribution with shape parameters $\alpha = 2$ and $\beta = 3$. We can calculate the mean and variance of this distribution using the formulae for the Beta distribution:
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import beta
+
+# Beta distribution parameters
+alpha = 2
+beta_val = 3
+
+# Calculate mean and variance of the Beta distribution
+mean = alpha / (alpha + beta_val)
+variance = (alpha * beta_val) / ((alpha + beta_val) ** 2 * (alpha + beta_val + 1))
+
+# mean and variance from sample
+samples = np.random.beta(alpha, beta_val, 10_000)
+
+sample_mean = np.mean(samples)
+sample_variance = np.var(samples)
+
+# plot the distribution and the mean and variance (theoretical and exact)
+x = np.linspace(0, 1, 1000)
+pdf = beta.pdf(x, alpha, beta_val)
+
+plt.figure(figsize=(10, 6))
+plt.plot(x, pdf, color='red', linewidth=2)
+# mean and variance
+plt.axvline(mean, color='blue', linestyle='--', label=f'Mean: {mean:.3f}')
+plt.axvline(mean - np.sqrt(variance), color='green', linestyle='--', label=f'Std Dev: {np.sqrt(variance):.3f}')
+plt.axvline(mean + np.sqrt(variance), color='green', linestyle='--')
+#sample mean and variance
+plt.axvline(sample_mean, color='purple', linestyle='--', label=f'Sample Mean: {sample_mean:.3f}')
+plt.axvline(sample_mean - np.sqrt(sample_variance), color='orange', linestyle='--', label=f'Sample Std Dev: {np.sqrt(sample_variance):.3f}')
+plt.title("Beta Distribution (α = 2, β = 3)")
+plt.xlabel("Value")
+plt.ylabel("Density")
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.legend()
+plt.show()
+```
+
+
+### Conclusion
+
+Probability distributions play a crucial role in statistics and data analysis. They provide a mathematical framework for describing the likelihood of different outcomes and are used in various statistical models and methods. Understanding the properties and characteristics of different probability distributions is essential for making informed decisions and drawing meaningful insights from data.
+
+## Applications
+
+### Measurments
+
+In many real-world scenarios, we encounter data that follows a particular probability distribution. Understanding the underlying distribution of data is crucial for making accurate predictions and informed decisions. Let's explore some common applications of probability distributions in measurements and data analysis.
+
+### Measurement Uncertainty Using Linear Approximation
+
+In some cases, a simpler linear approximation can be used to estimate the uncertainty in a calculated result. This method avoids squaring and summing the terms and instead directly adds the contributions of uncertainties from each variable, scaled by their respective partial derivatives. This is a conservative approach and provides an upper bound for the uncertainty.
+
+#### Linear Total Differential Formula
+
+If $f(x_1, x_2, \dots, x_n)$ is a function of multiple variables, the uncertainty in $f$ ($\Delta f$) can be approximated as:
+
+$$
+\Delta f \approx \left| \frac{\partial f}{\partial x_1} \right| \Delta x_1 + \left| \frac{\partial f}{\partial x_2} \right| \Delta x_2 + \dots + \left| \frac{\partial f}{\partial x_n} \right| \Delta x_n
+$$
+
+where:
+
+- $\frac{\partial f}{\partial x_i}$: Partial derivative of $f$ with respect to $x_i$,
+- $\Delta x_i$: Uncertainty in the variable $x_i$,
+- $\left| \cdot \right|$: Absolute value.
+
+This method assumes independent uncertainties and provides a straightforward estimate.
+
+#### Example: Pendulum and Gravity
+
+For the pendulum example, where $g = \frac{4\pi^2 L}{T^2}$, the uncertainty in $g$ ($\Delta g$) can be calculated as:
+
+$$
+\Delta g \approx \left| \frac{\partial g}{\partial T} \right| \Delta T + \left| \frac{\partial g}{\partial L} \right| \Delta L
+$$
+
+The partial derivatives are:
+
+$$
+\frac{\partial g}{\partial T} = -\frac{8\pi^2 L}{T^3}, \quad \frac{\partial g}{\partial L} = \frac{4\pi^2}{T^2}
+$$
+
+Substitute these into the formula:
+
+$$
+\Delta g \approx \left| -\frac{8\pi^2 L}{T^3} \right| \Delta T + \left| \frac{4\pi^2}{T^2} \right| \Delta L
+$$
+
+Given the measurements:
+
+- $T = 2.1 \, \mathrm{s}, \, \Delta T = 0.1 \, \mathrm{s}$,
+- $L = 1.0 \, \mathrm{m}, \, \Delta L = 0.05 \, \mathrm{m}$,
+
+Substitute the values:
+
+$$
+\Delta g \approx \left| -\frac{8\pi^2 (1.0)}{(2.1)^3} \right| (0.1) + \left| \frac{4\pi^2}{(2.1)^2} \right| (0.05)
+$$
+
+Simplify each term to compute $\Delta g$. This approach provides a linear estimate of the uncertainty in $g$.
+
+Let us use python to calculate the uncertainty in $g$:
+
+```{python}
+import numpy as np
+
+# Parameters
+T = 2.1
+L = 1.0
+delta_T = 0.1
+delta_L = 0.05
+
+# Partial derivatives
+partial_g_T = -8 * np.pi ** 2 * L / T ** 3
+partial_g_L = 4 * np.pi ** 2 / T ** 2
+
+# Uncertainty in g
+delta_g = np.abs(partial_g_T) * delta_T + np.abs(partial_g_L) * delta_L
+
+print(f"Acceleration Due to Gravity (g) is estimated as {partial_g_T:.2f} ± {delta_g:.2f} m/s^2")
+```
+
+#### Monte Carlo Simulation for Uncertainty Estimation
+
+Monte Carlo simulation can also be used to estimate the uncertainty in a calculated result by sampling from the distributions of input variables. This approach provides a more comprehensive view of the uncertainty by considering the joint distribution of variables.
+
+Supose we measure the period of a pendulum to be $T = 2.1 \pm 0.1$ seconds. Anlogusly, we measure the length of the pendulum to be $L = 1.0 \pm 0.05$ meters. 
+
+Let us use Monte Carlo simulation to estimate the acceleration due to gravity and its uncertainty:
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Set random seed for reproducibility
+np.random.seed(42)
+
+# Number of simulations
+n_simulations = 10_000
+
+# Simulate period and length measurements
+T = np.random.uniform(2.0, 2.2, n_simulations)
+L = np.random.uniform(0.95, 1.05, n_simulations)
+
+# Calculate acceleration due to gravity
+g = (4 * np.pi ** 2 * L) / T ** 2
+
+# Compute mean and standard deviation of g
+mean_g = np.mean(g)
+std_g = np.std(g)
+
+# histogram of g
+plt.figure(figsize=(10, 6))
+plt.hist(g, bins=50, color='skyblue', edgecolor='black', alpha=0.7)
+plt.axvline(mean_g, color='red', linestyle='--', label=f'Mean: {mean_g:.2f}')
+plt.axvline(mean_g - std_g, color='green', linestyle='--', label=f'Std Dev: {std_g:.2f}')
+plt.axvline(mean_g + std_g, color='green', linestyle='--')
+plt.title("Acceleration Due to Gravity (g) Distribution")
+plt.xlabel("Acceleration Due to Gravity (m/s^2)")
+plt.ylabel("Frequency")
+plt.legend()
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+```
+
+

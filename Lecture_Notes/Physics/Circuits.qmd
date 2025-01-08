@@ -1,0 +1,496 @@
+---
+title: Circuits
+format:
+  html:
+    theme: flatly
+    toc: true
+    toc-depth: 3
+    highlight-style: tango
+    code-line-numbers: true
+    code-fold: show
+    code-summary: "Show the code"
+    code-tools: true
+    code-block-bg: "rgba(42, 174, 42, 0.02)"
+    code-block-border-left: "#2aae2a"
+    code-language-label: true
+    css: styles.css
+    math: mathjax
+    self-contained: true
+    other-links:
+      - text: Main page
+        href: https://dchorazkiewicz.github.io/Physics-2024-25-Summer/   
+
+---
+
+## Introduction to Circuits and Circuit Elements
+
+A circuit is a closed loop or pathway through which electric current can flow. It consists of various electrical components connected together to perform a specific function, such as controlling the flow of current, storing energy, or amplifying signals. Circuits can be found in a wide range of electronic devices, from simple light switches to complex computer systems.
+
+### Types of circuits: 
+- **series circuits** (the components are connected end-to-end, forming a single path for current flow)
+- **parallel circuits** (the components are connected across each other, providing multiple paths for current flow).
+- **combination circuits** (a mix of series and parallel circuits).
+  
+## List of standard circuit elements with symbols:
+- Switch: S
+- Resistor: R
+- Capacitor: C
+- Inductor: L
+- Diode: D
+- Transistor: Q
+- Voltage Source: V
+- Current Source: I
+
+## Cuircuit at fundamental level 
+
+Cuircuit is **movment of electrons** in a closed loop. Density of electrons is higher at the negative terminal of the battery and lower at the positive terminal. The electrons move from the negative terminal to the positive terminal, creating a current flow.
+
+## Current
+
+In physics and electrical engineering, **electric current** refers to the flow of electric charge. Most commonly, these charges are carried by electrons moving through a conductor (such as a metal wire). We can write the electric current $I$ in terms of the charge $Q$ flowing per unit time $t$:
+
+$$
+I = \frac{dQ}{dt}
+$$
+
+Current is measured in **amperes** $[A]$, where 1 Amper corresponds to 1 coulomb of charge passing a point in 1 second.
+
+When a current flows through a circuit element, we often speak of it in terms of a **current direction**, which, by convention, is taken to be the direction a positive charge would move. This is sometimes referred to as **conventional current**.
+
+In materials such as wood or glass, all the electrons are bound to nearby atoms and none can move freely. These materials are called **insulators**. In many materials, such as copper and other metals, some of the electrons are free to move about the entire material. Such materials are called **conductors**. 
+
+---
+
+## Voltage
+
+**Voltage** (or **electric potential difference**) is the measure of the potential energy difference per unit charge between two points in a circuit. It can be thought of as the "pressure" that pushes charges through a conductor. We use the symbol $V$ for voltage, and it is measured in **volts** $[V]$. Mathematically, voltage between two points $a$ and $b$ can be expressed as:
+
+$$
+V_{ab} = \phi_a - \phi_b
+$$
+
+where $\phi$ represents the electric potential at a given point.
+
+In practical terms, if you have a voltage source like a battery, it provides a certain potential difference that drives current around a circuit.
+
+---
+
+## Battery
+
+A battery is an electrochemical device that stores electrical energy and provides a voltage source for electronic circuits. It consists of one or more cells that convert chemical energy into electrical energy through a chemical reaction. The voltaic pile, invented by Alessandro Volta in the early 19th century, marks a pivotal moment in the history of electricity and electrochemistry.
+
+The voltaic pile is considered one of the first electrochemical cells, consisting of two distinct electrodes and an electrolyte. The cell is structured as follows:
+
+- **Electrodes**: One made of zinc and the other of copper.
+- **Electrolyte**: Sulfuric acid mixed with water or a saltwater brine, composed of ions (2 H+ and SO4 2−).
+
+---
+
+## Ground
+
+Ground is a reference point in an electrical circuit that serves as a common return path for current flow. It is typically connected to the earth or a conductive material to provide a stable reference voltage for the circuit. Ground is used to establish a zero voltage reference point and ensure safe operation of electrical devices and systems.
+
+---
+
+## Basic Circuit Elements
+
+Below are the most common circuit elements you need to know:
+
+1. **Resistors**  
+2. **Capacitors**  
+3. **Inductors**  
+4. **Diodes**  
+
+We will look at each in turn and briefly discuss their functions and key equations, along with an example on how to draw them using [schemdraw](https://schemdraw.readthedocs.io/en/stable/usage/start.html) in Python.
+
+---
+
+### Resistors
+
+A **resistor** is a passive component that opposes the flow of current. The relationship between the voltage $V$ across a resistor and the current $I$ flowing through it is described by **Ohm’s Law**:
+
+$$
+V = IR
+$$
+
+where $R$ is the **resistance** (measured in ohms \([\Omega]\)). Resistors can be used to control current levels, divide voltage, and dissipate energy in a circuit.
+
+**Key Points**:
+
+- Symbol in circuit diagrams: a zig-zag line or a rectangular box.  
+- Power dissipated by a resistor can be calculated using  
+  $$
+  P = IV = I^2 R = \frac{V^2}{R}.
+  $$
+- Used in voltage regulation, current limiting, and signal conditioning.
+
+```{python}
+import schemdraw
+import schemdraw.elements as elm
+
+with schemdraw.Drawing() as d:
+    d += elm.Resistor().label('R')
+```
+
+The above code snippet creates an image of a single resistor labeled “R”.
+
+---
+## Adding resistors to a circuit
+
+To add a resistor to a circuit, you need to connect it in series or parallel with other components. 
+
+schemaDREW PICTURE
+
+In a series circuit, the resistor is connected end-to-end with other components, forming a single path for current flow. 
+
+In a parallel circuit, the resistor is connected across other components, providing multiple paths for current flow.
+
+To calculate the total resistance of a **series circuit**, you need to add the resistance values of all the components in the circuit. 
+
+$$R_{total} = R1 + R2 + R3 + ...$$
+
+where R_total is the total resistance of the circuit and $R1, R2, R3, ...$ are the resistance values of the components in series.
+
+To calculate the total resistance of a **parallel circuit**, you need to use the formula:
+
+$$1/R_{total} = 1/R1 + 1/R2 + 1/R3 + ...$$
+
+where R_total is the total resistance of the circuit and $R1, R2, R3, ...$ are the resistance values of the components in parallel.
+
+### Sometimes you need to combine series and parallel circuits:
+
+- Parallel = voltage across all components are the same
+
+- Series = current through all components is the same
+
+---
+
+### Capacitors
+
+A **capacitor** is a device that stores energy in the form of an electric field between two conductive plates separated by an insulator (dielectric). The basic relationship between voltage $V$ across a capacitor and the charge $Q$ it holds is:
+
+$$
+Q = C \, V
+$$
+
+where $C$ is the **capacitance** (measured in farads \([F]\)). In circuits, the current $i(t)$ and voltage $v(t)$ for a capacitor relate as:
+
+$$
+i(t) = C \frac{dv(t)}{dt}
+$$
+
+**Key Points**:
+
+- Symbol in circuit diagrams: two parallel lines.  
+- Capacitors resist changes in voltage — they charge up and discharge according to  
+  $$
+  v(t) = \frac{1}{C} \int i(t) \, dt.
+  $$
+- Commonly used for filtering, decoupling, and timing applications.
+
+```{python}
+import schemdraw
+import schemdraw.elements as elm
+
+with schemdraw.Drawing() as d:
+    d += elm.Capacitor().label('C')
+```
+
+This snippet draws a basic capacitor symbol labeled “C”.
+
+---
+
+### Inductors
+
+An **inductor** is a component that stores energy in a magnetic field when current flows through it. The voltage $V$ across an inductor of inductance $L$ is given by:
+
+$$
+V = L \frac{dI}{dt}
+$$
+
+**Key Points**:
+
+- Symbol in circuit diagrams: a coiled wire.  
+- Inductors resist changes in current. When current changes, the inductor induces a voltage that opposes the change.  
+- Often used in filters, transformers, and power supplies.
+
+```{python}
+import schemdraw
+import schemdraw.elements as elm
+
+with schemdraw.Drawing() as d:
+    d += elm.Inductor().label('L')
+```
+
+This snippet draws a simple inductor symbol labeled “L”.
+
+---
+
+### Diodes
+
+A **diode** allows current to flow primarily in one direction. It has a very low (ideally zero) resistance in one direction — called **forward bias** — and a high (ideally infinite) resistance in the other direction — **reverse bias**.
+
+**Key Points**:
+
+- Symbol in circuit diagrams: a triangle pointing to a vertical line.  
+- Typical diode equation for current $I$ and voltage $V$ is (idealized):  
+  $$
+  I = I_S \Bigl( e^{\frac{V}{n V_T}} - 1 \Bigr),
+  $$
+  where $I_S$ is the saturation current, $n$ is the ideality factor (usually 1 or 2), and $V_T$ is the thermal voltage ($\approx 25 \,\text{mV}$ at room temperature).  
+- Practical uses: rectification (converting AC to DC), protection circuits, and signal demodulation.
+
+```{python}
+import schemdraw
+import schemdraw.elements as elm
+
+with schemdraw.Drawing() as d:
+    d += elm.Diode().label('D')
+```
+
+Here, we draw a simple diode symbol labeled “D”.
+
+---
+
+## Kirchhoff's Laws
+
+To analyze and understand how currents and voltages distribute themselves around a circuit, we use **Kirchhoff’s Laws**:
+
+### Kirchhoff’s Current Law (KCL)
+
+- States that the algebraic sum of all currents entering a node (junction) is zero.  
+- Another way to put it: **the current flowing into a node equals the current flowing out**.  
+- Written mathematically:
+
+$$
+\sum I_{\text{in}} = \sum I_{\text{out}}
+$$
+
+### Kirchhoff’s Voltage Law (KVL)
+
+- States that the algebraic sum of all voltages around any closed loop in a circuit is zero.  
+- Another way to put it: **what goes up (in voltage) must come down** around a complete path.  
+- Written mathematically:
+
+$$
+\sum V_{\text{around a loop}} = 0
+$$
+
+---
+
+## Putting It All Together
+
+By combining the definitions of current and voltage with the properties of resistors, capacitors, inductors, and diodes, and applying Kirchhoff’s Laws, one can systematically analyze any linear circuit.
+
+1. Use Kirchhoff’s Current Law to ensure current conservation at each node.  
+2. Use Kirchhoff’s Voltage Law to ensure voltage consistency around loops.  
+3. Apply the constitutive relationships for each circuit element (Ohm’s law for resistors, capacitor current-voltage relationship, inductor current-voltage relationship, and diode I–V characteristic).
+
+With these tools, you can solve for unknown currents and voltages throughout the circuit.
+
+---
+
+## Measuring Instruments
+
+### Ammameter
+
+An ammeter is a device used to measure the current flowing through an electrical circuit. It is connected in series with the circuit to measure the current passing through it. Ammeters are designed to have a low resistance to minimize the voltage drop across them and ensure accurate current measurements. They are commonly used in electronic circuits to monitor current flow and troubleshoot circuit issues. Measuring: **ampers**.
+
+### Voltmeter
+
+A voltmeter is a device used to measure the voltage across an electrical circuit. It is connected in parallel with the circuit to measure the voltage difference between two points. Voltmeters are designed to have a high resistance to minimize the current flow through them and ensure accurate voltage measurements. They are commonly used in electronic circuits to monitor voltage levels and troubleshoot circuit issues.  Measuring: **volts**.
+
+### Ohmmeter
+
+An ohmmeter is a device used to measure the resistance of an electrical component. It is connected to the component being tested to measure its resistance value. Ohmmeters are commonly used to check the continuity of wires, test the resistance of resistors, and troubleshoot circuit issues. Measuring: **ohms**.
+
+---
+
+## Summary
+
+- **Current**: Flow of electric charge, measured in amperes \([A]\).  
+- **Voltage**: Potential difference driving the current, measured in volts \([V]\).  
+- **Resistors**: Convert electric energy into heat, obey $V = IR$.  
+- **Capacitors**: Store energy in an electric field, obey $Q = CV$ and $i = C \frac{dV}{dt}$.  
+- **Inductors**: Store energy in a magnetic field, obey $V = L \frac{dI}{dt}$.  
+- **Diodes**: Allow current in one direction, block current in reverse (ideal diode model).  
+- **Kirchhoff’s Laws**: Provide fundamental rules for current and voltage in circuit analysis.  
+- **schemdraw (Python)**: A useful library for drawing circuit diagrams programmatically.
+
+Understanding these basics is essential before moving on to more complex circuits and network theorems (e.g., Thevenin’s and Norton’s theorems, superposition, etc.).
+
+---
+
+## References and Further Reading
+
+- D. Halliday, R. Resnick, and J. Walker, *Fundamentals of Physics*.  
+- J.D. Irwin, *Basic Engineering Circuit Analysis*.  
+- Thomas L. Floyd, *Electronic Devices*.  
+- The [HyperPhysics](http://hyperphysics.phy-astr.gsu.edu/) website for quick reference.
+
+## RLC
+
+```{python}
+import schemdraw
+import schemdraw.elements as elm
+
+# Create the drawing
+with schemdraw.Drawing():
+    R1 = elm.Resistor()
+    C1 = elm.Capacitor().down()
+    D1 = elm.Diode().fill(True).left()
+    L1 = elm.Inductor().up()
+    elm.LoopCurrent([R1, C1, D1, L1], direction='cw').label('$I_1$')
+```
+
+## Series
+
+```{python}
+import schemdraw
+import schemdraw.elements as elm
+
+# Create the drawing
+with schemdraw.Drawing() as d:
+    # Series resistors
+    d += elm.Resistor().label('$R_1$')
+    d += elm.Resistor().label('$R_2$')
+    d += elm.Resistor().label('$R_3$')
+    d += elm.Resistor().label('$R_4$')
+
+    d.draw()
+    
+```
+
+## Use schemdraw to draw circuits and solve them!!!
+
+Python code
+
+```{python}
+import schemdraw
+import schemdraw.elements as elm
+
+with schemdraw.Drawing() as d:
+    d.config(unit=5)
+    
+    # Źródło napięcia
+    V1 = d.add(elm.SourceV().label('20V').color('red'))
+    
+    # Rezystor poziomy
+    R1 = d.add(elm.Resistor().right().label('400Ω').color('blue'))
+    
+    # Kropka na połączeniu
+    d.add(elm.Dot().color('green'))
+    d.push()
+    
+    # Rezystor pionowy
+    R2 = d.add(elm.Resistor().down().label('100Ω', loc='bot', rotate=True).color('orange'))
+    
+    # Kolejna kropka
+    d.add(elm.Dot().color('green'))
+    d.pop()
+    
+    # Linia pozioma
+    L1 = d.add(elm.Line().color('purple'))
+    
+    # Źródło prądowe
+    I1 = d.add(elm.SourceI().down().label('1A', loc='bot').color('brown'))
+    
+    # Powrót linią
+    L2 = d.add(elm.Line().tox(V1.start).color('gray'))
+    
+    elm.LoopCurrent([R1,R2,L2,V1], pad=1.25).label('$I_1$').color('red')
+    elm.LoopCurrent([R1,I1,L2,R2], pad=1.25).label('$I_2$').color('pink')    # Use R1 as top element for both so they get the same height
+
+```
+
+
+
+
+```{python}
+import schemdraw
+import schemdraw.elements as elm
+
+# Create the drawing
+with schemdraw.Drawing() as d:
+    # First vertical line
+    d += elm.Line().down().length(1)
+    
+    # Branch for R1
+    d.push()
+    d += elm.Resistor().right().label('$R_1$')
+    d += elm.Line().down().length(1)
+    d.pop()
+    
+    # Branch for R2
+    d.push()
+    d += elm.Line().down().length(1)
+    d += elm.Resistor().right().label('$R_2$')
+    d += elm.Line().down().length(1)
+    d.pop()
+    
+    # Branch for R3
+    d.push()
+    d += elm.Line().down().length(2)
+    d += elm.Resistor().right().label('$R_3$')
+    d += elm.Line().down().length(1)
+    d.pop()
+    
+    # Branch for R4
+    d.push()
+    d += elm.Line().down().length(3)
+    d += elm.Resistor().right().label('$R_4$')
+    d += elm.Line().down().length(1)
+    d.pop()
+    
+    # Final closing lines
+    d += elm.Line().down().length(4)
+    d += elm.Line().left().length(3)
+    
+```
+
+
+```{python}
+import schemdraw
+import schemdraw.elements as elm
+
+# Create the drawing
+with schemdraw.Drawing() as d:
+    # Parallel resistors
+    R1 = d.add(elm.Resistor().right().label('$R_1$'))
+    R2 = d.add(elm.Resistor().down().label('$R_2$').at(R1.start))
+    d.add(elm.Line().right().at(R2.end))
+    
+    # Encircle the parallel section
+    d.add(elm.Encircle([R1, R2], padx=0.8, pady=0.8).linestyle('--').linewidth(1).color('red'))
+
+    # Series resistors
+    R3 = d.add(elm.Resistor().down().label('$R_3$').at(R1.end))
+    R4 = d.add(elm.Resistor().down().label('$R_4$').at(R3.end))
+    
+    # Encircle the series section
+    d.add(elm.Encircle([R3, R4], padx=0.8, pady=0.8).linestyle('--').linewidth(1).color('blue'))
+
+    # Annotate parallel and series sections
+    d.add(elm.Annotate().at(R1.start).delta(dx=-2, dy=0).label('Parallel Section').color('red'))
+    d.add(elm.Annotate().at(R3.start).delta(dx=-2, dy=0).label('Series Section').color('blue'))
+
+    d.draw()
+
+```
+
+```python
+import schemdraw
+import schemdraw.elements as elm
+
+# Create the drawing
+with schemdraw.Drawing() as d:
+
+parallel = elm.Encircle([R1, R2], padx=.8).linestyle('--').linewidth(1).color('red')
+series = elm.Encircle([R3, R4], padx=.8).linestyle('--').linewidth(1).color('blue')
+
+elm.Annotate().at(parallel.NNE).delta(dx=1, dy=1).label('Parallel').color('red')
+elm.Annotate(th1=0).at(series.ENE).delta(dx=1.5, dy=1).label('Series').color('blue')
+
+    d.draw()
+
+```

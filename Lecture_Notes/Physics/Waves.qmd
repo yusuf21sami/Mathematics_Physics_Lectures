@@ -1,0 +1,408 @@
+---
+title: Waves
+format:
+  html:
+    theme: flatly
+    toc: true
+    toc-depth: 3
+    highlight-style: tango
+    code-line-numbers: true
+    code-fold: show
+    code-summary: "Show the code"
+    code-tools: true
+    code-block-bg: "rgba(42, 174, 42, 0.02)"
+    code-block-border-left: "#2aae2a"
+    code-language-label: true
+    css: styles.css
+    math: mathjax
+    self-contained: true
+    other-links:
+      - text: Main page
+        href: https://dchorazkiewicz.github.io/Physics-2024-25-Summer/       
+---
+
+
+## Springs and Mechanical Waves
+
+Mechanical waves arise as a result of the application of simple harmonic motion rules to interconnected systems. At their core, such waves can be visualized as particles connected by springs, where each particle's motion influences the next. This elegant interplay between force, displacement, and energy transfer forms the foundation of mechanical wave dynamics.
+
+To illustrate this concept, imagine a chain of small masses connected by springs. When one mass is displaced, the motion propagates through the entire system, creating a wave-like pattern. You can explore this phenomenon in action with a simulation of ten masses linked by springs: [Wave simulation](wave_example.html).
+
+## Plane Harmonic Wave
+
+A plane harmonic wave is a fundamental example of wave motion, described by a sinusoidal function such as:
+
+$$
+\psi(x, t) = A \sin(kx - \omega t + \phi),
+$$
+
+where:
+
+- $A$ is the amplitude,
+- $k$ is the wave number,
+- $\omega$ is the angular frequency,
+- $\phi$ is the phase constant,
+- $x$ and $t$ represent position and time, respectively.
+
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters for the wave
+A = 1.0  # Amplitude
+lambda_wave = 4.0  # Wavelength
+k = 2 * np.pi / lambda_wave  # Wave number
+phi = 0  # Phase constant
+x = np.linspace(0, 8, 1000)  # Range for x
+
+# Wave function
+psi = A * np.sin(k * x - phi)
+
+# Plot the wave function
+plt.figure(figsize=(12, 6))
+plt.plot(x, psi, label="$\\psi(x) = A \\sin(kx - \\phi)$", color="blue")
+
+# Mark the amplitude
+plt.plot([lambda_wave / 4, lambda_wave / 4], [0, A], color="green", linewidth=2)
+plt.text(lambda_wave / 4 + 0.2, A / 2, r'Amplitude $A$', fontsize=12, ha='left', color="green")
+
+# Mark the segment from 1 to 5 with vertical lines at the ends
+x_start = 1
+x_end = 5
+y_label = A + 0.3  # Position above the wave to mark the segment
+plt.plot([x_start, x_end], [y_label, y_label], color="red", linewidth=2)  # Horizontal line
+plt.plot([x_start, x_start], [y_label - 0.05, y_label + 0.05], color="red", linewidth=2)  # Vertical line at start
+plt.plot([x_end, x_end], [y_label - 0.05, y_label + 0.05], color="red", linewidth=2)  # Vertical line at end
+plt.text((x_start + x_end) / 2, y_label - 0.1, "$\\lambda$", fontsize=12, ha='center', color="red")  # Label above the segment
+
+# Add auxiliary lines
+plt.axhline(y=0, color='gray', linestyle='--', linewidth=0.7, alpha=0.5)  # Horizontal axis
+plt.axhline(y=A, color='gray', linestyle='--', linewidth=0.7)  # Amplitude line
+plt.axhline(y=-A, color='gray', linestyle='--', linewidth=0.7)  # Negative amplitude line
+
+# Configure axes
+plt.xlabel("Position $x$", fontsize=14)
+plt.ylabel("Wave function $\\psi(x)$", fontsize=14)
+
+# Add grid
+plt.grid(True, linestyle="--", alpha=0.7)
+
+# Display the plot
+plt.show()
+
+
+```
+
+### Constructing the Wave Equation
+
+The temporal and spatial derivatives of the wave function $\psi(x, t)$ are key to understanding its behavior. The first and second derivatives with respect to time $t$ are:
+
+$$
+\frac{\partial \psi}{\partial t} = -A \omega \cos(kx - \omega t + \phi),
+$$
+
+$$
+\frac{\partial^2 \psi}{\partial t^2} = -A \omega^2 \sin(kx - \omega t + \phi).
+$$
+
+Similarly, the first and second derivatives with respect to position $x$ are:
+
+$$
+\frac{\partial \psi}{\partial x} = A k \cos(kx - \omega t + \phi),
+$$
+
+$$
+\frac{\partial^2 \psi}{\partial x^2} = -A k^2 \sin(kx - \omega t + \phi).
+$$
+
+By combining these derivatives, we can see how the wave function satisfies the general wave equation. Substituting $\frac{\partial^2 \psi}{\partial x^2}$ and $\frac{\partial^2 \psi}{\partial t^2}$ into:
+
+$$
+\frac{\partial^2 \psi}{\partial x^2} = \frac{1}{v^2} \frac{\partial^2 \psi}{\partial t^2},
+$$
+
+and using the relations $v = \frac{\omega}{k}$, it becomes clear that the sinusoidal wave satisfies this fundamental equation, connecting temporal and spatial changes in the wave function.
+
+### General Implications
+
+What we have derived here is not just a coincidence but is, in fact, the result of more general considerations. The equation we obtained, often called the wave equation, emerges from the fundamental principles governing wave phenomena. It describes the behavior of a wide range of wave-like systems, including sound waves, water waves, and even electromagnetic waves in certain contexts. As such, it is recognized as one of the cornerstone equations in the study of physical systems exhibiting wave motion.
+
+Let us begin! First, we will derive the difference equations that allow for the numerical solution of the wave equation. Here is the plan:
+
+### Difference Equation for the Wave Equation
+
+Recall the wave equation in the form:
+
+$$
+\frac{\partial^2 \psi}{\partial x^2} = \frac{1}{v^2} \frac{\partial^2 \psi}{\partial t^2}.
+$$
+
+#### Discretization of Space and Time
+
+Assume that:
+- We divide the space $x$ into $N$ equal intervals of length $\Delta x$.
+- We divide the time $t$ into steps of length $\Delta t$.
+
+The function $\psi(x, t)$ is replaced by a discrete grid $\psi_i^n$, where $i$ denotes the spatial index and $n$ denotes the time index:
+
+- $i = 0, 1, 2, \dots, N$,
+- $n = 0, 1, 2, \dots$.
+
+#### Finite Difference Approximations
+
+1. **Second spatial derivatives**:
+   Approximate $\frac{\partial^2 \psi}{\partial x^2}$ using central differences:
+   $$
+   \frac{\partial^2 \psi}{\partial x^2} \approx \frac{\psi_{i+1}^n - 2\psi_i^n + \psi_{i-1}^n}{\Delta x^2}.
+   $$
+
+2. **Second temporal derivatives**:
+   Approximate $\frac{\partial^2 \psi}{\partial t^2}$ using central differences:
+   $$
+   \frac{\partial^2 \psi}{\partial t^2} \approx \frac{\psi_i^{n+1} - 2\psi_i^n + \psi_i^{n-1}}{\Delta t^2}.
+   $$
+
+#### Difference Equation
+
+Substituting these into the wave equation, we obtain:
+$$
+\frac{\psi_{i+1}^n - 2\psi_i^n + \psi_{i-1}^n}{\Delta x^2} = \frac{1}{v^2} \frac{\psi_i^{n+1} - 2\psi_i^n + \psi_i^{n-1}}{\Delta t^2}.
+$$
+
+Simplifying, we solve for $\psi_i^{n+1}$:
+$$
+\psi_i^{n+1} = 2\psi_i^n - \psi_i^{n-1} + c^2 \left( \psi_{i+1}^n - 2\psi_i^n + \psi_{i-1}^n \right),
+$$
+
+where $c = \frac{v \Delta t}{\Delta x}$ is the Courant number, which must satisfy the stability condition $c \leq 1$.
+
+---
+
+### Numerical Implementation
+
+1. **Initial state**: A string fixed at both ends ($\psi_0^n = \psi_N^n = 0$) with an initial triangular displacement.
+2. **Time iteration**: Compute the state $\psi_i^{n+1}$ based on the states $\psi_i^n$ and $\psi_i^{n-1}$.
+3. **Visualization**: Display several snapshots of the wave at different time intervals.
+
+Next, I will prepare Python code to implement this algorithm.
+
+The following code implements an explicit solution of the wave equation for a string fixed at both ends with an initial triangular displacement. The visualization shows the wave's propagation at various time intervals.
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+L = 1.0          # Length of the string
+T = 1.0          # Total simulation time
+c = 1.0          # Wave speed
+nx = 100         # Number of spatial points
+nt = 500         # Number of time steps
+
+dx = L / (nx - 1)            # Spatial step
+dt = T / nt                  # Time step
+r = c * dt / dx              # Courant number
+
+# Initialize arrays
+u = np.zeros((nt, nx))       # Solution at successive time steps
+x = np.linspace(0, L, nx)    # x-coordinates
+
+# Initial conditions: e.g., a sinusoidal-shaped initial displacement
+u[0, :] = np.exp(-100 * (x - 0.5)**2)
+u[1, :] = u[0, :]
+
+# Boundary conditions: u(0, t) = u(L, t) = 0 (string fixed at ends)
+u[:, 0] = 0
+u[:, -1] = 0
+
+# Time iteration
+for n in range(1, nt - 1):
+    for i in range(1, nx - 1):
+        u[n + 1, i] = (2 * (1 - r**2) * u[n, i] -
+                       u[n - 1, i] +
+                       r**2 * (u[n, i + 1] + u[n, i - 1]))
+
+# Select time snapshots for visualization
+time_snapshots = [0, 10, 50, 100, 200, 300]
+time_labels = [f'Time = {n*dt:.2f} s' for n in time_snapshots]
+
+# Plot snapshots at selected time intervals
+plt.figure(figsize=(10, 6))
+for idx, n in enumerate(time_snapshots):
+    plt.plot(x, u[n, :], label=time_labels[idx])
+
+plt.xlabel('Position on the string')
+plt.ylabel('Amplitude')
+plt.title('Wave propagation on a string at selected time intervals')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+
+same we can save in gif file
+
+![](./py_src/wave_propagation.gif)
+
+
+## Intefeference of Waves
+
+The interference of waves is a fascinating phenomenon that arises when two or more waves overlap in space and time. Depending on their relative phase and amplitude, the resulting interference can be constructive or destructive, leading to a variety of patterns and effects.
+
+### Constructive Interference
+
+Constructive interference occurs when two waves are in phase, meaning their peaks and troughs align. In this case, the amplitudes of the waves add up, resulting in a wave with a larger amplitude. This reinforcement of the waves leads to a constructive interference pattern, where the combined wave appears stronger than the individual waves.
+
+### Destructive Interference
+
+Destructive interference, on the other hand, arises when two waves are out of phase, with peaks aligning with troughs. In this scenario, the amplitudes of the waves cancel each other out, leading to a wave with a smaller amplitude or no wave at all. This destructive interference pattern results in regions of minimal or zero amplitude, where the waves effectively eliminate each other.
+
+### Superposition Principle
+
+The interference of waves is governed by the superposition principle, which states that the total displacement of a medium at any point and time is the sum of the displacements caused by each individual wave. This principle allows us to predict the resulting interference pattern by analyzing the properties of the individual waves.
+
+### Visualization of Interference
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Parameters
+A1 = 1.0  # Amplitude of wave 1
+A2 = 0.8  # Amplitude of wave 2
+k1 = 2.0  # Wave number of wave 1
+k2 = 2.5  # Wave number of wave 2
+omega1 = 1.0  # Angular frequency of wave 1
+omega2 = 1.0  # Angular frequency of wave 2
+phi1 = 0  # Phase of wave 1
+phi2 = np.pi  # Phase of wave 2
+t=0
+
+x = np.linspace(0, 8, 1000)  # Range for x
+
+# Wave functions
+psi1 = A1 * np.sin(k1 * x + omega1 * t + phi1)
+psi2 = A2 * np.sin(k2 * x + omega2 * t + phi2)
+psi_total = psi1 + psi2
+
+# Plot the wave functions
+plt.figure(figsize=(12, 6))
+plt.plot(x, psi1, label="$\\psi_1(x) = A_1 \\sin(k_1 x - \\omega_1 t + \\phi_1)$", color="blue")
+plt.plot(x, psi2, label="$\\psi_2(x) = A_2 \\sin(k_2 x - \\omega_2 t + \\phi_2)$", color="red")
+plt.plot(x, psi_total, label="$\\psi_{\\text{total}}(x) = \\psi_1(x) + \\psi_2(x)$", color="green")
+
+# Add auxiliary lines
+plt.axhline(y=0, color='gray', linestyle='--', linewidth=0.7, alpha=0.5)  # Horizontal axis
+
+# Configure axes
+plt.xlabel("Position $x$", fontsize=14)
+plt.ylabel("Wave function $\\psi(x)$", fontsize=14)
+
+# Add grid
+plt.grid(True, linestyle="--", alpha=0.7)
+
+# Display the plot
+plt.legend()
+plt.show()
+```
+
+In geogebra we can simulate the interference of two waves with different amplitudes, wave numbers, and phases. The resulting interference pattern is a combination of the individual waves, showcasing the superposition principle in action.
+
+:::{.geogebra-instruction}
+* t=Slider[0, 6*pi, 0.1]
+* A1 = Slider[0.1, 2, 0.1]
+* A2 = Slider[0.1, 2, 0.1]
+* omega1 = Slider[0.1, 2, 0.1]
+* omega2 = Slider[0.1, 2, 0.1]
+* phi1 = Slider[0, 2*pi, 0.1]
+* phi2 = Slider[0, 2*pi, 0.1]
+* psi1 = A1 \sin(k1 x + omega1 t + phi1)
+* psi2 = A2 \sin(k2 x - omega2 t + phi2)
+* psi_total = psi1 + psi2
+:::
+
+
+## Huygens–Fresnel principle
+
+The Huygens–Fresnel principle is a fundamental concept in wave optics that describes how every point on a wavefront can be considered as a source of secondary spherical waves. These secondary waves combine to form the wavefront at a later time, allowing us to predict the propagation of waves through various media and obstacles.
+
+### Refraction
+
+Refraction is a common phenomenon where waves change direction as they pass from one medium to another. The Huygens–Fresnel principle provides a simple explanation for refraction, showing how the secondary waves generated at each point on the wavefront propagate through the new medium, leading to a change in the wave's direction.
+
+![source: Wikipedia](pics/waves/Refraction_-_Huygens-Fresnel_principle.svg) 
+
+#### Snell's Law
+
+Snell's Law is a key result derived from the Huygens–Fresnel principle, describing the relationship between the angles of incidence and refraction for waves passing through different media. The law states that the ratio of the sines of the angles is equal to the ratio of the wave speeds in the two media:
+
+$$
+\frac{\sin(\theta_1)}{\sin(\theta_2)} = \frac{v_1}{v_2},
+$$
+
+where $\theta_1$ and $\theta_2$ are the angles of incidence and refraction, respectively, and $v_1$ and $v_2$ are the wave speeds in the two media.
+
+
+### Diffraction
+
+Diffraction is another key concept explained by the Huygens–Fresnel principle, where waves bend around obstacles or pass through narrow openings. By considering each point on the wavefront as a source of secondary waves, we can predict how the diffracted waves will propagate and create interference patterns.
+
+![source: Wikipedia](pics/waves/Refraction_on_an_aperture_-_Huygens-Fresnel_principle.svg) 
+
+![source: Wikipedia](pics/waves/Wavelength%3Dslitwidth.gif){width=50%}
+
+
+## Doppler Effect
+
+The Doppler effect is a well-known phenomenon where the frequency of a wave changes due to the relative motion between the source and observer. The Huygens–Fresnel principle provides a theoretical framework for understanding the Doppler effect, showing how the wavefronts shift and compress or expand based on the motion of the source and observer.
+
+This effec can be visualized with the following animations (source: Wikipedia):
+
+:::{layout-ncol="2"}
+![](pics/waves/Dopplereffectstationary.gif)
+
+![](pics/waves/Dopplereffectsourcemovingrightatmach0.7.gif)
+
+![](pics/waves/Dopplereffectsourcemovingrightatmach1.0.gif)
+
+![](pics/waves/Dopplereffectsourcemovingrightatmach1.4.gif)
+:::
+
+#### Vapor cone ([Wikipedia](https://en.wikipedia.org/wiki/Vapor_cone))
+
+The vapor cone, also known as the shock collar or shock egg, is a visible cloud of condensed water droplets that can sometimes form around an object moving at high speeds. This phenomenon is often associated with supersonic aircraft and other high-speed vehicles, where the pressure difference between the front and rear of the object leads to the condensation of water vapor in the air.
+
+![source: Wikipedia](pics/waves/FA-18_going_transonic.jpeg)
+
+#### Playground for waves:
+
+- [Wave applet](https://phet.colorado.edu/sims/html/wave-on-a-string/latest/wave-on-a-string_all.html)
+
+- [Heat versus Wave Equation](https://x.com/gabrielpeyre/status/1765255995809305064?t=pzuMHd7gpN1penkJplRkQg)
+
+- [Video of Doppler Effect on the street](https://youtu.be/ffg4TOpXZyg?si=PxLSJtInPxolERYb)
+
+- [Doppler Effect simulator](https://ophysics.com/waves11.html)
+
+- [Interference applet](https://phet.colorado.edu/sims/html/wave-interference/latest/wave-interference_all.html)
+
+
+## Definition of Wave
+
+**Wave** is a disturbance that propagates through space or a medium, and transports energy without transporting mass.
+
+
+### To be considered...
+
+**Vibration**
+
+- Wiggle in time
+- $u(t) = A \sin(\omega t)$
+
+**Wave**
+
+- Wiggle in time and space
+- $u(t, x) = A \sin(\omega t - kx)$
+
+---
