@@ -38,6 +38,13 @@ nav:
         - Quantum Harmonic Oscillator: Physics/Modern_Physics/sp/quantum_harmonic_oscillator.md
     - ✏️ Exercises for Students:
       - Problem list: Physics/Exercises_for_Students/exercises_dch.md
+  - Mathematics:
+    - 🎓 Lecture Notes:
+      - Linear Algebra: Mathematics/Linear_Algebra.html
+      - Analytic_Geometry: Mathematics/Analytic_Geometry.html
+      - Calculus: Mathematics/Calculus.html
+    - Student Problems:
+      - Exercies: Mathematics/Exercises.md
 
 theme:
   name: material
