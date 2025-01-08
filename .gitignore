@@ -6,3 +6,6 @@
 
 # Ignorowanie logów systemowych
 *.log
+
+# Ignorowanie plików z rozszerzeniem .idea
+.idea/
