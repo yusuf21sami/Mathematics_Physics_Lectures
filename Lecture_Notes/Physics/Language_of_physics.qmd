@@ -18,7 +18,7 @@ format:
     self-contained: true
     other-links:
       - text: Main page
-        href: https://dchorazkiewicz.github.io/Physics-2024-25-Summer/       
+        https://dchorazkiewicz.github.io/Mathematics_Physics_Lectures/
 ---
 
 ## Introduction
