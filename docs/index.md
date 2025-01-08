@@ -4,7 +4,7 @@
 
 This repository serves as a comprehensive resource for the **Physics and Mathematics** courses. It is organized into several sections, each designed to help students explore different areas of physics in a structured and accessible way. Below is a brief overview of the repository's contents:
 
-### Main Sections
+### Physics
 
 1. **Mechanics**  
 2. **Electromagnetism**  
