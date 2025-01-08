@@ -18,7 +18,7 @@ format:
     self-contained: true
     other-links:
       - text: Main page
-        https://dchorazkiewicz.github.io/Mathematics_Physics_Lectures/
+        https://dchorazkiewicz.github.io/Mathematics_Physics_Lectures
 
 ---
 
