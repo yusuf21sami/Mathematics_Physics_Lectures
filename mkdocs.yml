@@ -41,7 +41,7 @@ nav:
   - Mathematics:
     - 🎓 Lecture Notes:
       - Linear Algebra: Mathematics/Linear_Algebra.html
-      - Analytic_Geometry: Mathematics/Analytic_Geometry.html
+      - Analytic Geometry: Mathematics/Analytic_Geometry.html
       - Calculus: Mathematics/Calculus.html
     - Student Problems:
       - Exercies: Mathematics/Exercises.md
