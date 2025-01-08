@@ -1,0 +1,8 @@
+# Ignorowanie całego folderu 'site'
+/site/
+
+# Ignorowanie wszystkich plików .html
+*.html
+
+# Ignorowanie logów systemowych
+*.log
