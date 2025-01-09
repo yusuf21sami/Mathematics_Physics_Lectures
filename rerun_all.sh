@@ -112,6 +112,6 @@ echo "Deploying site with mkdocs..."
 # print the current directory
 pwd
 
-mkdocs gh-deploy
+# mkdocs gh-deploy
 #
 #echo "All tasks completed successfully."
