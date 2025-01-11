@@ -7,7 +7,7 @@ format:
     toc-depth: 3
     highlight-style: tango
     code-line-numbers: true
-    code-fold: true
+    code-fold: show
     code-summary: "Show the code"
     code-tools: true
     code-block-bg: "rgba(42, 174, 42, 0.02)"
@@ -18,31 +18,40 @@ format:
     self-contained: true
     other-links:
       - text: Main page
-        href: https://dchorazkiewicz.github.io/Mathematics_Physics_Lectures
+        href: https://dchorazkiewicz.github.io/Physics-2024-25-Summer/   
+
 ---
 
-## Introduction to Circuits and Circuit Elements
+## Introduction
 
 A circuit is a closed loop or pathway through which electric current can flow. It consists of various electrical components connected together to perform a specific function, such as controlling the flow of current, storing energy, or amplifying signals. Circuits can be found in a wide range of electronic devices, from simple light switches to complex computer systems.
+
+### Cuircuit at fundamental level 
+
+Cuircuit is **movement of electrons** in a closed loop. Density of electrons is higher at the negative terminal of the battery and lower at the positive terminal. The electrons move from the negative terminal to the positive terminal, creating a current flow.
+
+Conventionally, the direction of current flow is taken to be from the positive terminal to the negative terminal, even though the actual flow of electrons is in the opposite direction. This is known as **conventional current flow**. It is due to the historical development of electrical theory, where the direction of current flow was defined before the discovery of the electron.
 
 ### Types of circuits: 
 - **series circuits** (the components are connected end-to-end, forming a single path for current flow)
 - **parallel circuits** (the components are connected across each other, providing multiple paths for current flow).
 - **combination circuits** (a mix of series and parallel circuits).
   
-## List of standard circuit elements with symbols:
+### List of standard circuit elements with symbols:
+- Current Source: I
+- Voltage Source: V
 - Switch: S
 - Resistor: R
 - Capacitor: C
 - Inductor: L
 - Diode: D
 - Transistor: Q
-- Voltage Source: V
-- Current Source: I
 
-## Cuircuit at fundamental level 
+We will look at each in turn and briefly discuss their functions and key equations, along with an example on how to draw them using [schemdraw](https://schemdraw.readthedocs.io/en/stable/usage/start.html) in Python.
 
-Cuircuit is **movment of electrons** in a closed loop. Density of electrons is higher at the negative terminal of the battery and lower at the positive terminal. The electrons move from the negative terminal to the positive terminal, creating a current flow.
+We also recommend using [Falstad Circuit Simulator](https://www.falstad.com/circuit/) for more advanced simulations.
+
+In LaTeX, you can use the [Circuitikz](https://tikz.dev/library-circuits) package to draw circuits.
 
 ## Current
 
@@ -56,93 +65,137 @@ Current is measured in **amperes** $[A]$, where 1 Amper corresponds to 1 coulomb
 
 When a current flows through a circuit element, we often speak of it in terms of a **current direction**, which, by convention, is taken to be the direction a positive charge would move. This is sometimes referred to as **conventional current**.
 
-In materials such as wood or glass, all the electrons are bound to nearby atoms and none can move freely. These materials are called **insulators**. In many materials, such as copper and other metals, some of the electrons are free to move about the entire material. Such materials are called **conductors**. 
+In materials such as wood or glass, all the electrons are bound to nearby atoms and none can move freely. These materials are called **insulators**. 
 
----
+In many materials, such as copper and other metals, some of the electrons are free to move about the entire material. Such materials are called **conductors**. 
 
 ## Voltage
 
 **Voltage** (or **electric potential difference**) is the measure of the potential energy difference per unit charge between two points in a circuit. It can be thought of as the "pressure" that pushes charges through a conductor. We use the symbol $V$ for voltage, and it is measured in **volts** $[V]$. Mathematically, voltage between two points $a$ and $b$ can be expressed as:
 
 $$
-V_{ab} = \phi_a - \phi_b
+V_{ab} = \phi_b- \phi_a
 $$
 
-where $\phi$ represents the electric potential at a given point.
+where $\phi$ represents the electric potential at a given point. At the same time we can write the voltage as the work done per unit charge to move a charge from point $a$ to point $b$:
+
+$$
+V_{ab} = \frac{W_{ab}}{q}
+$$
 
 In practical terms, if you have a voltage source like a battery, it provides a certain potential difference that drives current around a circuit.
 
----
-
-## Battery
-
-A battery is an electrochemical device that stores electrical energy and provides a voltage source for electronic circuits. It consists of one or more cells that convert chemical energy into electrical energy through a chemical reaction. The voltaic pile, invented by Alessandro Volta in the early 19th century, marks a pivotal moment in the history of electricity and electrochemistry.
-
-The voltaic pile is considered one of the first electrochemical cells, consisting of two distinct electrodes and an electrolyte. The cell is structured as follows:
-
-- **Electrodes**: One made of zinc and the other of copper.
-- **Electrolyte**: Sulfuric acid mixed with water or a saltwater brine, composed of ions (2 H+ and SO4 2−).
-
----
-
-## Ground
-
-Ground is a reference point in an electrical circuit that serves as a common return path for current flow. It is typically connected to the earth or a conductive material to provide a stable reference voltage for the circuit. Ground is used to establish a zero voltage reference point and ensure safe operation of electrical devices and systems.
-
----
-
-## Basic Circuit Elements
-
-Below are the most common circuit elements you need to know:
-
-1. **Resistors**  
-2. **Capacitors**  
-3. **Inductors**  
-4. **Diodes**  
-
-We will look at each in turn and briefly discuss their functions and key equations, along with an example on how to draw them using [schemdraw](https://schemdraw.readthedocs.io/en/stable/usage/start.html) in Python.
-
----
-
-### Resistors
-
-A **resistor** is a passive component that opposes the flow of current. The relationship between the voltage $V$ across a resistor and the current $I$ flowing through it is described by **Ohm’s Law**:
-
-$$
-V = IR
-$$
-
-where $R$ is the **resistance** (measured in ohms \([\Omega]\)). Resistors can be used to control current levels, divide voltage, and dissipate energy in a circuit.
-
-**Key Points**:
-
-- Symbol in circuit diagrams: a zig-zag line or a rectangular box.  
-- Power dissipated by a resistor can be calculated using  
-  $$
-  P = IV = I^2 R = \frac{V^2}{R}.
-  $$
-- Used in voltage regulation, current limiting, and signal conditioning.
+SchemeDraw symbol for a voltage source:
 
 ```{python}
 import schemdraw
 import schemdraw.elements as elm
 
 with schemdraw.Drawing() as d:
+    d += elm.SourceV().left().label('V')
+```
+
+## Battery
+
+A battery is an electrochemical device that stores electrical energy and provides a voltage source for electronic circuits. It consists of one or more cells that convert chemical energy into electrical energy through a chemical reaction. The voltaic pile, invented by link: [Alessandro Volta](https://en.wikipedia.org/wiki/Alessandro_Volta) in the early 19th century, marks a pivotal moment in the history of electricity and electrochemistry.
+
+The voltaic pile is considered one of the first electrochemical cells, consisting of two distinct electrodes and an electrolyte. The cell is structured as follows:
+
+- **Electrodes**: One made of zinc and the other of copper.
+- **Electrolyte**: Sulfuric acid mixed with water or a saltwater brine, composed of ions (2 H+ and SO4 2−).
+
+When the electrodes are connected by a wire, a chemical reaction occurs at the zinc electrode, releasing electrons that flow through the wire to the copper electrode. This flow of electrons constitutes an electric current that can be used to power electrical devices.
+
+## Ground
+
+**Ground** is a reference point in an electrical circuit that serves as a common return path for current flow. It is typically connected to the earth or a conductive material to provide a stable reference voltage for the circuit. Ground is used to establish a zero voltage reference point and ensure safe operation of electrical devices and systems.
+
+SchemeDraw symbol for a ground:
+
+```{python}
+import schemdraw
+import schemdraw.elements as elm
+
+with schemdraw.Drawing() as d:
+    d += elm.Ground()
+```
+
+
+## Switch
+
+A **switch** is a device used to control the flow of current in an electrical circuit. It can be opened (off) or closed (on) to allow or block the flow of electricity. Switches are commonly used to turn devices on and off, change the direction of current flow, and control the operation of electrical systems.
+
+SchemeDraw symbol for a switch:
+
+```{python}
+import schemdraw
+import schemdraw.elements as elm
+
+with schemdraw.Drawing() as d:
+    d += elm.Switch().label('S')
+```
+
+## Resistors
+
+A **resistor** is a passive component that opposes the flow of current. The relationship between the voltage $V$ across a resistor and the current $I$ flowing through it is described by **Ohm’s Law**:
+$$
+R=\frac{V}{I}
+$$
+or
+$$
+V = IR
+$$
+
+where $V$ is the **voltage** (measured in volts $[V]$), $I$ is the **current** (measured in amperes $[A]$), and $R$ is the **resistance** (measured in ohms $[\Omega]$). Resistors can be used to control current levels, voltage regulation, and dissipate energy in a circuit, current limiting, and signal conditioning.
+
+Power dissipated by a resistor can be calculated using  
+  $$
+  P = IV = I^2 R = \frac{V^2}{R}.
+  $$
+
+**Symbols:**
+
+Symbol in circuit diagrams: a zig-zag line (US):
+```{python}
+import schemdraw
+import schemdraw.elements as elm
+
+elm.style(elm.STYLE_IEEE)
+with schemdraw.Drawing() as d:
+    d += elm.Resistor().label('R')
+```
+or a rectangular box (EU):
+```{python}
+import schemdraw
+import schemdraw.elements as elm
+
+elm.style(elm.STYLE_IEC)
+
+with schemdraw.Drawing() as d:
     d += elm.Resistor().label('R')
 ```
 
-The above code snippet creates an image of a single resistor labeled “R”.
+Resistivity $\rho$ is a material property that describes how well a material resists the flow of electric current. It is measured in ohm-meters $[\Omega m]$.
 
----
-## Adding resistors to a circuit
+$$
+R = \rho \frac{L}{A}
+$$
+
+where $R$ is the resistance, $\rho$ is the resistivity, $L$ is the length of the resistor, and $A$ is the cross-sectional area.
+
+**Adding resistors to a circuit**
 
 To add a resistor to a circuit, you need to connect it in series or parallel with other components. 
 
-schemaDREW PICTURE
+In a **series** circuit, the resistor is connected end-to-end with other components, forming a single path for current flow. 
 
-In a series circuit, the resistor is connected end-to-end with other components, forming a single path for current flow. 
+In a **parallel** circuit, the resistor is connected across other components, providing multiple paths for current flow.
 
-In a parallel circuit, the resistor is connected across other components, providing multiple paths for current flow.
+- Parallel = voltage across all components are the same
+
+- Series = current through all components is the same
+  
+### Series Resistors
 
 To calculate the total resistance of a **series circuit**, you need to add the resistance values of all the components in the circuit. 
 
@@ -150,21 +203,84 @@ $$R_{total} = R1 + R2 + R3 + ...$$
 
 where R_total is the total resistance of the circuit and $R1, R2, R3, ...$ are the resistance values of the components in series.
 
+Example in SchemaDraw:
+
+```{python}
+import schemdraw
+import schemdraw.elements as elm
+
+with schemdraw.Drawing() as d:
+    d += elm.Dot()  # Starting point
+    d += elm.Resistor().right().label('R1')  # Resistor R1
+    d += elm.Resistor().right().label('R2')  # Resistor R2
+    d += elm.Resistor().right().label('R3')  # Resistor R3
+    d += elm.Dot()  # Ending point
+```
+is equivalent to:
+```{python}
+import schemdraw
+import schemdraw.elements as elm
+
+with schemdraw.Drawing() as d:
+    d += elm.Dot()  # Starting point
+    d += elm.Resistor().right().label('$R_{total}$')  # Resistor R_total
+    d += elm.Dot()  # Ending point
+```
+
+### Parallel Resistors
+
 To calculate the total resistance of a **parallel circuit**, you need to use the formula:
 
-$$1/R_{total} = 1/R1 + 1/R2 + 1/R3 + ...$$
+$$\frac{1}{R_{total}} = \frac{1}{R1} + \frac{1}{R2} + \frac{1}{R3} + ...$$
 
-where R_total is the total resistance of the circuit and $R1, R2, R3, ...$ are the resistance values of the components in parallel.
+$$R_{total} = \frac{1}{\frac{1}{R1} + \frac{1}{R2} + \frac{1}{R3} + ...}
+$$
 
-### Sometimes you need to combine series and parallel circuits:
+where $R_{total}$ is the total resistance of the circuit and $R1, R2, R3, ...$ are the resistance values of the components in parallel.
 
-- Parallel = voltage across all components are the same
+Example in SchemaDraw:
+```{python} 
+import schemdraw
+import schemdraw.elements as elm
 
-- Series = current through all components is the same
+with schemdraw.Drawing() as d:
+    d += elm.Line().right().length(1)   # Line to the right
+    d += elm.Dot()  # Starting point
+    d += elm.Line().up().length(2)  # Line up
+    d += elm.Resistor().right().label('R1')  # Resistor R1 to the right
+    d += elm.Line().down().length(2)   # Line down
+    d += elm.Resistor().left().label('R2')  # Resistor R2 to the left
+    d += elm.Line().down().length(2)   # Line down
+    d += elm.Resistor().right().label('R3')  # Resistor R3 to the right
+    d += elm.Line().up().length(2)   # Line up
+    d += elm.Dot()  # Ending point
+    d += elm.Line().right().length(1)   # Line to the right
+```
 
----
+is equivalent to:
+```{python}
+import schemdraw
+import schemdraw.elements as elm
 
-### Capacitors
+with schemdraw.Drawing() as d:
+    d += elm.Dot()  # Starting point
+    d += elm.Resistor().right().label('$R_{total}$')  # Resistor R_total
+    d += elm.Dot()  # Ending point
+```
+
+Example of a circuit with a parallel and series sections:
+
+![Parallel and Series Resistors](./pics/circuits/resistors-adding.png)
+
+### Thevenin's Theorem
+
+**Thevenin's Theorem** states that any linear circuit containing resistors and voltage/current sources can be replaced by a single voltage source $V_{th}$ in series with a single resistor $R_{th}$, where $V_{th}$ is the open-circuit voltage at the terminals of the circuit and $R_{th}$ is the equivalent resistance of the circuit when all voltage/current sources are turned off.
+
+The equivalent voltage $V_{th}$ is the voltage across the terminals of the circuit when no current is flowing, while the equivalent resistance $R_{th}$ is the resistance seen by the circuit when all voltage/current sources are turned off.
+
+The Thevenin equivalent circuit is useful for simplifying complex circuits and analyzing their behavior under different conditions: [Falstad example](https://www.falstad.com/circuit/e-thevenin.html).
+
+## Capacitors
 
 A **capacitor** is a device that stores energy in the form of an electric field between two conductive plates separated by an insulator (dielectric). The basic relationship between voltage $V$ across a capacitor and the charge $Q$ it holds is:
 
@@ -172,21 +288,19 @@ $$
 Q = C \, V
 $$
 
-where $C$ is the **capacitance** (measured in farads \([F]\)). In circuits, the current $i(t)$ and voltage $v(t)$ for a capacitor relate as:
+where $C$ is the **capacitance** (measured in farads $[F]$). In circuits, the current $i(t)$ and voltage $v(t)$ for a capacitor relate as:
 
 $$
 i(t) = C \frac{dv(t)}{dt}
 $$
 
-**Key Points**:
-
-- Symbol in circuit diagrams: two parallel lines.  
-- Capacitors resist changes in voltage — they charge up and discharge according to  
+Capacitors resist changes in voltage — they charge up and discharge according to  
   $$
   v(t) = \frac{1}{C} \int i(t) \, dt.
   $$
 - Commonly used for filtering, decoupling, and timing applications.
 
+Symbol in circuit diagrams: two parallel lines
 ```{python}
 import schemdraw
 import schemdraw.elements as elm
@@ -195,24 +309,77 @@ with schemdraw.Drawing() as d:
     d += elm.Capacitor().label('C')
 ```
 
-This snippet draws a basic capacitor symbol labeled “C”.
+Adding capacitors to a circuit is opposite to adding resistors. You can connect them in series or parallel with other components.
 
----
+In a **series** circuit, the capacitors are connected end-to-end with other components, forming a single path for current flow.
+```{python}
+import schemdraw
+import schemdraw.elements as elm
 
-### Inductors
+with schemdraw.Drawing() as d:
+    d += elm.Dot()  # Starting point
+    d += elm.Capacitor().right().label('C1')  # Capacitor C1
+    d += elm.Capacitor().right().label('C2')  # Capacitor C2
+    d += elm.Capacitor().right().label('C3')  # Capacitor C3
+    d += elm.Dot()  # Ending point
+```
 
-An **inductor** is a component that stores energy in a magnetic field when current flows through it. The voltage $V$ across an inductor of inductance $L$ is given by:
+In a **parallel** circuit, the capacitors are connected across other components, providing multiple paths for current flow.
+```{python}
+import schemdraw
+import schemdraw.elements as elm
+
+with schemdraw.Drawing() as d:
+    d += elm.Line().right().length(1)   # Line to the right
+    d += elm.Dot()  # Starting point
+    d += elm.Line().up().length(2)      # Line up
+    d += elm.Capacitor().right().label('C1')  # Capacitor C1 to the right
+    d += elm.Line().down().length(2)    # Line down
+    d += elm.Capacitor().left().label('C2')  # Capacitor C2 to the left
+    d += elm.Line().down().length(2)    # Line down
+    d += elm.Capacitor().right().label('C3')  # Capacitor C3 to the right
+    d += elm.Line().up().length(2)      # Line up
+    d += elm.Dot()  # Ending point
+    d += elm.Line().right().length(1)   # Line to the right
+```
+
+**Capacitance** is a measure of a capacitor's ability to store electrical charge and energy. It is defined as the ratio of the charge stored on the plates to the voltage across the plates. The SI unit of capacitance is the farad (F), which is equal to one coulomb per volt.
+
+Formula for total capacitance in a **series** circuit:
 
 $$
-V = L \frac{dI}{dt}
+\frac{1}{C_{\text{total}}} = \frac{1}{C_1} + \frac{1}{C_2} + \frac{1}{C_3} + \ldots
 $$
 
-**Key Points**:
+Formula for total capacitance in a **parallel** circuit:
 
-- Symbol in circuit diagrams: a coiled wire.  
-- Inductors resist changes in current. When current changes, the inductor induces a voltage that opposes the change.  
-- Often used in filters, transformers, and power supplies.
+$$
+C_{\text{total}} = C_1 + C_2 + C_3 + \ldots
+$$
 
+Interesingly, behind the **touch screen** there are two parallel layers, one behind the other, of thin strips of a transparent conductor. A voltage is maintained between the two layers. In touch screen on a mobile phone/tablet, when you bring **your finger** (a conductor) up to a point on the screen, your finger and the front conducting layer act like a second capacitor in series at that point. The circuitry attached to the conducting layers detects the location of the capacitance change, and detects where you touched the screen.
+
+## Inductors
+
+An **Inductor** is a component that stores energy in a magnetic field when current flows through it. The voltage $V$ across an inductor of inductance $L$ is given by:
+
+$$
+V = L \frac{d I}{dt}
+$$
+
+Inductors resist changes in current. When current changes, the inductor induces a voltage that opposes the change.  
+
+Often used in filters, transformers, and power supplies.
+
+Iductance is a measure of an inductor's ability to store energy in a magnetic field. It is defined as the ratio of the magnetic flux linkage to the current flowing through the inductor. The SI unit of inductance is the henry (H), which is equal to one volt-second per ampere.
+
+$$
+L=\frac{N^2 \mu A}{l}
+$$
+
+where $L$ is the inductance, $N$ is the number of turns, $\mu$ is the permeability of the core material, $A$ is the cross-sectional area of the coil, and $l$ is the length of the coil.
+
+Symbol in circuit diagrams: a coiled wire
 ```{python}
 import schemdraw
 import schemdraw.elements as elm
@@ -221,35 +388,37 @@ with schemdraw.Drawing() as d:
     d += elm.Inductor().label('L')
 ```
 
-This snippet draws a simple inductor symbol labeled “L”.
+You can connect inductors in series or parallel with other components. The total inductance in a **series** circuit is (like in resitors) the sum of the individual inductances, while in a **parallel** circuit, the reciprocal of the total inductance is the sum of the reciprocals of the individual inductances. 
 
----
+![Source: Wikipedia](./pics/circuits/Tuned_circuit_animation_3.gif)
 
-### Diodes
 
-A **diode** allows current to flow primarily in one direction. It has a very low (ideally zero) resistance in one direction — called **forward bias** — and a high (ideally infinite) resistance in the other direction — **reverse bias**.
+## Transformers
 
-**Key Points**:
+Transformer is a passive component that transfers electrical energy from one electrical circuit to another circuit, or multiple circuits. A varying current in any coil of the transformer produces a varying magnetic flux in the transformer's core, which induces a varying electromotive force (EMF) across any other coils wound around the same core. Electrical energy can be transferred between separate coils without a metallic (conductive) connection between the two circuits.
 
-- Symbol in circuit diagrams: a triangle pointing to a vertical line.  
-- Typical diode equation for current $I$ and voltage $V$ is (idealized):  
-  $$
-  I = I_S \Bigl( e^{\frac{V}{n V_T}} - 1 \Bigr),
-  $$
-  where $I_S$ is the saturation current, $n$ is the ideality factor (usually 1 or 2), and $V_T$ is the thermal voltage ($\approx 25 \,\text{mV}$ at room temperature).  
-- Practical uses: rectification (converting AC to DC), protection circuits, and signal demodulation.
+Transformers operate on mutual induction, allowing voltage levels to be modified. The transformer equation relates the primary $V_P$ and secondary $V_S$ voltages to their respective turns $N_P$ and $N_S$:
 
-```{python}
-import schemdraw
-import schemdraw.elements as elm
+$$\frac{V_P}{V_S} = \frac{N_P}{N_S}
+$$
 
-with schemdraw.Drawing() as d:
-    d += elm.Diode().label('D')
-```
+![Source: Wikipedia](./pics/circuits/transformer.png)
 
-Here, we draw a simple diode symbol labeled “D”.
+A transformer with $1000$ winding turns changes the primary voltage of $120$ V  into a secondary voltage of $230$ V.  What is the number of winding turns on the second voltage?
 
----
+$$120/230 = 1000/N_S$$
+
+$$N_S = 1000 * 230 / 120 = 1916 \text{ turns}$$
+
+## Measuring Instruments
+
+An **ammeter** is a device used to measure the current flowing through an electrical circuit. It is connected in series with the circuit to measure the current passing through it. Ammeters are designed to have a low resistance to minimize the voltage drop across them and ensure accurate current measurements. They are commonly used in electronic circuits to monitor current flow and troubleshoot circuit issues. Measuring: **ampers**.
+
+A **voltmeter** is a device used to measure the voltage across an electrical circuit. It is connected in parallel with the circuit to measure the voltage difference between two points. Voltmeters are designed to have a high resistance to minimize the current flow through them and ensure accurate voltage measurements. They are commonly used in electronic circuits to monitor voltage levels and troubleshoot circuit issues.  Measuring: **volts**.
+
+An **ohmmeter** is a device used to measure the resistance of an electrical component. It is connected to the component being tested to measure its resistance value. Ohmmeters are commonly used to check the continuity of wires, test the resistance of resistors, and troubleshoot circuit issues. Measuring: **ohms**.
+
+A **multimeter** is a versatile device that combines the functions of an ammeter, voltmeter, and ohmmeter in a [single instrument](https://en.wikipedia.org/wiki/Multimeter).
 
 ## Kirchhoff's Laws
 
@@ -265,6 +434,30 @@ $$
 \sum I_{\text{in}} = \sum I_{\text{out}}
 $$
 
+Example in SchemaDraw with $I_2=I_1+I_3+I_4+I_5$
+
+```{python}
+import schemdraw
+import schemdraw.elements as elm
+
+with schemdraw.Drawing() as d:
+    d += elm.Arrow().right().label('I2')               # Current I2 entering
+    # Central node
+    d += elm.Dot() 
+    start_pos = d.here
+    d.push()  
+    d += elm.Arrow().right().label('I3')             # Current I3 leaving
+    d.pop()  # Return to the saved position
+    d.push()  
+    d += elm.Arrow().up().label('I1')     # Current I1 leaving
+    d.pop()  # Return to the saved position
+    d.push()  
+    d += elm.Arrow(theta=45).label('I5', loc='right')  # Current I5 leaving
+    d.pop()  # Return to the saved position
+    d.push()  
+    d += elm.Arrow(theta=315).label('I4', loc='right')  # Current I4 leaving
+```
+
 ### Kirchhoff’s Voltage Law (KVL)
 
 - States that the algebraic sum of all voltages around any closed loop in a circuit is zero.  
@@ -275,59 +468,300 @@ $$
 \sum V_{\text{around a loop}} = 0
 $$
 
----
+**Strategy for solving circuits using Kirchhoff’s Laws:**
 
-## Putting It All Together
-
-By combining the definitions of current and voltage with the properties of resistors, capacitors, inductors, and diodes, and applying Kirchhoff’s Laws, one can systematically analyze any linear circuit.
+By combining the definitions of current and voltage with the properties of resistors, capacitors, inductors, and applying Kirchhoff’s Laws, one can systematically analyze any linear circuit.
 
 1. Use Kirchhoff’s Current Law to ensure current conservation at each node.  
 2. Use Kirchhoff’s Voltage Law to ensure voltage consistency around loops.  
-3. Apply the constitutive relationships for each circuit element (Ohm’s law for resistors, capacitor current-voltage relationship, inductor current-voltage relationship, and diode I–V characteristic).
+3. Apply the constitutive relationships for each circuit element (Ohm’s law for resistors, capacitor current-voltage relationship, inductor current-voltage relationship).
 
-With these tools, you can solve for unknown currents and voltages throughout the circuit.
+With these tools, you can solve for unknown currents and voltages throughout the circuit. By looking at the signs of the currents you can determine the direction of current flow.
 
----
+**Example:**
 
-## Measuring Instruments
+Assume an electric network consisting of two voltage sources and three resistors.
 
-### Ammameter
+![Source: Wikipedia](./pics/circuits/Kirchoff.png)
 
-An ammeter is a device used to measure the current flowing through an electrical circuit. It is connected in series with the circuit to measure the current passing through it. Ammeters are designed to have a low resistance to minimize the voltage drop across them and ensure accurate current measurements. They are commonly used in electronic circuits to monitor current flow and troubleshoot circuit issues. Measuring: **ampers**.
+According to the first law:  
+$I_1 - I_2 - I_3 = 0$
 
-### Voltmeter
+Applying the second law to the closed circuit $s_1$, and substituting for voltage using Ohm's law gives:  
+$-R_2 I_2 + \mathcal{E}_1 - R_1 I_1 = 0$
 
-A voltmeter is a device used to measure the voltage across an electrical circuit. It is connected in parallel with the circuit to measure the voltage difference between two points. Voltmeters are designed to have a high resistance to minimize the current flow through them and ensure accurate voltage measurements. They are commonly used in electronic circuits to monitor voltage levels and troubleshoot circuit issues.  Measuring: **volts**.
+The second law, again combined with Ohm's law, applied to the closed circuit $s_2$ gives:  
+$-R_3 I_3 - \mathcal{E}_2 - \mathcal{E}_1 + R_2 I_2 = 0$
 
-### Ohmmeter
+This yields a system of linear equations in $I_1$, $I_2$, $I_3$:  
+\begin{cases}
+I_1 - I_2 - I_3 = 0 \\  
+-R_2 I_2 + \mathcal{E}_1 - R_1 I_1 = 0 \\  
+-R_3 I_3 - \mathcal{E}_2 - \mathcal{E}_1 + R_2 I_2 = 0  
+\end{cases}  
+which is equivalent to:  
+\begin{cases}
+I_1 + (-I_2) + (-I_3) = 0 \\  
+R_1 I_1 + R_2 I_2 + 0I_3 = \mathcal{E}_1 \\  
+0I_1 + R_2 I_2 - R_3 I_3 = \mathcal{E}_1 + \mathcal{E}_2  
+\end{cases}
 
-An ohmmeter is a device used to measure the resistance of an electrical component. It is connected to the component being tested to measure its resistance value. Ohmmeters are commonly used to check the continuity of wires, test the resistance of resistors, and troubleshoot circuit issues. Measuring: **ohms**.
+Assuming:  
+\begin{aligned}
+R_1 &= 100 \, \Omega, & R_2 &= 200 \, \Omega, & R_3 &= 300 \, \Omega, \\  
+\mathcal{E}_1 &= 3 \, \text{V}, & \mathcal{E}_2 &= 4 \, \text{V}  
+\end{aligned}
+the solution is:  
+\begin{cases}
+I_1 = \frac{1}{1100} \, \text{A} \\  
+I_2 = \frac{4}{275} \, \text{A} \\  
+I_3 = -\frac{3}{220} \, \text{A}  
+\end{cases}
 
----
+The current $I_3$ has a negative sign which means the assumed direction of $I_3$ was incorrect and $I_3$ is actually flowing in the direction opposite to the assumed one. The current in $R_3$ flows from left to right.  
 
-## Summary
+## Altering current and voltage
 
-- **Current**: Flow of electric charge, measured in amperes \([A]\).  
-- **Voltage**: Potential difference driving the current, measured in volts \([V]\).  
-- **Resistors**: Convert electric energy into heat, obey $V = IR$.  
-- **Capacitors**: Store energy in an electric field, obey $Q = CV$ and $i = C \frac{dV}{dt}$.  
-- **Inductors**: Store energy in a magnetic field, obey $V = L \frac{dI}{dt}$.  
-- **Diodes**: Allow current in one direction, block current in reverse (ideal diode model).  
-- **Kirchhoff’s Laws**: Provide fundamental rules for current and voltage in circuit analysis.  
-- **schemdraw (Python)**: A useful library for drawing circuit diagrams programmatically.
+Current is the flow of electric charge through a conductor, measured in amperes (A). Along we also provide voltage characteristics measured in volts (V).
 
-Understanding these basics is essential before moving on to more complex circuits and network theorems (e.g., Thevenin’s and Norton’s theorems, superposition, etc.).
+![Source: Wikipedia](./pics/circuits/currents.png)
 
----
+### AC and DC currents
 
-## References and Further Reading
+**Alternating Current** (AC) is characterized by its ability to change direction periodically, in contrast to **Direct Current** (DC), which flows in the same direction. 
 
-- D. Halliday, R. Resnick, and J. Walker, *Fundamentals of Physics*.  
-- J.D. Irwin, *Basic Engineering Circuit Analysis*.  
-- Thomas L. Floyd, *Electronic Devices*.  
-- The [HyperPhysics](http://hyperphysics.phy-astr.gsu.edu/) website for quick reference.
+![Source: Wikipedia](./pics/circuits/ac_dc.png)
 
-## RLC
+AC is the standard for electricity distribution due to its efficiency over long distances. It is also easier to convert AC to different voltages using transformers. DC is used in batteries and electronic devices.
+
+![Source: Wikipedia](./pics/circuits/alternating.png)
+
+The mathematical representation of AC is given by:
+
+$$V(t) = V_{max} \sin(\omega t + \phi)
+$$
+
+$$I(t) = I_{max} \sin(\omega t + \phi)
+$$
+
+where:
+
+- $V(t)$ is the voltage at time $t$$,
+- $V_{max}$ is the maximum voltage,
+- $I(t)$ is the current at time $t$$,
+- $I$_{max}$ is the maximum current.
+- $\omega$ is the angular frequency,
+- $\phi$ is the phase angle.
+
+Animation: [AC generator](https://youtu.be/CWulQ1ZSE3c?si=6n2H8fgqHRtsIF38)
+
+### Three-Phase AC Systems
+
+Three-phase systems use three AC currents, each phase shifted by 120°.
+
+![](./pics/circuits/phase3.png)
+
+This arrangement enhances power distribution efficiency by the  √3 factor:
+
+### Electromotive Force (EMF)
+
+Electromotive force (EMF)is the voltage generated by a source of electrical energy, such as a battery or generator. We will use the symbol $\epsilon$ for EMF. It is measured in volts (V) and represents the electrical potential difference between two points in a circuit. EMF is responsible for driving current through a circuit and powering electrical devices.
+
+EMF is not a force in the traditional sense but rather a measure of the energy per unit charge provided by the source. It is analogous to the pressure in a hydraulic system that drives the flow of water. EMF is the total energy provided by the source per unit charge, including the energy lost due to internal resistance.
+
+The EMF of a source is equal to the potential difference across its terminals when no current is flowing. When current flows, the voltage across the terminals may drop due to internal resistance, leading to a lower terminal voltage.
+
+The SI unit of EM is the same as that for potential, the volt $[V]=[J/C]$. A typical flashlight battery has an EMF of 1.5 V; this means that the battery does 1.5 J of work on every coulomb of charge that passes through it.
+
+## Conductors, Semiconductors, and Insulators
+
+Electrical properties of materials are critical for designing electronic components: 
+
+- Insulators exhibit high resistivity.
+- Semiconductors have variable resistivity (influenced by doping and temperature).
+- Conductors exhibit low resistivity.
+
+![Source: Wikipedia](./pics/circuits/materials.png)
+
+In semiconductors, the valence band is the highest energy band that is fully occupied by electrons, while the conduction band is the next highest energy band that is empty or partially filled. The energy gap between the valence and conduction bands determines the conductivity of the semiconductor.
+
+**Valence Band** is the highest range of electron energies. Electrons are bound to atoms and participate in chemical reactions. When these electrons gain sufficient energy, they can move to the conduction band, becoming free to conduct electricity.
+
+- **Insulators**: Have a large band gap (e.g., diamond), making it difficult for electrons to move from the valence band to the conduction band, thus they do not conduct electricity well.
+- **Semiconductors**: Have a smaller band gap (e.g., silicon, germanium). They can conduct electricity under certain conditions, such as when doped with other elements or when exposed to light.
+- **Conductors**: Have no band gap because the valence band and conduction band overlap, allowing electrons to move freely and conduct electricity efficiently (e.g., metals like copper).
+
+### Doping and the P-N Junction
+
+Semiconductor doping (process of adding impurities to a semiconductor material) introduces carriers, enhancing conductivity. Doping can be done with different types of impurities, such as boron, phosphorus, and arsenic, to create p-type and n-type semiconductors.
+
+Timeline of Key Discoveries in Physics and Electronics:
+
+- **1896**: Electron Discovered
+- **1911**: Superconductivity
+- **1925**: Quantum Mechanics
+- **1935**: *Semiconductors* (Significant Progress)
+- **1948**: Transistor
+- **1957**: Tunnel Diode
+- **1960s**: Semiconductor Laser
+- **1980**: Quantum Hall Effect
+- **1986**: High-Temperature Superconductivity
+- **2010s**: Topological Insulators
+
+A doped semiconductor is a semiconductor with impurities added to it to alter its electrical properties. The impurities are called dopants. 
+
+The two types of doped semiconductors are:
+
+**P-Type Semiconductor**
+
+- Made by dding a small amount of an element that has one less valence electron than the semiconductor material (like silicon).
+- **Result**: Creates "holes" or POSITIVE charge carriers because there's a spot where an electron could be, but isn't.
+
+**N-Type Semiconductor**
+
+- Made by dding a bit of an element that has one more valence electron than the semiconductor material.
+- **Result**: Extra electrons are available, creating NEGATIVE charge carriers.
+
+**P-N Junction** is a boundary between p-type and n-type semiconductors. It is a key component in diodes, transistors, and solar cells.
+
+Why It's Important?
+
+- **Unidirectional Conductivity**: A PN junction allows current to flow more easily in one direction than the other. When you apply a voltage in one direction, it pushes the electrons and holes towards the junction, allowing current to flow. When you reverse the voltage, it pulls them away from the junction, making it hard for current to flow. This is how diodes work.
+- **Applications**: This principle is what makes semiconductors so useful in electronics. They can be used to control electrical current flow in circuits, which is foundational for creating all kinds of electronic devices.
+
+## Diode
+
+A **diode** is a passive two-terminal electrical component that allows current to flow in one direction only. It consists of a semiconductor material with two regions: a p-type region with an excess of positive charge carriers (holes) and an n-type region with an excess of negative charge carriers (electrons). 
+
+Positive bias (forward bias) allows current to flow, while negative bias (reverse bias) blocks current flow. 
+
+Practical uses: rectification (converting AC to DC), protection circuits, and signal demodulation.
+
+[Diodes](https://tinyurl.com/yc2359yk) are commonly used in electronic circuits for various purposes, such as rectification, signal demodulation, and voltage regulation. They are represented by the symbol "D" in circuit diagrams.
+
+![Source: Wikipedia](./pics/circuits/diode123.png)
+
+In SchmeaDraw, the symbol for a diode is given by:
+```{python}
+import schemdraw
+import schemdraw.elements as elm
+
+with schemdraw.Drawing() as d:
+    d += elm.Diode().label('D')
+```
+
+Falstad simulation: [Diode](https://www.falstad.com/circuit/e-rectify.html)
+
+### Equation for diode
+
+The (Shockley) [ideal diode equation](https://www.wolframalpha.com/input?i=diode+240+mA) describes the current-voltage relationship of a diode. It is given by the equation:
+
+$$I = I_s \left( e^{\frac{V}{n V_T}} - 1 \right)$$
+
+where:
+
+- $I$ is the current through the diode.
+- $I_s$ is the saturation current, a parameter that characterizes the diode.
+- $V$ is the voltage across the diode.
+- $n$ is the ideality factor, a parameter that accounts for non-ideal behavior.
+- $V_T$ is the thermal voltage, approximately 25 mV at room temperature.
+
+The diode equation is an exponential relationship between current and voltage, with the saturation current setting the scale of the current and the ideality factor affecting the shape of the curve.
+
+**Diode Characteristics:**
+
+- **Forward Bias**: When the voltage across the diode is positive, it allows current to flow in the forward direction. The diode has a low resistance and conducts electricity.
+
+- **Reverse Bias**: When the voltage across the diode is negative, it blocks current flow in the reverse direction. The diode has a high resistance and does not conduct electricity.
+
+- **Breakdown Voltage**: If the reverse voltage exceeds a certain threshold, the diode breaks down and conducts in the reverse direction. This is known as the breakdown voltage.
+
+- **Forward Voltage Drop**: The voltage drop across the diode when it is conducting current in the forward direction. It is typically around 0.7 volts for silicon diodes and 0.3 volts for germanium diodes.
+
+
+**Main Types of diodes:**
+
+- **Rectifier diode**: converts AC voltage to DC voltage by allowing current to flow in one direction only.
+
+- **Zener diode**: regulates voltage by maintaining a constant voltage across its terminals.
+
+- **Light-emitting diode** (LED): emits light when current flows through it.
+
+- **Varactor diode**: changes capacitance with applied voltage, used in tuning circuits. Varactor diodes are used in voltage-controlled oscillators, phase-locked loops, and frequency synthesizers.
+
+- **Photodiode**: converts light into electrical current, used in light sensors and solar cells.
+
+### Rectifier diode
+
+A rectifier diode is a type of diode that converts alternating current (AC) to direct current (DC) by allowing current to flow in one direction only. It is used in power supplies, battery chargers, and other electronic devices that require DC voltage. Rectifier diodes are commonly used in bridge rectifiers, half-wave rectifiers, and full-wave rectifiers to convert AC voltage to DC voltage.
+
+The rectifier diode operates by allowing current to flow when the voltage across its terminals is positive and blocking current flow when the voltage is negative. This process converts the AC voltage into a pulsating DC voltage that can be smoothed using capacitors and filters to produce a stable DC voltage.
+
+Rectifier diodes are available in different types, such as silicon diodes, germanium diodes, Schottky diodes, and fast-recovery diodes, each with specific characteristics and applications.
+
+### Single diode:
+
+![Source: Wikipedia](./pics/circuits/diode_works.png)
+
+### Four diodes in a bridge rectifier:
+
+![Source: Wikipedia](./pics/circuits/rectifier.png)
+
+### Diode with somothing out condensator:
+
+![Source: Wikipedia](./pics/circuits/rectifier_with_condensator.png)
+
+### Zener Diode
+
+A Zener diode is a special type of diode designed to reliably allow current to flow "backwards" (inverted polarity) when a certain threshol of reverse voltage, known as the [Zener voltage](https://www.falstad.com/circuit/e-zeneriv.html), is reached.
+
+![Source: Wikipedia](./pics/circuits/zener.png)
+
+They are used to generate low-power stabilized supply rails from a higher voltage and to provide reference voltages for circuits, especially stabilized power supplies. 
+
+Zener effect is a phenomenon that occurs in a reverse-biased p-n junction diode when the electric field enables tunneling of electrons from the valence band of the p-type material to the conduction band of the n-type material, creating a population of minority carriers in the p-type material, which suddenly increase the reverse current.
+
+This makes it useful for stabilizing voltage levels in electronic circuits. They are also used to protect circuits from overvoltage, especially electrostatic discharge.
+
+## Transistor
+
+A transistor is an active three-terminal electrical component that amplifies or switches electronic signals and electrical power. It consists of three layers of semiconductor material: an emitter, a base, and a collector. 
+
+- Collector is the terminal that collects the current.
+- Emitter is the terminal that emits the current.
+- Base is the terminal that controls the current flow between the collector.
+
+The base terminal controls the flow of current between the emitter and collector terminals, allowing the transistor to amplify or switch signals.
+
+Transistors are commonly used in electronic circuits for various applications, such as amplification, switching, and signal processing. They are represented by the symbol "Q" in circuit diagrams.
+
+Before transistors were developed, vacuum (electron) tubes (or in the UK "thermionic valves" or just "valves") were the main active components in electronic equipment.  Transistors revolutionized the field of electronics and paved the way for smaller and cheaper radios, calculators, computers, and other electronic devices.
+
+![](./pics/circuits/transistor.png)
+
+Link: [video about transitors](https://youtu.be/J4oO7PT_nzQ?si=Zu4Wtv1CkCLBYvxR)
+
+**Main Types of transistors:**
+
+- Bipolar junction transistor (**BJT**): consists of p-n-p or n-p-n layers, used in amplification and switching circuits.
+
+- Field-effect transistor (**FET**): consists of gate, source, and drain terminals, used in amplification and switching circuits.
+
+- Metal-oxide-semiconductor field-effect transistor (**MOSFET**): consists of metal, oxide, and semiconductor layers, used in power amplifiers and digital circuits.
+
+## RLC Circuits
+
+An [RLC circuit](https://en.wikipedia.org/wiki/RLC_circuit) is a type of electrical circuit that contains:
+
+- resistors R,
+- inductors L,
+- and capacitors C.
+
+These components interact to control the flow of current and energy in the circuit. RLC circuits are used in a wide range of electronic devices and systems for various applications, such as filtering, tuning, and signal processing.
+
+One can have DC or AC RLC circuits. Elements in the circuit can be connected in series or parallel.
+
+Example of (series type) RLC circuit in SchemaDraw:
 
 ```{python}
 import schemdraw
@@ -335,161 +769,169 @@ import schemdraw.elements as elm
 
 # Create the drawing
 with schemdraw.Drawing():
-    R1 = elm.Resistor()
-    C1 = elm.Capacitor().down()
-    D1 = elm.Diode().fill(True).left()
-    L1 = elm.Inductor().up()
-    elm.LoopCurrent([R1, C1, D1, L1], direction='cw').label('$I_1$')
+    L = elm.Inductor().label('$L$').length(6)
+    C = elm.Capacitor().down().label('$C$', loc='right').length(6)
+    Vs= elm.SourceV().left().label('$V_s$', loc='bottom').length(6)
+    R = elm.Resistor().up().label('$R$').length(6)
+    elm.LoopCurrent([L, C, Vs, R], direction='cw').label('$I$')
 ```
 
-## Series
+Using Kirchhoff's Voltage Law (KVL) for an RLC circuit, we have drop in voltage across the resistor, inductor, and capacitor equal to the source voltage:
 
-```{python}
-import schemdraw
-import schemdraw.elements as elm
+$$V_s - V_R - V_L - V_C = 0,
+$$
+where $V_s=\varepsilon$ is the source voltage, V_R is the voltage across the resistor, V_L is the voltage across the inductor, and V_C is the voltage across the capacitor.
 
-# Create the drawing
-with schemdraw.Drawing() as d:
-    # Series resistors
-    d += elm.Resistor().label('$R_1$')
-    d += elm.Resistor().label('$R_2$')
-    d += elm.Resistor().label('$R_3$')
-    d += elm.Resistor().label('$R_4$')
+Substituting the respective expressions for $V_R$, $V_L$, and $V_C$ gives us:
 
-    d.draw()
-    
-```
+$$\varepsilon- IR - L \frac{d I}{dt} - \frac{Q}{C} = 0
+$$
 
-## Use schemdraw to draw circuits and solve them!!!
+After substituting $I = \frac{dQ}{dt}$, the differential equation for an RLC circuit becomes:
 
-Python code
+$$L\frac{d^2Q}{dt^2} +R\frac{dQ}{dt} + \frac{1}{C}Q=\varepsilon
+$$
 
-```{python}
-import schemdraw
-import schemdraw.elements as elm
+where $I$ is the current through the resistor, $R$ is the resistance, $L$ is the inductance, $\frac{d I}{dt}$ is the rate of change of current with respect to time, $Q$ is the charge on the capacitor, and $C$ is the capacitance.
 
-with schemdraw.Drawing() as d:
-    d.config(unit=5)
-    
-    # Źródło napięcia
-    V1 = d.add(elm.SourceV().label('20V').color('red'))
-    
-    # Rezystor poziomy
-    R1 = d.add(elm.Resistor().right().label('400Ω').color('blue'))
-    
-    # Kropka na połączeniu
-    d.add(elm.Dot().color('green'))
-    d.push()
-    
-    # Rezystor pionowy
-    R2 = d.add(elm.Resistor().down().label('100Ω', loc='bot', rotate=True).color('orange'))
-    
-    # Kolejna kropka
-    d.add(elm.Dot().color('green'))
-    d.pop()
-    
-    # Linia pozioma
-    L1 = d.add(elm.Line().color('purple'))
-    
-    # Źródło prądowe
-    I1 = d.add(elm.SourceI().down().label('1A', loc='bot').color('brown'))
-    
-    # Powrót linią
-    L2 = d.add(elm.Line().tox(V1.start).color('gray'))
-    
-    elm.LoopCurrent([R1,R2,L2,V1], pad=1.25).label('$I_1$').color('red')
-    elm.LoopCurrent([R1,I1,L2,R2], pad=1.25).label('$I_2$').color('pink')    # Use R1 as top element for both so they get the same height
+The solution to the differential equation depends on the initial conditions of the circuit, such as the initial current and voltage values. By solving the differential equation, you can determine the transient and steady-state response of the RLC circuit to different input signals.
 
-```
+Link 1: [WolframAlpha example](https://www.wolframalpha.com/input?i=RLC+circuit+10ohm%2C+12H%2C+400uF)
 
+Link 2: [Falstad RLC circuit](https://www.falstad.com/circuit/e-lrc.html)
 
+### Applications of RLC circuits
 
+RLC circuits are essential components of a wide range electronic devices and systems, allowing engineers to control the flow of current, store energy,  filtering, tuning and filter signals. 
 
-```{python}
-import schemdraw
-import schemdraw.elements as elm
+Some common applications of RLC circuits include:
 
-# Create the drawing
-with schemdraw.Drawing() as d:
-    # First vertical line
-    d += elm.Line().down().length(1)
-    
-    # Branch for R1
-    d.push()
-    d += elm.Resistor().right().label('$R_1$')
-    d += elm.Line().down().length(1)
-    d.pop()
-    
-    # Branch for R2
-    d.push()
-    d += elm.Line().down().length(1)
-    d += elm.Resistor().right().label('$R_2$')
-    d += elm.Line().down().length(1)
-    d.pop()
-    
-    # Branch for R3
-    d.push()
-    d += elm.Line().down().length(2)
-    d += elm.Resistor().right().label('$R_3$')
-    d += elm.Line().down().length(1)
-    d.pop()
-    
-    # Branch for R4
-    d.push()
-    d += elm.Line().down().length(3)
-    d += elm.Resistor().right().label('$R_4$')
-    d += elm.Line().down().length(1)
-    d.pop()
-    
-    # Final closing lines
-    d += elm.Line().down().length(4)
-    d += elm.Line().left().length(3)
-    
-```
+- Bandpass filters: RLC circuits can be used to filter out unwanted frequencies and pass only the desired frequencies in electronic circuits. Bandpass filters are commonly used in radio receivers, audio amplifiers, and communication systems.
 
+- Oscillators: RLC circuits can be used to generate oscillating signals at specific frequencies in electronic circuits. Oscillators are commonly used in clock circuits, signal generators, and radio transmitters.
 
-```{python}
-import schemdraw
-import schemdraw.elements as elm
+- Amplifiers: RLC circuits can be used to amplify signals and control the gain of electronic circuits. Amplifiers are commonly used in audio amplifiers, power amplifiers, and signal processing systems.
 
-# Create the drawing
-with schemdraw.Drawing() as d:
-    # Parallel resistors
-    R1 = d.add(elm.Resistor().right().label('$R_1$'))
-    R2 = d.add(elm.Resistor().down().label('$R_2$').at(R1.start))
-    d.add(elm.Line().right().at(R2.end))
-    
-    # Encircle the parallel section
-    d.add(elm.Encircle([R1, R2], padx=0.8, pady=0.8).linestyle('--').linewidth(1).color('red'))
+- Resonant circuits: RLC circuits can be used to create resonant circuits that exhibit maximum current flow and minimum impedance at specific frequencies. Resonant circuits are commonly used in tuning circuits, filtering signals, and amplifying signals.
 
-    # Series resistors
-    R3 = d.add(elm.Resistor().down().label('$R_3$').at(R1.end))
-    R4 = d.add(elm.Resistor().down().label('$R_4$').at(R3.end))
-    
-    # Encircle the series section
-    d.add(elm.Encircle([R3, R4], padx=0.8, pady=0.8).linestyle('--').linewidth(1).color('blue'))
+### RLC and harmonic oscillator analogy
 
-    # Annotate parallel and series sections
-    d.add(elm.Annotate().at(R1.start).delta(dx=-2, dy=0).label('Parallel Section').color('red'))
-    d.add(elm.Annotate().at(R3.start).delta(dx=-2, dy=0).label('Series Section').color('blue'))
+The behavior of the RLC circuit can be compared to the motion of a harmonic oscillator under different conditions.
 
-    d.draw()
+In a series **RLC circuit**, the resistor, inductor, and capacitor interact to control the flow of current and energy in the circuit. The resistor dissipates energy, the inductor stores energy in a magnetic field, and the capacitor stores energy in an electric field. The behavior of the RLC circuit is influenced by the values of the resistance, inductance, and capacitance of the components.
 
-```
+In a **harmonic oscillator system**, the damping force, mass, and spring constant interact to control the motion of the oscillator. The damping force dissipates energy, the mass stores kinetic energy, and the spring constant stores potential energy. The behavior of the harmonic oscillator system is influenced by the values of the damping force, mass, and spring constant.
 
-```python
-import schemdraw
-import schemdraw.elements as elm
+**A damped harmonic oscillator with the external force:**
+$$m\frac{d^2x}{dt^2} + b\frac{dx}{dt} + kx = F_{ext}
+$$
 
-# Create the drawing
-with schemdraw.Drawing() as d:
+where $m$ is the mass, $b$ is the damping coefficient, $k$ is the spring constant, $x$ is the displacement of the oscillator, $t$ is time, and $F_{ext}$ is the external (driven) force.
 
-parallel = elm.Encircle([R1, R2], padx=.8).linestyle('--').linewidth(1).color('red')
-series = elm.Encircle([R3, R4], padx=.8).linestyle('--').linewidth(1).color('blue')
+In comparizon with the RLC circuit:
 
-elm.Annotate().at(parallel.NNE).delta(dx=1, dy=1).label('Parallel').color('red')
-elm.Annotate(th1=0).at(series.ENE).delta(dx=1.5, dy=1).label('Series').color('blue')
+$$L\frac{d^2Q}{dt^2} +R\frac{dQ}{dt} + \frac{1}{C}Q=\varepsilon
+$$
 
-    d.draw()
+where $L$ is the inductance, $R$ is the resistance, $C$ is the capacitance, $Q$ is the charge on the capacitor, $t$ is time, and $\varepsilon$ is the source voltage.
 
-```
+Therefore, the RLC circuit and the harmonic oscillator system share similar characteristics and can be analyzed using similar mathematical models.
+
+- inductor represents the **mass of the oscillator** $m$, 
+
+- resistor represents the **damping force** $F_{damping}= -b * v$,
+
+- capacitor represents the **spring constant of the oscillator** $k$. 
+
+- source voltage (emf) represents the **external driven force** $F_{ext}$.
+
+### RLC Impedance
+
+Alternating current in RLC circuits is analyzed using Kirchhoff's equations and Ohm's Law. It is characterized by **impedance**, which determines the resistance of the circuit to alternating current. 
+
+The **impedance** of an RLC circuit is the total opposition to the flow of current in the circuit. It is a complex quantity that includes both resistance and reactance components. 
+
+**Reactance** is the opposition to the flow of alternating current caused by inductance and capacitance in the circuit. It is a measure of the circuit's ability to store and release energy in the form of a magnetic field (inductive reactance) or an electric field (capacitive reactance). We denote inductive reactance as $X_L=2\pi f L$ and capacitive reactance as $X_C=\frac{1}{2\pi f C}$. Additionally  the reprocity of impedance is called **admittance**.
+
+The impedance of an RLC (series) circuit is given by:
+
+$$Z = R + j(X_L - X_C)= R + j(2\pi f L - \frac{1}{2\pi f C})
+$$
+
+The impedance of a parallel RLC circuit is given by:
+
+$$\frac{1}{Z} = \frac{1}{R} + \frac{1}{j(X_L - X_C)}= \frac{1}{R} + \frac{1}{j(2\pi f L - \frac{1}{2\pi f C})}
+$$
+
+where $Z$ is the impedance, $R$ is the resistance, $X_L$ is the inductive reactance, $X_C$ is the capacitive reactance, and $j=\sqrt{-1}$ is the imaginary unit. As you can recall, a complex number $z$ has a real part and an imaginary part, represented as $z=a + bj$, where $a$ is the real part, $b$ is the imaginary part, and $j$ is the imaginary unit $i=\sqrt{-1}$, that $i^2=-1$
+
+We often use the magnitude of the impedance (to avoid complex numbers):
+$$|Z| = \sqrt{R^2 + (X_L - X_C)^2}= \sqrt{R^2 + (2\pi f L - \frac{1}{2\pi f C})^2}
+$$
+
+The impedance of an RLC circuit depends on the frequency of the input signal. At low frequencies, the inductive reactance is dominant, and the impedance is mainly resistive. At high frequencies, the capacitive reactance is dominant, and the impedance is mainly reactive.
+
+The impedance of an RLC circuit can be calculated using Ohm's law and the voltage-current relationship for resistors, inductors, and capacitors. By analyzing the impedance of the circuit, you can determine the current response of the circuit to different input signals and frequencies.
+
+### RLC Resonance
+
+RLC resonance is a phenomenon that occurs in electrical circuits when the inductive and capacitive reactances cancel each other out ($X_L = X_C$), resulting in a maximum current flow and minimum impedance. RLC resonance is characterized by a sharp peak in the current response of the circuit at a specific frequency called the resonant frequency.
+
+The resonant frequency:
+
+$$
+f_0 = \frac{1}{2\pi\sqrt{LC}}
+$$
+
+where $f_0$ is the resonant frequency, $L$ is the inductance of the circuit, $C$ is the capacitance of the circuit, and $\pi$ is the mathematical constant pi.
+
+The parallel and series RLC circuits will have the same resonant frequency. However, the impedance in a parallel RLC circuit is maximized at resonance ([minimal](https://www.falstad.com/circuit/e-res-par.html) current flow through the circuit), whereas it is minimized in the series RLC circuit at resonance ([maximum](https://www.falstad.com/circuit/e-res-series.html) current flow through the circuit).
+
+At resonance, the total impedance of the circuit is minimized, resulting in a maximum current flow through the circuit. In this way, the two types of RLC circuits provide two different types of filtering behavior: bandpass and bandstop.
+
+## Falstad Circuit Simulator
+
+The Falstad Circuit Simulator is a powerful online tool for visualizing and analyzing electrical circuits. It provides an intuitive interface for building, simulating, and observing circuit behavior in real-time. The simulator supports a wide range of components, including resistors, capacitors, inductors, diodes, transistors, and more.
+
+### Instructions for Using Falstad
+
+Open the [Falstad Circuit Simulator](https://www.falstad.com/circuit/) in your web browser to access the tool. 
+
+How to build and simulate circuits:
+
+1. Click on "File/New Blank Circuit". It with start a blank canvas to build your circuit from scratch.
+2. Click on "Draw/Add Resistor" and place it on the canvas using your mouse (left-right direction). By the default value is $1k\, \Omega$, that is 1000 ohms.
+3. Double-click on the resistor to change its resistance value, for example, to $R = 10 \, \Omega$.
+4. Click on "Draw/Inputs an Sources/Add Voltage Source (2 terminal)" and place it on the canvas connecting it to the resistor. Double-click on the voltage source to set its value, for example, to $V = 20 \, \text{V}$.
+5. Click on "Draw/Add Resistor" again and place it on the canvas to add another resistor. Double-click on the resistor to set its value, for example, to $R = 5 \, \Omega$.
+6. Click on "Draw/Add Wire" and connect the components by clicking on one terminal and dragging the wire to the other terminal.
+7. Adjust the Simulation Speed and Current Speed using the sliders on the right.
+
+As the result you should obtain: [the following circuit](https://www.falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWK0CcAOFYAskUDYBmArBBAdgTxALJCQUjoFMBaMMAKACcR9wwATCCwEh7IYzCQOAN2Gj+QkUIJ40UDThADGu5Am7yVa3lVXrGBgO6nqJvuKgcgA).
+
+**Remarks: **
+
+- start with the disconnected elements like resistors, capacitors, inductors in the ritht places
+- depending on the case adding sources DC, diodes, etc. pay attention to the direction of the element (Voltage has a defined direction and it matters if you draw it from the left to right or opposite).
+- at the end connect everything with wires. 
+- make sure that the circuit is closed (no open ends)!
+- change values by double-clicking on the element
+- use mouse to drag the elements and make sure that the circuit is clear and readable: 
+  - Ctr + Left Mouse Click = to drag the elements.
+  - Shift + Left Mouse Click = to move the element.
+
+### List of defined examples
+
+- [https://www.falstad.com/circuit/e-index.html](https://www.falstad.com/circuit/e-index.html)
+
+## References
+
+- D. Halliday, R. Resnick, and J. Walker, *Fundamentals of Physics*.  
+- J.D. Irwin, *Basic Engineering Circuit Analysis*.  
+- Thomas L. Floyd, *Electronic Devices*.  
+- [HyperPhysics](http://hyperphysics.phy-astr.gsu.edu/) website for quick reference.
+- [electronics-tutorials](https://www.electronics-tutorials.ws/accircuits/parallel-circuit.html)- [Circuit Builder I](https://everycircuit.com/app)
+- [Circuit Builder II](https://www.circuitlab.com/editor/#?id=27h7g9mt6rwy)
+- [Schemdraw](https://schemdraw.readthedocs.io/en/stable/usage/start.html) package to draw circuits.
+- [Falstad Circuit Simulator](https://www.falstad.com/circuit/) for visualizing and analyzing electrical circuits.
+- [Circuitikz](https://tikz.dev/library-circuits) package to draw circuits in documents.
