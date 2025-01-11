@@ -45,6 +45,9 @@ nav:
       - Calculus: Mathematics/Calculus.html
     - Student Problems:
       - Exercies: Mathematics/Exercises.md
+  - Discrete mathematics:
+    - Student Problems:
+      - Exercises: Discrete_Mathematics/Exercises.md
 
 theme:
   name: material
