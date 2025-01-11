@@ -7,7 +7,7 @@ format:
     toc-depth: 3
     highlight-style: tango
     code-line-numbers: true
-    code-fold: show
+    code-fold: true
     code-summary: "Show the code"
     code-tools: true
     code-block-bg: "rgba(42, 174, 42, 0.02)"
@@ -37,7 +37,8 @@ Conventionally, the direction of current flow is taken to be from the positive t
 - **parallel circuits** (the components are connected across each other, providing multiple paths for current flow).
 - **combination circuits** (a mix of series and parallel circuits).
   
-### List of standard circuit elements with symbols:
+## Circuit elements:
+
 - Current Source: I
 - Voltage Source: V
 - Switch: S
@@ -53,7 +54,7 @@ We also recommend using [Falstad Circuit Simulator](https://www.falstad.com/circ
 
 In LaTeX, you can use the [Circuitikz](https://tikz.dev/library-circuits) package to draw circuits.
 
-## Current
+### Current
 
 In physics and electrical engineering, **electric current** refers to the flow of electric charge. Most commonly, these charges are carried by electrons moving through a conductor (such as a metal wire). We can write the electric current $I$ in terms of the charge $Q$ flowing per unit time $t$:
 
@@ -69,7 +70,7 @@ In materials such as wood or glass, all the electrons are bound to nearby atoms 
 
 In many materials, such as copper and other metals, some of the electrons are free to move about the entire material. Such materials are called **conductors**. 
 
-## Voltage
+### Voltage
 
 **Voltage** (or **electric potential difference**) is the measure of the potential energy difference per unit charge between two points in a circuit. It can be thought of as the "pressure" that pushes charges through a conductor. We use the symbol $V$ for voltage, and it is measured in **volts** $[V]$. Mathematically, voltage between two points $a$ and $b$ can be expressed as:
 
@@ -95,7 +96,7 @@ with schemdraw.Drawing() as d:
     d += elm.SourceV().left().label('V')
 ```
 
-## Battery
+### Battery
 
 A battery is an electrochemical device that stores electrical energy and provides a voltage source for electronic circuits. It consists of one or more cells that convert chemical energy into electrical energy through a chemical reaction. The voltaic pile, invented by link: [Alessandro Volta](https://en.wikipedia.org/wiki/Alessandro_Volta) in the early 19th century, marks a pivotal moment in the history of electricity and electrochemistry.
 
@@ -106,7 +107,7 @@ The voltaic pile is considered one of the first electrochemical cells, consistin
 
 When the electrodes are connected by a wire, a chemical reaction occurs at the zinc electrode, releasing electrons that flow through the wire to the copper electrode. This flow of electrons constitutes an electric current that can be used to power electrical devices.
 
-## Ground
+### Ground
 
 **Ground** is a reference point in an electrical circuit that serves as a common return path for current flow. It is typically connected to the earth or a conductive material to provide a stable reference voltage for the circuit. Ground is used to establish a zero voltage reference point and ensure safe operation of electrical devices and systems.
 
@@ -121,7 +122,7 @@ with schemdraw.Drawing() as d:
 ```
 
 
-## Switch
+### Switch
 
 A **switch** is a device used to control the flow of current in an electrical circuit. It can be opened (off) or closed (on) to allow or block the flow of electricity. Switches are commonly used to turn devices on and off, change the direction of current flow, and control the operation of electrical systems.
 
@@ -135,7 +136,7 @@ with schemdraw.Drawing() as d:
     d += elm.Switch().label('S')
 ```
 
-## Resistors
+### Resistors
 
 A **resistor** is a passive component that opposes the flow of current. The relationship between the voltage $V$ across a resistor and the current $I$ flowing through it is described by **Ohm’s Law**:
 $$
@@ -195,7 +196,7 @@ In a **parallel** circuit, the resistor is connected across other components, pr
 
 - Series = current through all components is the same
   
-### Series Resistors
+#### Series Resistors
 
 To calculate the total resistance of a **series circuit**, you need to add the resistance values of all the components in the circuit. 
 
@@ -227,7 +228,7 @@ with schemdraw.Drawing() as d:
     d += elm.Dot()  # Ending point
 ```
 
-### Parallel Resistors
+#### Parallel Resistors
 
 To calculate the total resistance of a **parallel circuit**, you need to use the formula:
 
@@ -270,9 +271,9 @@ with schemdraw.Drawing() as d:
 
 Example of a circuit with a parallel and series sections:
 
-![Parallel and Series Resistors](./pics/circuits/resistors-adding.png)
+![Parallel and Series Resistors](./pics/circuits/resistors-adding.png!!!)
 
-### Thevenin's Theorem
+#### Thevenin's Theorem
 
 **Thevenin's Theorem** states that any linear circuit containing resistors and voltage/current sources can be replaced by a single voltage source $V_{th}$ in series with a single resistor $R_{th}$, where $V_{th}$ is the open-circuit voltage at the terminals of the circuit and $R_{th}$ is the equivalent resistance of the circuit when all voltage/current sources are turned off.
 
@@ -280,7 +281,7 @@ The equivalent voltage $V_{th}$ is the voltage across the terminals of the circu
 
 The Thevenin equivalent circuit is useful for simplifying complex circuits and analyzing their behavior under different conditions: [Falstad example](https://www.falstad.com/circuit/e-thevenin.html).
 
-## Capacitors
+### Capacitors
 
 A **capacitor** is a device that stores energy in the form of an electric field between two conductive plates separated by an insulator (dielectric). The basic relationship between voltage $V$ across a capacitor and the charge $Q$ it holds is:
 
@@ -359,7 +360,7 @@ $$
 
 Interesingly, behind the **touch screen** there are two parallel layers, one behind the other, of thin strips of a transparent conductor. A voltage is maintained between the two layers. In touch screen on a mobile phone/tablet, when you bring **your finger** (a conductor) up to a point on the screen, your finger and the front conducting layer act like a second capacitor in series at that point. The circuitry attached to the conducting layers detects the location of the capacitance change, and detects where you touched the screen.
 
-## Inductors
+### Inductors
 
 An **Inductor** is a component that stores energy in a magnetic field when current flows through it. The voltage $V$ across an inductor of inductance $L$ is given by:
 
@@ -393,7 +394,7 @@ You can connect inductors in series or parallel with other components. The total
 ![Source: Wikipedia](./pics/circuits/Tuned_circuit_animation_3.gif)
 
 
-## Transformers
+### Transformers
 
 Transformer is a passive component that transfers electrical energy from one electrical circuit to another circuit, or multiple circuits. A varying current in any coil of the transformer produces a varying magnetic flux in the transformer's core, which induces a varying electromotive force (EMF) across any other coils wound around the same core. Electrical energy can be transferred between separate coils without a metallic (conductive) connection between the two circuits.
 
@@ -410,7 +411,7 @@ $$120/230 = 1000/N_S$$
 
 $$N_S = 1000 * 230 / 120 = 1916 \text{ turns}$$
 
-## Measuring Instruments
+### Measuring Instruments
 
 An **ammeter** is a device used to measure the current flowing through an electrical circuit. It is connected in series with the circuit to measure the current passing through it. Ammeters are designed to have a low resistance to minimize the voltage drop across them and ensure accurate current measurements. They are commonly used in electronic circuits to monitor current flow and troubleshoot circuit issues. Measuring: **ampers**.
 
@@ -573,7 +574,7 @@ The EMF of a source is equal to the potential difference across its terminals wh
 
 The SI unit of EM is the same as that for potential, the volt $[V]=[J/C]$. A typical flashlight battery has an EMF of 1.5 V; this means that the battery does 1.5 J of work on every coulomb of charge that passes through it.
 
-## Conductors, Semiconductors, and Insulators
+## Modern Electronics
 
 Electrical properties of materials are critical for designing electronic components: 
 
@@ -591,7 +592,7 @@ In semiconductors, the valence band is the highest energy band that is fully occ
 - **Semiconductors**: Have a smaller band gap (e.g., silicon, germanium). They can conduct electricity under certain conditions, such as when doped with other elements or when exposed to light.
 - **Conductors**: Have no band gap because the valence band and conduction band overlap, allowing electrons to move freely and conduct electricity efficiently (e.g., metals like copper).
 
-### Doping and the P-N Junction
+**Doping and the P-N Junction**
 
 Semiconductor doping (process of adding impurities to a semiconductor material) introduces carriers, enhancing conductivity. Doping can be done with different types of impurities, such as boron, phosphorus, and arsenic, to create p-type and n-type semiconductors.
 
@@ -629,7 +630,7 @@ Why It's Important?
 - **Unidirectional Conductivity**: A PN junction allows current to flow more easily in one direction than the other. When you apply a voltage in one direction, it pushes the electrons and holes towards the junction, allowing current to flow. When you reverse the voltage, it pulls them away from the junction, making it hard for current to flow. This is how diodes work.
 - **Applications**: This principle is what makes semiconductors so useful in electronics. They can be used to control electrical current flow in circuits, which is foundational for creating all kinds of electronic devices.
 
-## Diode
+### Diode
 
 A **diode** is a passive two-terminal electrical component that allows current to flow in one direction only. It consists of a semiconductor material with two regions: a p-type region with an excess of positive charge carriers (holes) and an n-type region with an excess of negative charge carriers (electrons). 
 
@@ -652,7 +653,7 @@ with schemdraw.Drawing() as d:
 
 Falstad simulation: [Diode](https://www.falstad.com/circuit/e-rectify.html)
 
-### Equation for diode
+#### Equation for diode
 
 The (Shockley) [ideal diode equation](https://www.wolframalpha.com/input?i=diode+240+mA) describes the current-voltage relationship of a diode. It is given by the equation:
 
@@ -691,7 +692,7 @@ The diode equation is an exponential relationship between current and voltage, w
 
 - **Photodiode**: converts light into electrical current, used in light sensors and solar cells.
 
-### Rectifier diode
+#### Rectifier diode
 
 A rectifier diode is a type of diode that converts alternating current (AC) to direct current (DC) by allowing current to flow in one direction only. It is used in power supplies, battery chargers, and other electronic devices that require DC voltage. Rectifier diodes are commonly used in bridge rectifiers, half-wave rectifiers, and full-wave rectifiers to convert AC voltage to DC voltage.
 
@@ -699,19 +700,19 @@ The rectifier diode operates by allowing current to flow when the voltage across
 
 Rectifier diodes are available in different types, such as silicon diodes, germanium diodes, Schottky diodes, and fast-recovery diodes, each with specific characteristics and applications.
 
-### Single diode:
+#### Single diode:
 
 ![Source: Wikipedia](./pics/circuits/diode_works.png)
 
-### Four diodes in a bridge rectifier:
+#### Four diodes in a bridge rectifier:
 
 ![Source: Wikipedia](./pics/circuits/rectifier.png)
 
-### Diode with somothing out condensator:
+#### Diode with somothing out condensator:
 
 ![Source: Wikipedia](./pics/circuits/rectifier_with_condensator.png)
 
-### Zener Diode
+#### Zener Diode
 
 A Zener diode is a special type of diode designed to reliably allow current to flow "backwards" (inverted polarity) when a certain threshol of reverse voltage, known as the [Zener voltage](https://www.falstad.com/circuit/e-zeneriv.html), is reached.
 
@@ -723,7 +724,7 @@ Zener effect is a phenomenon that occurs in a reverse-biased p-n junction diode 
 
 This makes it useful for stabilizing voltage levels in electronic circuits. They are also used to protect circuits from overvoltage, especially electrostatic discharge.
 
-## Transistor
+### Transistor
 
 A transistor is an active three-terminal electrical component that amplifies or switches electronic signals and electrical power. It consists of three layers of semiconductor material: an emitter, a base, and a collector. 
 
