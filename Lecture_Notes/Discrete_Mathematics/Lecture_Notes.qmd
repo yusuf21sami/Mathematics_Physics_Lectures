@@ -21,6 +21,9 @@ format:
         href: https://dchorazkiewicz.github.io/Mathematics_Physics_Lectures/
 ---
 
+## Introduction
+
+The following text serves as an outline for the course rather than a complete representation of its content. It provides an overview of the course structure and key topics to be covered.
 
 
 ## Set Theory
@@ -387,7 +390,7 @@ A **function** $f$ from a set $A$ to a set $B$ is a relation $f \subseteq A \tim
 
 If $f$ is a function, we write $f: A \to B$, and for each $a \in \text{Dom}(f)$, the unique $b \in B$ related to $a$ is denoted by $f(a)$.
 
----
+
 
 #### Composition of Functions
 
@@ -427,7 +430,6 @@ $$
 (g \circ f)(x) = g(f(x)) = g(2x) = 2x + 3, \quad \text{for } x \in \{1, 2\}.
 $$
 
----
 
 #### Inverse Functions
 
@@ -482,8 +484,581 @@ $$
 f^{-1}(f(x)) = \frac{(2x + 1) - 1}{2} = x.
 $$
 
----
+
 
 By rigorously defining the domain of definition and codomain, and understanding the behavior of functions under composition and inversion, we ensure a precise mathematical foundation for analyzing and applying functions.
 
 
+### Sequences
+
+A **sequence** is a special type of function where the domain is either the set of natural numbers ($\mathbb{N}$) or a finite subset of the natural numbers. Sequences are used to describe ordered collections of elements, typically numbers, in a systematic way.
+
+#### Definition
+
+A **sequence** is a function $a: D \to X$, where:
+
+- The **domain** $D$ is $\mathbb{N}$ or a finite subset of $\mathbb{N}$: $D = \{1, 2, \dots, n\}$ for some $n \in \mathbb{N}$.
+- The **codomain** $X$ is typically $\mathbb{R}$ (real numbers), $\mathbb{Z}$ (integers), or $\mathbb{C}$ (complex numbers).
+
+The value of the sequence at an index $n \in D$ is denoted by $a_n$ (read as "the $n$-th term of the sequence"). Thus, a sequence can be written as:
+$$
+a = (a_n)_{n \in D}.
+$$
+
+
+
+#### Examples of Sequences
+
+1. **Finite Sequence:**
+   Let $D = \{1, 2, 3, 4, 5\}$ and $X = \mathbb{Z}$. Define the sequence $a_n = n^2$. The sequence is:
+   $$
+   a = (1, 4, 9, 16, 25).
+   $$
+
+2. **Infinite Sequence:**
+   Let $D = \mathbb{N}$ and $X = \mathbb{R}$. Define $a_n = \frac{1}{n}$. The sequence is:
+   $$
+   a = \left(1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \dots \right).
+   $$
+
+3. **Arithmetic Sequence:**
+   An arithmetic sequence has the form:
+   $$
+   a_n = a_1 + (n - 1)d,
+   $$
+   where $a_1$ is the first term and $d$ is the common difference.
+
+   Example: Let $a_1 = 2$ and $d = 3$. Then:
+   $$
+   a = (2, 5, 8, 11, 14, \dots).
+   $$
+
+4. **Geometric Sequence:**
+   A geometric sequence has the form:
+   $$
+   a_n = a_1 \cdot r^{n-1},
+   $$
+   where $a_1$ is the first term and $r$ is the common ratio.
+
+   Example: Let $a_1 = 1$ and $r = 2$. Then:
+   $$
+   a = (1, 2, 4, 8, 16, \dots).
+   $$
+
+5. **Alternating Sequence:**
+   Let $D = \mathbb{N}$ and $X = \mathbb{R}$. Define $a_n = (-1)^n \cdot n$. The sequence is:
+   $$
+   a = (-1, 2, -3, 4, -5, \dots).
+   $$
+
+
+#### Notation
+
+- **General Form:** A sequence is often written in one of the following ways:
+  $$
+  (a_n)_{n \in D}, \quad (a_n)_{n=1}^n, \quad \{a_n\}_{n \in D}.
+  $$
+
+- **Explicit Formula:** The explicit formula for $a_n$ describes the rule by which each term is generated.
+
+
+
+#### Properties of Sequences
+
+1. **Monotonicity:**
+   - A sequence is **increasing** if:
+     $$
+     a_{n+1} \geq a_n, \quad \forall n \in D.
+     $$
+   - A sequence is **strictly increasing** if:
+     $$
+     a_{n+1} > a_n, \quad \forall n \in D.
+     $$
+   - A sequence is **decreasing** if:
+     $$
+     a_{n+1} \leq a_n, \quad \forall n \in D.
+     $$
+
+2. **Boundedness:**
+   - A sequence is **bounded above** if there exists $M \in \mathbb{R}$ such that:
+     $$
+     a_n \leq M, \quad \forall n \in D.
+     $$
+   - A sequence is **bounded below** if there exists $m \in \mathbb{R}$ such that:
+     $$
+     a_n \geq m, \quad \forall n \in D.
+     $$
+
+3. **Convergence (for Infinite Sequences):**
+   - A sequence $(a_n)$ **converges** to a limit $L \in \mathbb{R}$ if, for every $\epsilon > 0$, there exists $N \in \mathbb{N}$ such that:
+     $$
+     |a_n - L| < \epsilon, \quad \forall n \geq N.
+     $$
+
+
+#### Examples of Convergence
+
+1. Let $a_n = \frac{1}{n}$. Then $a_n \to 0$ as $n \to \infty$.
+
+2. Let $a_n = (-1)^n \cdot \frac{1}{n}$. Then $a_n \to 0$ as $n \to \infty$, although the terms alternate in sign.
+
+
+## Mathematical Logic
+
+Mathematical logic serves as the rigorous foundation for modern mathematics, enabling precise formalization of statements, their systematic analysis, and the construction of proofs. It is the theoretical backbone for understanding and exploring formal systems, languages, and the foundations of computation.
+
+### 1. Introduction to Mathematical Logic
+
+Mathematical logic investigates the fundamental principles of reasoning and the formalization of truth. Logical statements are entities that are definitively classified as true (T) or false (F).
+
+#### Core Concepts
+- **Logical proposition:** A declarative sentence that is either true or false, e.g., "2 + 2 = 4" (true), "1 > 5" (false).
+- **Truth and falsehood:** Binary values foundational to logical systems.
+
+### 2. Propositional Logic
+
+Propositional logic is concerned with the logical relationships and transformations of whole statements, using well-defined logical connectives.
+
+#### Logical Connectives
+1. **Negation ($\neg$):** Inverts the truth value of a proposition.
+2. **Conjunction ($\land$):** True if and only if both constituent propositions are true.
+3. **Disjunction ($\lor$):** True if at least one constituent proposition is true.
+4. **Implication ($\to$):** False only when the antecedent is true and the consequent is false.
+5. **Biconditional ($\leftrightarrow$):** True if the propositions have identical truth values.
+
+#### Truth Tables
+The truth values of compound propositions are systematically derived through truth tables:
+
+| $p$ | $q$ | $\neg p$ | $p \land q$ | $p \lor q$ | $p \to q$ | $p \leftrightarrow q$ |
+|-----|-----|-----------|--------------|-------------|------------|-----------------------|
+| T   | T   | F         | T            | T           | T          | T                     |
+| T   | F   | F         | F            | T           | F          | F                     |
+| F   | T   | T         | F            | T           | T          | F                     |
+| F   | F   | T         | F            | F           | T          | T                     |
+
+#### Foundational Laws
+1. **Law of the Excluded Middle:** $p \lor \neg p$ is always true.
+2. **Law of Non-Contradiction:** $p \land \neg p$ is always false.
+3. **De Morgan's Laws:**
+   - $\neg (p \land q) \equiv \neg p \lor \neg q$
+   - $\neg (p \lor q) \equiv \neg p \land \neg q$
+
+### 3. Predicate Logic
+
+Predicate logic generalizes propositional logic by introducing variables and quantifiers, allowing for more nuanced and expressive logical statements.
+
+#### Quantifiers
+1. **Universal Quantifier ($\forall$):** "For all." A statement $\forall x \, P(x)$ asserts that $P(x)$ holds for every $x$ in the domain.
+2. **Existential Quantifier ($\exists$):** "There exists." A statement $\exists x \, P(x)$ asserts the existence of at least one $x$ in the domain such that $P(x)$ is true.
+
+#### Examples
+1. $\forall x \in \mathbb{N}, \, x + 1 > x$ (for every natural number $x$, $x + 1$ exceeds $x$).
+2. $\exists x \in \mathbb{R}, \, x^2 = 4$ (there exists a real number $x$ such that $x^2 = 4$).
+
+### 4. Proving Theorems in Logic
+
+Logical reasoning establishes the validity of propositions through structured methods of proof.
+
+#### Proof Techniques
+1. **Direct Proof:** Derive $q$ from $p$ under the assumption that $p \to q$ holds.
+2. **Indirect Proof:** Assume $\neg q$ and deduce a contradiction to prove $q$.
+3. **Proof by Contraposition:** Demonstrate the equivalence of $p \to q$ with $\neg q \to \neg p$.
+
+#### Fundamental Inference Rules
+1. **Modus Ponens:** From $p \to q$ and $p$, infer $q$.
+2. **Modus Tollens:** From $p \to q$ and $\neg q$, infer $\neg p$.
+
+### 5. Formal Logical Systems
+
+Formal systems consist of axioms, rules of inference, and derivations that generate statements within a formal language.
+
+#### Structure of a Formal System
+1. **Axioms:** Assumed truths that serve as the basis for derivations.
+2. **Inference Rules:** Define valid transformations between statements.
+
+#### Example System
+1. Axioms:
+   - $p \lor \neg p$ (Law of the Excluded Middle).
+   - $p \to (q \to p)$.
+2. Inference Rule: Modus Ponens.
+
+### 6. Applications of Logic
+
+#### Computer Science
+- Boolean algebra underpins the operation of digital circuits.
+- Satisfiability solvers (SAT) address decision problems in computational theory.
+
+#### Database Systems
+- Predicate logic forms the basis for query languages like SQL, enabling precise data retrieval.
+
+### 7. Paradoxes and Limitations of Logic
+
+#### Classical Paradoxes
+1. **Liar Paradox:** "This statement is false."
+2. **Infinity Paradox:** "There exists a largest number."
+
+#### Gödel's Incompleteness Theorems
+1. In any sufficiently expressive formal system, there exist true statements that cannot be formally proved or disproved within that system.
+
+### Summary
+
+Mathematical logic provides the tools for analyzing foundational questions in mathematics, computer science, and formal reasoning. Advanced study of its principles enables researchers to tackle complex theoretical and practical challenges, from algorithm design to the philosophy of mathematics.
+
+## Recursion and Induction
+
+Recursion and induction are pivotal concepts in discrete mathematics, underpinning algorithmic design, theoretical proof strategies, and the formalization of mathematical concepts. Recursion is a constructive process, defining problems in terms of smaller subproblems, while induction provides a rigorous foundation for proving statements about infinite or well-ordered structures such as natural numbers.
+
+### Recursion
+
+#### Definition
+Recursion defines objects or processes in terms of simpler instances of the same objects or processes. A robust recursive definition consists of:
+1. **Base case(s):** Initial condition(s) explicitly specifying the simplest instances of the object or process.
+2. **Recursive step(s):** A rule that reduces complex instances to simpler ones, ensuring the solution progresses toward the base case.
+
+#### Examples of Recursive Definitions
+
+1. **Factorial Function:**
+   $$
+   n! = \begin{cases}
+   1 & \text{if } n = 0, \\
+   n \cdot (n-1)! & \text{if } n > 0.
+   \end{cases}
+   $$
+
+2. **Fibonacci Sequence:**
+   $$
+   F(n) = \begin{cases}
+   0 & \text{if } n = 0, \\
+   1 & \text{if } n = 1, \\
+   F(n-1) + F(n-2) & \text{if } n > 1.
+   \end{cases}
+   $$
+
+3. **Binary Search Algorithm:**
+   A sorted array search algorithm defined as:
+   - **Base case:** If the array is empty or the middle element matches the target.
+   - **Recursive step:** Recursively search either the left or right subarray, depending on the comparison between the middle element and the target.
+
+#### Properties of Recursive Algorithms
+- **Correctness:** Ensured by defining valid base cases and recursive steps that encompass all inputs.
+- **Termination:** Recursive calls must consistently progress toward a base case within finite steps.
+- **Efficiency:** Poor recursion may result in redundant computations; optimizations such as memoization or iterative transformations are often necessary.
+
+### Mathematical Induction
+
+#### Definition
+Mathematical induction is a methodical proof technique to establish the truth of statements over an ordered set, typically the natural numbers ($\mathbb{N}$).
+
+#### Steps of Mathematical Induction
+1. **Base Case:** Verify that the statement holds for the smallest element of the domain, often $n = 0$ or $n = 1$.
+2. **Inductive Hypothesis:** Assume that the statement holds for an arbitrary element $k$ in the domain.
+3. **Inductive Step:** Prove that the statement holds for $k+1$ based on the assumption that it holds for $k$.
+
+#### Examples of Inductive Proofs
+
+1. **Sum of the First $n$ Natural Numbers:**
+   Prove:
+   $$
+   S(n) = 1 + 2 + \dots + n = \frac{n(n+1)}{2}.
+   $$
+   **Proof:**
+   - **Base case ($n = 1$):** $S(1) = 1 = \frac{1(1+1)}{2}$ (true).
+   - **Inductive hypothesis:** Assume $S(k) = \frac{k(k+1)}{2}$ holds for $k \geq 1$.
+   - **Inductive step:** Show $S(k+1) = \frac{(k+1)(k+2)}{2}$:
+     $$
+     S(k+1) = S(k) + (k+1) = \frac{k(k+1)}{2} + (k+1) = \frac{(k+1)(k+2)}{2}.
+     $$
+     Hence, the statement holds for all $n \geq 1$.
+
+2. **Inequality Example:**
+   Prove $2^n \geq n^2$ for all $n \geq 4$.
+   **Proof:**
+   - **Base case ($n = 4$):** $2^4 = 16 \geq 4^2 = 16$ (true).
+   - **Inductive hypothesis:** Assume $2^k \geq k^2$ for $k \geq 4$.
+   - **Inductive step:** Show $2^{k+1} \geq (k+1)^2$:
+     $$
+     2^{k+1} = 2 \cdot 2^k \geq 2 \cdot k^2 \geq (k+1)^2,
+     $$
+     where the final inequality holds for $k \geq 4$ through expansion and verification.
+
+
+## Graphs and Trees
+
+Graphs and trees are fundamental structures in discrete mathematics, serving as models for various problems in computer science, network analysis, and combinatorics. This chapter introduces their properties, classifications, and visual representations.
+
+### Graphs
+
+#### Definition
+
+A **graph** $G = (V, E)$ consists of:
+
+- A set of **vertices** (or nodes) $V$.
+- A set of **edges** $E$, where each edge is a pair of vertices $(u, v)$.
+
+#### Types of Graphs
+
+1. **Undirected Graphs:** Edges have no direction, i.e., $(u, v) \in E \implies (v, u) \in E$.
+
+ ```{mermaid}
+graph LR
+A[Vertex A] --- B[Vertex B]
+A --- C[Vertex C]
+B --- C
+B --- D[Vertex D]
+C --- D
+ ```
+
+2. **Directed Graphs (Digraphs):** Edges have direction, i.e., $(u, v) \in E$ does not imply $(v, u) \in E$.
+
+ ```{mermaid}
+graph LR
+A[Vertex A] --> B[Vertex B]
+B --> C[Vertex C]
+C --> A
+B --> D[Vertex D]
+D --> C
+ ```
+
+3. **Weighted Graphs:** Edges have weights, representing costs, distances, or capacities.
+
+ ```{mermaid}
+graph LR
+A[Vertex A] ---|2| B[Vertex B]
+A ---|5| C[Vertex C]
+B ---|3| C
+B ---|4| D[Vertex D]
+C ---|1| D
+ ```
+
+4. **Simple Graphs:** No loops or multiple edges between the same pair of vertices.
+
+ ```{mermaid}
+graph LR
+A[Vertex A] --- B[Vertex B]
+A --- C[Vertex C]
+B --- C
+ ```
+
+5. **Multigraphs:** Allow multiple edges between the same pair of vertices.
+
+ ```{mermaid}
+graph LR
+A[Vertex A] --- B[Vertex B]
+A ---|2nd| B
+B --- C[Vertex C]
+C ---|2nd| B
+ ```
+
+6. **Complete Graphs:** Every pair of vertices is connected by an edge.
+
+ ```{mermaid}
+graph LR
+A[Vertex A] --- B[Vertex B]
+A --- C[Vertex C]
+A --- D[Vertex D]
+B --- C
+B --- D
+C --- D
+ ```
+
+
+#### Graph Terminology
+
+- **Degree of a Vertex:** Number of edges incident to the vertex.
+- **Path:** A sequence of vertices connected by edges.
+- **Cycle:** A path that starts and ends at the same vertex.
+- **Connected Graph:** There exists a path between any two vertices.
+- **Subgraph:** A graph formed from a subset of vertices and edges of another graph.
+
+
+### Trees
+
+#### Definition
+
+A **tree** is a connected, acyclic graph. Formally:
+
+- A tree with $n$ vertices has $n-1$ edges.
+- There is exactly one path between any two vertices.
+
+#### Properties of Trees
+
+1. Removing any edge disconnects the tree.
+2. Adding an edge creates a cycle.
+3. Trees are minimally connected graphs.
+
+#### Example of a Tree
+
+```{mermaid}
+graph TD
+Root --> A[Node A]
+Root --> B[Node B]
+A --> C[Node C]
+A --> D[Node D]
+B --> E[Node E]
+B --> F[Node F]
+```
+
+#### Types of Trees
+
+1. **Binary Trees:** Each vertex has at most two children.
+2. **Binary Search Trees:** A binary tree where left descendants are smaller, and right descendants are greater than the node.
+3. **Spanning Trees:** A subgraph that connects all vertices of a graph with the minimum number of edges.
+
+### Graph Traversals
+
+Graphs are data structures used to represent relationships between objects. To work with graphs, we often need to visit all vertices or edges in a specific order. The most popular graph traversal methods are **Depth-First Search (DFS)** and **Breadth-First Search (BFS)**. Below, you'll find detailed explanations of both methods.
+
+
+#### Depth-First Search (DFS)
+
+DFS explores a graph by going as deep as possible along one branch before backtracking. It uses a stack (either explicitly or via recursion) for its implementation.
+
+
+
+```{mermaid}
+graph TD
+1 --> 2
+2 --> 3
+3 --> 4
+3 --> 5
+2 --> 6
+1 --> 7
+1 --> 8
+8 --> 9
+9 --> 10
+9 --> 11
+8 --> 12
+```
+
+#### Breadth-First Search (BFS)
+
+BFS explores a graph by visiting all neighbors of a vertex before moving on to the next level of neighbors. It uses a queue for its implementation.
+
+```{mermaid}
+graph TD
+1 --> 2
+1 --> 4
+2 --> 5
+2 --> 6
+5 --> 9
+5 --> 10
+1 --> 3
+4 --> 7
+4 --> 8
+7 --> 11
+7 --> 12
+```
+
+
+### Applications of Graphs and Trees
+
+#### Graph Applications
+
+- Modeling networks (e.g., social, transportation).
+- Shortest path algorithms (e.g., Dijkstra, Bellman-Ford).
+- Scheduling and dependency analysis.
+
+#### Tree Applications
+
+- Hierarchical data structures (e.g., file systems, organizational charts).
+- Search algorithms (e.g., binary search trees, AVL trees).
+- Parsing expressions in compilers.
+
+Graphs and trees are versatile structures that play a crucial role in mathematical modeling and computational problem-solving. Mastering their properties and algorithms enables efficient solutions to a wide range of real-world problems.
+
+
+## Boolean Algebra
+
+Boolean algebra is a branch of mathematics that deals with operations on logical values, typically represented as `0` (false) and `1` (true). It forms the foundation of digital logic and has widespread applications in computer science, digital electronics, and information theory.
+
+### Basic Elements of Boolean Algebra
+
+Boolean algebra is a set with two elements: `0` (false) and `1` (true). It operates on logical values and is governed by logical operations such as conjunction, disjunction, and negation.
+
+1. **Conjunction (AND)**: The AND operation returns `1` if both operands are `1`, otherwise it returns `0`.
+   - Symbol: $\land$
+   - Truth table:
+
+   | A | B | A $\land$ B |
+   |---|---|-------------|
+   | 0 | 0 | 0           |
+   | 0 | 1 | 0           |
+   | 1 | 0 | 0           |
+   | 1 | 1 | 1           |
+
+2. **Disjunction (OR)**: The OR operation returns `1` if at least one operand is `1`.
+   - Symbol: $\lor$
+   - Truth table:
+
+   | A | B | A $\lor$ B |
+   |---|---|-------------|
+   | 0 | 0 | 0           |
+   | 0 | 1 | 1           |
+   | 1 | 0 | 1           |
+   | 1 | 1 | 1           |
+
+3. **Negation (NOT)**: The NOT operation returns the opposite logical value of the operand.
+   - Symbol: $\neg$
+   - Truth table:
+
+   | A | $\neg A$ |
+   |---|----------|
+   | 0 | 1        |
+   | 1 | 0        |
+
+### Axioms and Properties of Boolean Algebra
+
+Boolean algebra is defined by a set of axioms and properties that govern its operations. Below are the most important ones:
+
+1. **Associative Law**:
+   - $A \lor (B \lor C) = (A \lor B) \lor C$
+   - $A \land (B \land C) = (A \land B) \land C$
+
+2. **Commutative Law**:
+   - $A \lor B = B \lor A$
+   - $A \land B = B \land A$
+
+3. **Distributive Law**:
+   - $A \land (B \lor C) = (A \land B) \lor (A \land C)$
+   - $A \lor (B \land C) = (A \lor B) \land (A \lor C)$
+
+4. **Identity Law**:
+   - $A \lor 0 = A$
+   - $A \land 1 = A$
+
+5. **Complement Law**:
+   - $A \lor \neg A = 1$
+   - $A \land \neg A = 0$
+
+6. **Double Negation Law**:
+   - $\neg(\neg A) = A$
+
+### Boolean Functions
+
+Boolean functions are a fundamental tool in Boolean algebra. They represent logical relationships between variables and can be expressed using logical expressions, truth tables, or logic gates.
+
+Example of a Boolean function:
+- $f(A, B, C) = (A \land B) \lor \neg C$
+- Truth table for this function:
+
+   | A | B | C | $(A \land B) \lor \neg C$ |
+   |---|---|---|---------------------------|
+   | 0 | 0 | 0 | 1                         |
+   | 0 | 0 | 1 | 0                         |
+   | 0 | 1 | 0 | 1                         |
+   | 0 | 1 | 1 | 0                         |
+   | 1 | 0 | 0 | 1                         |
+   | 1 | 0 | 1 | 0                         |
+   | 1 | 1 | 0 | 1                         |
+   | 1 | 1 | 1 | 1                         |
+
+### Applications of Boolean Algebra
+
+1. **Digital Logic**: Designing digital circuits such as processors, memory, and other electronic systems.
+2. **Automata Theory**: Describing and analyzing finite state machines.
+3. **Computer Science**: Implementing algorithms, optimizing code, and analyzing logical complexity.
+4. **Information Theory**: Encoding data and analyzing information transmission.
+
+### Summary
+
+Boolean algebra is the foundation of modern digital technology. Its simplicity and versatility make it applicable to various fields of science and technology. Understanding its basics is essential for comprehending the workings of logical and computational systems.
