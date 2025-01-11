@@ -1,0 +1,489 @@
+---
+title: Discrete Mathematics
+format:
+  html:
+    theme: flatly
+    toc: true
+    toc-depth: 3
+    highlight-style: tango
+    code-line-numbers: true
+    code-fold: true
+    code-summary: "Show the code"
+    code-tools: true
+    code-block-bg: "rgba(42, 174, 42, 0.02)"
+    code-block-border-left: "#2aae2a"
+    code-language-label: true
+    css: styles.css
+    math: mathjax
+    self-contained: true
+    other-links:
+      - text: Main page
+        href: https://dchorazkiewicz.github.io/Mathematics_Physics_Lectures/
+---
+
+
+
+## Set Theory
+
+Set theory is a foundational branch of mathematics that provides a rigorous framework for building and understanding modern mathematical concepts. At its core is the notion of a **set**, which is considered an **undefined primitive concept**. Rather than being explicitly defined, the concept of a set is accepted intuitively: a collection of distinct objects, often referred to as elements, grouped together.
+
+In contemporary mathematics, set theory serves as a universal language, underpinning disciplines ranging from algebra and calculus to topology and computer science. Its principles allow us to formalize mathematical structures, establish proofs, and analyze relationships in a consistent and logical manner.
+
+By starting with the basics of set theory, we lay the groundwork for exploring more advanced mathematical ideas. This chapter introduces fundamental concepts such as sets, set operations, ordered pairs, Cartesian products, relations, and functions, which form the building blocks of mathematical thought.
+
+
+### Sets
+
+In this section, we introduce the concept of sets and their notation, providing examples of some of the most fundamental sets used in mathematics. A clear understanding of these basics is essential for working with set theory and its applications.
+
+#### Definition and Notation
+A **set** is a collection of distinct objects, called elements, grouped together. Sets are typically denoted using curly braces `{}` and can be described either by explicitly listing their elements or by specifying a property that characterizes them.
+
+**Examples of set notation:**
+
+1. Explicit listing:
+   - $A = \{1, 2, 3\}$ 
+     (Set $A$ contains the elements 1, 2, and 3.)
+   - $B = \{a, b, c\}$ 
+     (Set $B$ contains the elements \(a\), \(b\), and \(c\).)
+
+2. Descriptive notation:
+   - $C = \{x \mid x \text{ is an even number and } x \leq 10\}$
+     (Set $C$ contains all even numbers less than or equal to 10.)
+   - $D = \{x \in \mathbb{N} \mid x \text{ is prime}\}$
+     (Set $D$ contains all prime numbers in the set of natural numbers.)
+
+#### Special Sets
+
+Certain sets are so widely used that they have standard notations:
+
+1. **Empty Set** ($\emptyset$ or $\{\}$):
+   - The set with no elements.
+   - Example: $E = \{x : x\in \mathbb{R} \text{ and } x^2 = -1\}$
+
+2. **Set Containing the Empty Set:**
+   - A set can contain the empty set as an element.
+   - Example: $F = \{\emptyset\}$
+     (Set $F$ has one element, which is the empty set.)
+
+3. **Constructing Numbers Using the Empty Set:**
+   - In some formal mathematical systems, numbers can be constructed using sets:
+     - $0 = \emptyset$
+     - $1 = \{\emptyset\}$
+     - $2 = \{\emptyset, \{\emptyset\}\}$
+     - $3 = \{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}$
+     - And so on...
+4. **Universal Set** ($U$):
+   - The set containing all objects under consideration in a particular context.
+
+5. **Number Sets:**
+   - $\mathbb{N}$: The set of natural numbers (e.g., $\{1, 2, 3, \dots\}$).
+   - $\mathbb{Z}$: The set of integers (e.g., $\{\dots, -2, -1, 0, 1, 2, \dots\}$).
+   - $\mathbb{Q}$: The set of rational numbers.
+   - $\mathbb{R}$: The set of real numbers.
+   - $\mathbb{C}$: The set of complex numbers.
+
+By mastering the notation and basic examples of sets, students gain the tools to work with more advanced topics in set theory and mathematics.
+
+
+### Set Operations
+
+Set operations are fundamental in understanding relationships between sets. They provide the tools for manipulating sets and analyzing their interactions. This section introduces the most common set operations, including union, intersection, difference, and complement.
+
+#### Union
+
+The **union** of two sets $A$ and $B$, denoted by $A \cup B$, is the set of all elements that are in $A$, in $B$, or in both.
+
+**Definition:**
+$$
+A \cup B = \{x \mid x \in A \text{ or } x \in B\}
+$$
+
+**Example:**
+- Let $A = \{1, 2, 3\}$ and $B = \{3, 4, 5\}$.
+- Then $A \cup B = \{1, 2, 3, 4, 5\}$.
+
+#### Intersection
+
+The **intersection** of two sets $A$ and $B$, denoted by $A \cap B$, is the set of all elements that are in both $A$ and $B$.
+
+**Definition:**
+$$
+A \cap B = \{x \mid x \in A \text{ and } x \in B\}
+$$
+
+**Example:**
+- Let $A = \{1, 2, 3\}$ and $B = \{3, 4, 5\}$.
+- Then $A \cap B = \{3\}$.
+
+#### Difference
+
+The **difference** of two sets $A$ and $B$, denoted by $A \setminus B$, is the set of all elements that are in $A$ but not in $B$.
+
+**Definition:**
+$$
+A \setminus B = \{x \mid x \in A \text{ and } x \notin B\}
+$$
+
+**Example:**
+- Let $A = \{1, 2, 3\}$ and $B = \{3, 4, 5\}$.
+- Then $A \setminus B = \{1, 2\}$.
+
+#### Symmetric Difference
+
+The **symmetric difference** of two sets $A$ and $B$, denoted by $A \triangle B$, is the set of all elements that are in either $A$ or $B$ but not in both.
+
+**Definition:**
+$$
+A \triangle B = (A \setminus B) \cup (B \setminus A)
+$$
+
+**Example:**
+- Let $A = \{1, 2, 3\}$ and $B = \{3, 4, 5\}$.
+- Then $A \triangle B = \{1, 2, 4, 5\}$.
+
+#### Complement
+
+The **complement** of a set $A$, denoted by $A^c$ or $\overline{A}$, is the set of all elements in the universal set $U$ that are not in $A$.
+
+**Definition:**
+$$
+A^c = \{x \in U \mid x \notin A\}
+$$
+
+**Example:**
+- Let $U = \{1, 2, 3, 4, 5\}$ and $A = \{1, 2, 3\}$.
+- Then $A^c = \{4, 5\}$.
+
+#### Venn Diagrams
+
+Venn diagrams are graphical representations of sets and their operations. They provide an intuitive way to visualize unions, intersections, and other relationships between sets. Each set is represented by a circle, and their overlap illustrates common elements.
+
+**Example:**
+- Consider two sets $A$ and $B$:
+  - The area within both circles represents $A \cap B$.
+  - The total area covered by the circles represents $A \cup B$.
+  - The area in $A$ but outside $B$ represents $A \setminus B$.
+
+By understanding and practicing these operations, students build a solid foundation for working with more complex mathematical structures that rely on set theory.
+
+
+### Ordered Pairs
+
+The concept of an **ordered pair** is fundamental in mathematics, especially in set theory, relations, and Cartesian products. An ordered pair allows us to represent two elements in a specific sequence, where the order of the elements matters.
+
+#### Definition
+
+An **ordered pair** is a pair of elements written in the form $(a, b)$, where $a$ is the first element and $b$ is the second element.
+
+Two ordered pairs $(a, b)$ and $(c, d)$ are equal if and only if both their corresponding elements are equal:
+$$
+(a, b) = (c, d) \iff a = c \text{ and } b = d
+$$
+
+#### Representation in Set Theory
+
+In set theory, an ordered pair $(a, b)$ can be represented using sets in a way that ensures the order of elements is preserved:
+$$
+(a, b) = \{\{a\}, \{a, b\}\}
+$$
+
+This representation satisfies the condition that $(a, b) = (c, d)$ if and only if $a = c$ and $b = d$.
+
+**Example:**
+- Let $a = 1$ and $b = 2$.
+- The ordered pair $(1, 2)$ can be represented as $\{\{1\}, \{1, 2\}\}$.
+
+#### Properties of Ordered Pairs
+
+1. **Order Matters:**
+   - $(a, b) \neq (b, a)$ unless $a = b$.
+   - Example: $(1, 2) \neq (2, 1)$.
+
+2. **Uniqueness:**
+   - An ordered pair uniquely identifies its elements and their sequence.
+   - Example: $(3, 4)$ is distinct from $(4, 3)$.
+
+3. **Nested Pairs:**
+   - Ordered pairs can be nested to represent more complex structures.
+   - Example: $((a, b), c)$ or $(a, (b, c))$.
+
+
+### Cartesian Product
+
+The **Cartesian product** is a fundamental concept in set theory that describes the set of all ordered pairs formed by taking one element from each of two sets. It is a key operation that lays the foundation for defining relations and functions.
+
+#### Definition
+
+The Cartesian product of two sets $A$ and $B$, denoted by $A \times B$, is the set of all ordered pairs $(a, b)$ such that $a \in A$ and $b \in B$:
+$$
+A \times B = \{(a, b) \mid a \in A \text{ and } b \in B\}
+$$
+
+#### Examples
+
+1. Let $A = \{1, 2\}$ and $B = \{3, 4\}$.
+   - The Cartesian product is:
+     $$
+     A \times B = \{(1, 3), (1, 4), (2, 3), (2, 4)\}
+     $$
+
+2. If $A = \{a, b\}$ and $B = \{x, y\}$, then:
+   $$
+   A \times B = \{(a, x), (a, y), (b, x), (b, y)\}
+   $$
+
+#### Properties of Cartesian Product
+
+1. **Non-commutativity:**
+   - In general, $A \times B \neq B \times A$ because the order of the elements in the pairs is reversed:
+     $$
+     A \times B = \{(a, b) \mid a \in A, b \in B\}, \quad B \times A = \{(b, a) \mid b \in B, a \in A\}
+     $$
+     However, $A \times B = B \times A$ if and only if $A = B$ and the elements of the pairs are considered unordered.
+
+2. **Cardinality:**
+   - If $A$ and $B$ are finite sets, then the cardinality of their Cartesian product is the product of their cardinalities:
+     $$
+     |A \times B| = |A| \cdot |B|
+     $$
+     For example, if $|A| = 3$ and $|B| = 2$, then $|A \times B| = 6$.
+
+3. **Cartesian Product with the Empty Set:**
+   - If $A$ or $B$ is the empty set, then their Cartesian product is also empty:
+     $$
+     A \times B = \emptyset \quad \text{if } A = \emptyset \text{ or } B = \emptyset
+     $$
+
+4. **Associativity:**
+   - The Cartesian product of more than two sets can be extended in an associative manner:
+     $$
+     A \times (B \times C) \cong (A \times B) \times C
+     $$
+     However, the elements of the resulting product are structured differently.
+
+#### Notation for Higher Dimensions
+
+The Cartesian product can be extended to more than two sets. For three sets $A$, $B$, and $C$, the Cartesian product is:
+$$
+A \times B \times C = \{(a, b, c) \mid a \in A, b \in B, c \in C\}
+$$
+
+For example, if $A = \{1, 2\}$, $B = \{3\}$, and $C = \{4, 5\}$:
+$$
+A \times B \times C = \{(1, 3, 4), (1, 3, 5), (2, 3, 4), (2, 3, 5)\}
+$$
+
+The Cartesian product is essential for building more complex mathematical structures, such as relations, functions, and multi-dimensional coordinate systems.
+
+
+### Relations
+
+A **relation** is a concept that connects elements from two sets in a meaningful way. Mathematically, a relation between two sets $A$ and $B$ is defined as a subset of their Cartesian product $A \times B$.
+
+#### Definition
+
+A **relation** $R$ from a set $A$ to a set $B$ is a subset of the Cartesian product $A \times B$:
+$$
+R \subseteq A \times B
+$$
+
+Each element of the relation $R$ is an ordered pair $(a, b)$, where $a \in A$ and $b \in B$. If $(a, b) \in R$, we say that "$a$ is related to $b$ by $R$" and write:
+$$
+a \, R \, b
+$$
+
+#### Example
+
+Let $A = \{1, 2, 3, 4\}$ and $B = \{\text{a}, \text{b}, \text{c}, \text{d}\}$. A relation $R$ from $A$ to $B$ could be defined as:
+$$
+R = \{(1, \text{a}), (2, \text{b}), (3, \text{a}), (4, \text{d}), (1, \text{c})\}
+$$
+
+This means:
+- $1$ is related to a and c.
+- $2$ is related to b.
+- $3$ is related to a.
+- $4$ is related to d.
+
+#### Representation of Relations
+
+Relations can be represented in several ways:
+
+1. **Set of Pairs:**
+   - Example: $R = \{(1, \text{a}), (2, \text{b}), (3, \text{a}), (4, \text{d}), (1, \text{c})\}$.
+
+2. **Arrow Diagrams:**
+   - Elements of $A$ and $B$ are represented as nodes, with arrows showing the relations.
+
+3. **Directed Graphs:**
+   - Relations can be visualized as directed graphs. Each element of $A$ is a node on one side, and each element of $B$ is a node on the other side. Directed edges represent the pairs in the relation.
+
+
+
+#### Graph Representation Code
+
+You can generate the above graph using the following Python code:
+
+```{python}
+import matplotlib.pyplot as plt
+import networkx as nx
+
+# Define the sets
+A = {1, 2, 3, 4}  # Domain
+B = {'a', 'b', 'c', 'd'}  # Codomain
+
+# Define the relation R as a subset of A × B
+R = {(1, 'a'), (2, 'b'), (3, 'a'), (4, 'd'), (1, 'c')}
+
+# Create a directed graph to represent the relation
+G = nx.DiGraph()
+
+# Add nodes for A and B
+G.add_nodes_from(A, bipartite=0)
+G.add_nodes_from(B, bipartite=1)
+
+# Add edges for the relation
+G.add_edges_from(R)
+
+# Draw the graph
+pos = {}
+# Position nodes from A on the left and nodes from B on the right
+pos.update((node, (0, -i)) for i, node in enumerate(A))
+pos.update((node, (2, -i)) for i, node in enumerate(B))
+
+plt.figure(figsize=(8, 6))
+nx.draw(
+    G,
+    pos,
+    with_labels=True,
+    node_color="lightblue",
+    node_size=2000,
+    font_size=12,
+    font_weight="bold",
+    arrowsize=20
+)
+plt.title("Relation $R$ Represented as a Directed Graph", fontsize=14)
+plt.show()
+```
+
+### Functions
+
+A **function** is a special type of relation that associates every element of a subset of a set (called the domain of definition) with exactly one element of another set (called the codomain). Functions are one of the most fundamental concepts in mathematics, underpinning nearly every area of the discipline.
+
+#### Definition of a Function
+
+A **function** $f$ from a set $A$ to a set $B$ is a relation $f \subseteq A \times B$ such that:
+
+1. **The domain of definition** of $f$ is the set of all elements in $A$ that are used in the relation $f$:
+   $$
+   \text{Dom}(f) = \{a \in A \mid \exists b \in B, (a, b) \in f\}.
+   $$
+
+2. **Each element of the domain of definition is related to exactly one element of the codomain $B$:**
+   $$
+   \forall a \in \text{Dom}(f), \exists! b \in B \text{ such that } (a, b) \in f.
+   $$
+
+If $f$ is a function, we write $f: A \to B$, and for each $a \in \text{Dom}(f)$, the unique $b \in B$ related to $a$ is denoted by $f(a)$.
+
+---
+
+#### Composition of Functions
+
+The **composition of functions** allows us to combine two functions into a single function. This is a fundamental operation in mathematics that builds complex behaviors from simpler functions.
+
+##### Definition
+
+Let $f: A \to B$ and $g: B \to C$ be two functions. The composition of $f$ and $g$, denoted by $g \circ f$, is a function defined on the domain of $f$:
+$$
+g \circ f: \text{Dom}(f) \to C,
+$$
+where:
+$$
+(g \circ f)(a) = g(f(a)) \quad \text{for all } a \in \text{Dom}(f).
+$$
+
+##### Properties of Composition
+
+1. **Associativity:**
+   - Function composition is associative:
+     $$
+     h \circ (g \circ f) = (h \circ g) \circ f,
+     $$
+     where $f: A \to B$, $g: B \to C$, and $h: C \to D$.
+
+2. **Identity Function:**
+   - Composing a function with the identity function does not change the function:
+     $$
+     f \circ I_{\text{Dom}(f)} = f \quad \text{and} \quad I_B \circ f = f,
+     $$
+     where $I_{\text{Dom}(f)}$ and $I_B$ are identity functions on $\text{Dom}(f)$ and $B$, respectively.
+
+##### Example
+
+Let $f: \{1, 2\} \to \mathbb{R}$ be defined by $f(x) = 2x$, and let $g: \mathbb{R} \to \mathbb{R}$ be defined by $g(x) = x + 3$. Then:
+$$
+(g \circ f)(x) = g(f(x)) = g(2x) = 2x + 3, \quad \text{for } x \in \{1, 2\}.
+$$
+
+---
+
+#### Inverse Functions
+
+A **function inverse** is a function that "undoes" the effect of the original function. If $f$ maps $a$ to $b$, the inverse maps $b$ back to $a$.
+
+##### Definition
+
+A function $f: A \to B$ has an inverse $f^{-1}: \text{Range}(f) \to \text{Dom}(f)$ if $f$ is **bijective** (both injective and surjective). The inverse satisfies:
+$$
+f^{-1}(f(a)) = a, \quad \text{for all } a \in \text{Dom}(f),
+$$
+and
+$$
+f(f^{-1}(b)) = b, \quad \text{for all } b \in \text{Range}(f).
+$$
+
+##### Properties of Inverse Functions
+
+1. **Uniqueness:**
+   - If $f$ is bijective, its inverse $f^{-1}$ is unique.
+
+2. **Symmetry:**
+   - The inverse of $f^{-1}$ is $f$:
+     $$
+     (f^{-1})^{-1} = f.
+     $$
+
+3. **Composition with Inverse:**
+   - Composing a function with its inverse yields the identity function:
+     $$
+     f^{-1} \circ f = I_{\text{Dom}(f)} \quad \text{and} \quad f \circ f^{-1} = I_{\text{Range}(f)}.
+     $$
+
+##### Example
+
+Let $f: \{1, 2, 3\} \to \mathbb{R}$ be defined by $f(x) = 2x + 1$. To find the inverse $f^{-1}$:
+1. Solve for $x$ in terms of $y$:
+   $$
+   y = 2x + 1 \implies x = \frac{y - 1}{2}.
+   $$
+2. The inverse function is:
+   $$
+   f^{-1}(y) = \frac{y - 1}{2}, \quad \text{for } y \in \text{Range}(f) = \{3, 5, 7\}.
+   $$
+
+Verify:
+$$
+f(f^{-1}(y)) = 2\left(\frac{y - 1}{2}\right) + 1 = y,
+$$
+and
+$$
+f^{-1}(f(x)) = \frac{(2x + 1) - 1}{2} = x.
+$$
+
+---
+
+By rigorously defining the domain of definition and codomain, and understanding the behavior of functions under composition and inversion, we ensure a precise mathematical foundation for analyzing and applying functions.
+
+
