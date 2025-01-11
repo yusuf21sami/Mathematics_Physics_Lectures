@@ -23,7 +23,7 @@ format:
 
 *"Man started from measuring himself and finished weighing the stars."*
 
-## 1. Measurement
+## Measurement
 
 Measurement is the process of determining the size, length, or amount of something. It is a fundamental aspect of physics and other sciences, as it allows us to quantify and compare physical quantities. Today we will discuss some of the most important measurements in the history of physics and describe the importance and details of making measurements.
 
@@ -91,7 +91,7 @@ All other units are derived from these base units. For example, the unit of forc
 
 - Electric resistance: Ohm $[\Omega=\frac{V}{A}=\frac{kg\,m^2}{A^2\,s^3}]$
 
-## 2. Uncertainty in measurement
+## Uncertainty in measurement
 
 ### Difference between Error and Uncertainty
 

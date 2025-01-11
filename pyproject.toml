@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "physics-2024-25-summer"
+name = "Math-Physics"
 version = "0.1.0"
 description = ""
 authors = ["dchorazkiewicz"]
