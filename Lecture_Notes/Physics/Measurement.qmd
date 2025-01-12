@@ -57,19 +57,19 @@ To make meaningful measurements, we need to use standardized units of measuremen
 
 **SI Units in physics include only seven units:**
 
-- meter (m) for length
+- meter $[m]$ for length
 
-- kilogram (kg) for mass
+- kilogram $[kg]$ for mass
 
-- second (s) for time
+- second $[s]$ for time
 
-- Kelvin (K) for temperature
+- Kelvin $[K]$ for temperature
 
-- ampere (A) for electric current
+- ampere $[A]$ for electric current
 
-- mole (mol) for the amount of substance
+- mole $[mol]$ for the amount of substance
 
-- candela (cd) for luminous intensity
+- candela $[cd]$ for luminous intensity
 
 All other units are derived from these base units. For example, the unit of force, the Newton (N), is derived from the base units of mass, length, and time.
 
@@ -77,19 +77,19 @@ All other units are derived from these base units. For example, the unit of forc
 
 - Acceleration: $[\frac{m}{s^2}]$
 
-- Force: Newton $[N=\frac{kg\,m}{s^2}]$
+- Force: Newton $[N]=[\frac{kg\,m}{s^2}]$
 
-- Energy: Joule $[J=\frac{kg\,m^2}{s^2}]$
+- Energy: Joule $[J]=[\frac{kg\,m^2}{s^2}]$
 
-- Power: Watt $[W=\frac{J}{s}=\frac{kg\,m^2}{s^3}]$
+- Power: Watt $[W]=[\frac{J}{s}]=[\frac{kg\,m^2}{s^3}]$
 
-- Pressure: Pascal $[Pa=\frac{N}{m^2}=\frac{kg}{m\,s^2}]$
+- Pressure: Pascal $[Pa]=[\frac{N}{m^2}]=[\frac{kg}{m\,s^2}]$
 
-- Electric charge: Coulomb $[C=A s]$
+- Electric charge: Coulomb $[C]=[A s]$
 
-- Electric potential: Volt $[V=\frac{J}{C}=\frac{kg\,m^2}{A\,s^3}]$
+- Electric potential: Volt $[V]=[\frac{J}{C}]=[\frac{kg\,m^2}{A\,s^3}]$
 
-- Electric resistance: Ohm $[\Omega=\frac{V}{A}=\frac{kg\,m^2}{A^2\,s^3}]$
+- Electric resistance: Ohm $[\Omega]=[\frac{V}{A}]=[\frac{kg\,m^2}{A^2\,s^3}]$
 
 ## Uncertainty in measurement
 
@@ -148,7 +148,7 @@ To estimate the uncertainty in measurement using the total derivative , you can 
  
 For example, if a physical quantity $f(x,y)$ is a function of variables x and y, then the total derivative of $f$ with respect to $x$ and $y$ can be used to estimate the uncertainty in $f$ due to uncertainties in $x$ and $y$ (i.e. $\Delta x$ and $\Delta y$).
 
-$$\Delta f(x,y) = | \frac{\partial f}{\partial x} \Delta x| + |\frac{\partial f}{\partial y} \Delta y|\qquad \qquad\text{University formula}
+$$\Delta f(x,y) = \left| \frac{\partial f}{\partial x} \Delta x \right| + \left|\frac{\partial f}{\partial y} \Delta y \right|\qquad \qquad\text{University formula}
 $$
 
 $$\Delta f(x,y) = \sqrt{(\frac{\partial f}{\partial x} \Delta x)^2 + (\frac{\partial f}{\partial y} \Delta y)^2}\qquad\text{Engineering formula (use this one!)}
@@ -164,7 +164,9 @@ The diameter of a certain ball was measured to be $L = 42 \pm 1$ cm. Using this 
 
 **Calculations of Ball's Volume**
 
-- Diameter of the ball, $Length = L\pm \Delta L= 42 \pm 1$ cm
+- Diameter of the ball
+$$\text{Length}= L\pm \Delta L= 42 \pm 1 \text{cm}$$
+
 - Formula for the volume of a sphere: 
   $$V = \frac{4}{3} \pi r^3
   $$
@@ -195,15 +197,21 @@ $$
 
 **Conclusion**
 
-The volume of the ball is $38808 \, \text{cm}^3$ with an uncertainty of $\pm 2772 \, \text{cm}^3$. We can write is as $V=38808 \, \text{cm}^3 \pm 2772 \, \text{cm}^3$.
+The volume of the ball is $38808 \, \text{cm}^3$ with an uncertainty of $\pm 2772 \, \text{cm}^3$. 
+
+We can write is as 
+
+$$V=38808 \, \text{cm}^3 \pm 2772 \, \text{cm}^3.$$
 
 **Uncertainty as a percentage of the value**
 
 Often people write the uncertainty as a percentage of the value. 
 
-In this case it would be $\Delta V/V \times 100 \%  =2772/38808 \times 100 \% \approx 7 \%$.
+In this case it would be $$\Delta V/V \times 100 \%  =2772/38808 \times 100 \% \approx 7 \% .$$
 
-Similarly, relative uncertainty can be written as $\Delta V/V = 2772/38808 \approx 0.07$.
+Similarly, relative uncertainty can be written as 
+
+$$\Delta V/V = 2772/38808 \approx 0.07.$$
 
 Here’s an improved and slightly reorganized version of your markdown notes:
 
@@ -219,10 +227,10 @@ $$
 
 If the voltage $V$ and current $I$ are measured with uncertainties $\Delta V$ and $\Delta I$, the uncertainty in the resistance $\Delta R$ can be estimated using the total derivative method.
   $$
-  Voltage = V \pm \Delta V
+  \text{Voltage} = V \pm \Delta V
   $$
   $$
-  Current = I \pm \Delta I
+  \text{Current} = I \pm \Delta I
   $$
 
 The resistance $R$ is given by:
@@ -246,12 +254,12 @@ Using the formula $R = \frac{V}{I}$, the partial derivatives are:
 
 - With respect to $V$:
   $$
-  \frac{\partial R}{\partial V} = \frac{\partial \left( \frac{V}{I} \right)}{\partial V} = \frac{1}{I}
+  \frac{\partial R}{\partial V} = \frac{\partial }{\partial V} \left( \frac{V}{I} \right)= \frac{1}{I}
   $$
 
 - With respect to $I$:
   $$
-  \frac{\partial R}{\partial I} = \frac{\partial \left( \frac{V}{I} \right)}{\partial I} = -\frac{V}{I^2}
+  \frac{\partial R}{\partial I} = \frac{\partial }{\partial I} \left( \frac{V}{I} \right)= -\frac{V}{I^2}
   $$
 
 Substituting the partial derivatives into the uncertainty formula, we get:
@@ -261,7 +269,7 @@ $$
 
 The resistance with its uncertainty is expressed as:
 $$
-Resistance = R \pm \Delta R
+\text{Resistance} = R \pm \Delta R
 $$
 where:
 $$
@@ -279,12 +287,6 @@ The **standard deviation** of the N measurements is given by:
 
 $$\Delta x = \sqrt{\frac{1}{N-1} \sum_{n=1}^{N} (x_n - \bar x)^2} $$
 
-Be careful as in literature people use:
-
-- **standard diviation** $\Delta x = \sqrt{\frac{1}{N-1} \sum_{n=1}^{N} (x_n - \bar x)^2}$ 
-  
-- **standard diviation of the mean** $\Delta x = \sqrt{\frac{1}{N(N-1)} \sum_{n=1}^{N} (x_n - \bar x)^2}$.
-  
 The standard deviation is a measure of the spread or dispersion of the measurements around the average value. A small standard deviation indicates that the measurements are close to the average value, while a large standard deviation indicates that the measurements are spread out over a wider range of values.
 
 Mean of the measurements is the average value of the measurements, while the standard deviation is a measure of the spread or dispersion of the measurements around the mean value. The standard deviation is a measure of the uncertainty in the measurements and can be used to estimate the error in the average value.
@@ -359,6 +361,26 @@ plt.ylabel('y')
 plt.title('Error Bar Example')
 plt.show()
 ```
+
+## Measurement in clasical and quantum physics
+
+**Classical Physics**
+
+In classical physics, measurements are made using classical mechanics, which describes the motion of macroscopic objects such as planets, cars, and baseballs. Classical physics is based on the laws of Newtonian mechanics, which describe the motion of objects in terms of forces, masses, and accelerations.
+
+**Quantum Physics**
+
+In Quantum Mechanics, measurements are made using quantum mechanics, which describes the behavior of microscopic objects such as atoms, electrons, and photons. Quantum mechanics is based on the principles of wave-particle duality, uncertainty, and superposition.
+
+In quantum physics, measurements are typically made using quantum instruments such as particle detectors, spectrometers, and quantum computers. These instruments are designed to measure physical quantities such as energy, momentum, position, and spin.
+
+In Quantum Mechanics measurements are described by the **wave function**, which represents the probability distribution of possible measurement outcomes. The wave function is a mathematical function that describes the state of a quantum system and predicts the probabilities of different measurement results.
+
+The **Born rule** is a fundamental principle of quantum mechanics that relates the wave function to the probability of measurement outcomes. According to the Born rule, the probability of measuring a particular value of a physical quantity is given by the square of the absolute value of the wave function
+$$\rho=|\psi|^2=\psi^*\psi$$
+
+The **uncertainty principle** is another important concept in quantum mechanics that states that certain pairs of physical quantities, such as position and momentum, cannot be measured simultaneously with arbitrary precision. The uncertainty principle places a fundamental limit on the accuracy of measurements in quantum mechanics. For the position and momentum, the uncertainty principle is given by the Heisenberg uncertainty principle:
+$$\Delta x \Delta p \geq \frac{\hbar}{2}$$
 
 ## Few nice examples of measurements in physics
 
@@ -449,7 +471,7 @@ $$
 
 ### Geometry of the Universe
 
-By measuring the sum of angles in a triangle, we can determine the geometry of the universe.
+By measuring the sum of angles in a triangle, we can determine the [geometry of the universe](https://en.wikipedia.org/wiki/Shape_of_the_universe).
 
 The sum of angles in a triangle depends on the geometry of the space:
 
@@ -457,6 +479,4 @@ The sum of angles in a triangle depends on the geometry of the space:
 
 2. **Spherical Space**: Sum of angles > $180^\circ$
 
-3. **Hyperbolic Space**: Sum of angles < $180^\circ$
-
-Link: ![](https://upload.wikimedia.org/wikipedia/commons/9/98/End_of_universe.jpg)
+3. **Hyperbolic Space**: Sum of angles < $180^\circ$.

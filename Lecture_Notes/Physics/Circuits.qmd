@@ -531,8 +531,6 @@ Current is the flow of electric charge through a conductor, measured in amperes 
 
 **Alternating Current** (AC) is characterized by its ability to change direction periodically, in contrast to **Direct Current** (DC), which flows in the same direction. 
 
-![Source: Wikipedia](./pics/circuits/ac_dc.png)
-
 AC is the standard for electricity distribution due to its efficiency over long distances. It is also easier to convert AC to different voltages using transformers. DC is used in batteries and electronic devices.
 
 ![Source: Wikipedia](./pics/circuits/alternating.png)
@@ -554,15 +552,20 @@ where:
 - $\omega$ is the angular frequency,
 - $\phi$ is the phase angle.
 
-Animation: [AC generator](https://youtu.be/CWulQ1ZSE3c?si=6n2H8fgqHRtsIF38)
+Animation: [AC generator](https://youtu.be/CWulQ1ZSE3c?si=6n2H8fgqHRtsIF38) and [AC vs DC generators](https://youtu.be/H1aKEcM2YOo?si=_WibXf72j35dmwzx)
 
 ### Three-Phase AC Systems
 
-Three-phase systems use three AC currents, each phase shifted by 120°.
+Three-phase systems use three AC currents, each phase shifted by 120° from the others. They are commonly used in industrial applications due to their efficiency and power distribution capabilities.
 
-![](./pics/circuits/phase3.png)
+- [Three-Phase Altenator]([./pics/circuits/phase3.png](https://youtu.be/0k2u3zmT5aY?si=3hA5wYOdm36vW2lB&t=137))
 
-This arrangement enhances power distribution efficiency by the  √3 factor:
+This arrangement enhances power distribution efficiency by the  $\sqrt{3}$ factor. The total power in a three-phase system is given by:
+
+$$P_{\text{total}} = 3 \times V_{\text{line}} \times I_{\text{line}} \times \cos(\phi)
+$$
+
+where $V_{\text{line}}$ is the line voltage, $I_{\text{line}}$ is the line current, and $\phi$ is the phase angle.
 
 ### Electromotive Force (EMF)
 
@@ -581,8 +584,6 @@ Electrical properties of materials are critical for designing electronic compone
 - Insulators exhibit high resistivity.
 - Semiconductors have variable resistivity (influenced by doping and temperature).
 - Conductors exhibit low resistivity.
-
-![Source: Wikipedia](./pics/circuits/materials.png)
 
 In semiconductors, the valence band is the highest energy band that is fully occupied by electrons, while the conduction band is the next highest energy band that is empty or partially filled. The energy gap between the valence and conduction bands determines the conductivity of the semiconductor.
 
@@ -910,7 +911,7 @@ How to build and simulate circuits:
 
 As the result you should obtain: [the following circuit](https://www.falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWK0CcAOFYAskUDYBmArBBAdgTxALJCQUjoFMBaMMAKACcR9wwATCCwEh7IYzCQOAN2Gj+QkUIJ40UDThADGu5Am7yVa3lVXrGBgO6nqJvuKgcgA).
 
-**Remarks: **
+**Remarks**
 
 - start with the disconnected elements like resistors, capacitors, inductors in the ritht places
 - depending on the case adding sources DC, diodes, etc. pay attention to the direction of the element (Voltage has a defined direction and it matters if you draw it from the left to right or opposite).
