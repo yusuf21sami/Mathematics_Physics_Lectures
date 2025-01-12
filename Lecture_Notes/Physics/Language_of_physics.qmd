@@ -292,11 +292,9 @@ The integral is a measure of the area under the curve of the function $f(x)$. Th
 
 Let's consider the first order differential equation
 
-::: {.equation-box}
 $$
 \frac{dy(x)}{dx} = 2x
 $$
-:::
 
 Let us think how we should read this equation. The left hand side is the derivative of the function $y(x)$ with respect to $x$. This derivative is equal to $2x$. This equation tells us how the function $y(x)$ changes with $x$. The function $y(x)$ changes at a rate of $2x$ with respect to $x$. This is a simple differential equation that can be solved by integration.
 $$
@@ -326,9 +324,6 @@ plt.show()
 
 #### Check in geogebra:
 
-::: {.geogebra-instruction}
-* f(x) =  x^2 + 3
-:::
 
 ##### Numerical solution
 

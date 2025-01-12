@@ -22,6 +22,7 @@ schemdraw = "^0.19"
 plotly = "^5.24.1"
 imageio = "^2.36.1"
 jira = "^3.8.0"
+networkx = "^3.4.2"
 
 
 [build-system]

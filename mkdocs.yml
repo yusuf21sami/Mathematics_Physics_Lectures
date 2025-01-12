@@ -46,6 +46,8 @@ nav:
     - Student Problems:
       - Exercies: Mathematics/Exercises.md
   - Discrete mathematics:
+    - 🎓 Lecture Notes:
+      - Discrete Mathematics: Discrete_Mathematics/Discrete_Mathematics.html
     - Student Problems:
       - Exercises: Discrete_Mathematics/Exercises.md
 
