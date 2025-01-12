@@ -41,19 +41,19 @@ $$
 \end{pmatrix}
 $$
 
-### 1. Calculate
+##### 1. Calculate
 
 * $\mathbf{A}+\mathbf{B}$
 * $\mathbf{B}-\mathbf{A}$
 * $\mathbf{A}+\mathbf{C}$; $\mathbf{D}+\mathbf{E}$. 
 
-### 2. Calculate 
+##### 2. Calculate 
 
 * $\frac{1}{2}\mathbf{A}$
 * $2\mathbf{B}$, $-3\mathbf{C}$
 * $4\mathbf{D}$.
 
-### 3. Calculate the products 
+##### 3. Calculate the products 
 
 * $\mathbf{A}\cdot \mathbf{B}$
 * $\mathbf{B} \cdot \mathbf{A}$
@@ -64,7 +64,7 @@ $$
 
 Calculate the determinants for the 2x2 and 3x3 matrices given below.
 
-### 2x2 Matrices:
+#### 2x2 Matrices:
 
 $$
 \mathbf{A} =
@@ -86,7 +86,7 @@ $$
 \end{pmatrix}
 $$
 
-### 3x3 Matrices:
+#### 3x3 Matrices:
 
 $$
 \mathbf{D} =
@@ -168,7 +168,7 @@ $$
 
 ## 5. Inverse of a Matrix from the formula
 
-### 1. Find the inverse matrix for matrix 
+#### 1. Find the inverse matrix for matrix 
 
 $$\mathbf{A}=\begin{pmatrix}
 2 & 0 & 1 \\
@@ -178,7 +178,7 @@ $$\mathbf{A}=\begin{pmatrix}
 
 and verify if the result is correct.
 
-### 2. Determine the rank of the matrix:
+#### 2. Determine the rank of the matrix:
 
 $$\mathbf{B} =
 \begin{pmatrix}
@@ -235,7 +235,7 @@ Solve the following systems of equations without using matrices:
 
 ## 8. Linear equations by Cramer's Rule
 
-### 1. Solve the system of equations:
+#### 1. Solve the system of equations:
 
 $$
 \begin{cases}
@@ -244,7 +244,7 @@ $$
 \end{cases}
 $$
 
-### 2. Solve the system of equations:
+#### 2. Solve the system of equations:
 
 $$
 \begin{cases}
@@ -273,7 +273,7 @@ x_1 + 2x_2 + 3x_3 = 3 \\
 
 ## 9. Linear equations by Gauss Elimination
 
-### System 1
+#### System 1
 
 $$\begin{cases}
 x + 2y - 2z = 4 \\
@@ -282,7 +282,7 @@ x + 2y - 2z = 4 \\
 \end{cases}
 $$
 
-### System 2
+#### System 2
 
 $$
 \begin{cases}
@@ -293,7 +293,7 @@ x + y + z - t = 2 \\
 \end{cases}
 $$
 
-### System 3
+#### System 3
 
 $$
 \begin{cases}
@@ -306,7 +306,7 @@ $$
 
 ## 10. Linear equations by Matrix Inversion
 
-### 1. Solve the system of linear equations using the inverse matrix method:
+#### 1. Solve the system of linear equations using the inverse matrix method:
 
 $$
 \begin{cases}
@@ -316,7 +316,7 @@ x + 2y + 3z = 5, \\
 \end{cases}
 $$
 
-### 2. Solve the system of linear equations using the inverse matrix method:
+#### 2. Solve the system of linear equations using the inverse matrix method:
 
 $$
 \begin{cases}
