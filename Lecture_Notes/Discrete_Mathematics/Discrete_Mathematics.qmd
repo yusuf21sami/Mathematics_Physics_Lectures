@@ -103,6 +103,7 @@ A \cup B = \{x \mid x \in A \text{ or } x \in B\}
 $$
 
 **Example:**
+
 - Let $A = \{1, 2, 3\}$ and $B = \{3, 4, 5\}$.
 - Then $A \cup B = \{1, 2, 3, 4, 5\}$.
 
@@ -116,6 +117,7 @@ A \cap B = \{x \mid x \in A \text{ and } x \in B\}
 $$
 
 **Example:**
+
 - Let $A = \{1, 2, 3\}$ and $B = \{3, 4, 5\}$.
 - Then $A \cap B = \{3\}$.
 
@@ -124,11 +126,13 @@ $$
 The **difference** of two sets $A$ and $B$, denoted by $A \setminus B$, is the set of all elements that are in $A$ but not in $B$.
 
 **Definition:**
+
 $$
 A \setminus B = \{x \mid x \in A \text{ and } x \notin B\}
 $$
 
 **Example:**
+
 - Let $A = \{1, 2, 3\}$ and $B = \{3, 4, 5\}$.
 - Then $A \setminus B = \{1, 2\}$.
 
@@ -137,11 +141,13 @@ $$
 The **symmetric difference** of two sets $A$ and $B$, denoted by $A \triangle B$, is the set of all elements that are in either $A$ or $B$ but not in both.
 
 **Definition:**
+
 $$
 A \triangle B = (A \setminus B) \cup (B \setminus A)
 $$
 
 **Example:**
+
 - Let $A = \{1, 2, 3\}$ and $B = \{3, 4, 5\}$.
 - Then $A \triangle B = \{1, 2, 4, 5\}$.
 
@@ -150,11 +156,13 @@ $$
 The **complement** of a set $A$, denoted by $A^c$ or $\overline{A}$, is the set of all elements in the universal set $U$ that are not in $A$.
 
 **Definition:**
+
 $$
 A^c = \{x \in U \mid x \notin A\}
 $$
 
 **Example:**
+
 - Let $U = \{1, 2, 3, 4, 5\}$ and $A = \{1, 2, 3\}$.
 - Then $A^c = \{4, 5\}$.
 
@@ -163,6 +171,7 @@ $$
 Venn diagrams are graphical representations of sets and their operations. They provide an intuitive way to visualize unions, intersections, and other relationships between sets. Each set is represented by a circle, and their overlap illustrates common elements.
 
 **Example:**
+
 - Consider two sets $A$ and $B$:
   - The area within both circles represents $A \cap B$.
   - The total area covered by the circles represents $A \cup B$.
