@@ -322,8 +322,6 @@ plt.ylabel('y')
 plt.show()
 ```
 
-#### Check in geogebra:
-
 
 ##### Numerical solution
 
@@ -351,7 +349,25 @@ $$
 y(x + h) = y(x) + 2xh
 $$
 
-This equation can be used to solve the differential equation numerically. We can start from an initial value of $y(x)$ and use the equation above to calculate the value of $y(x + h)$. This value can be used to calculate the next value of $y(x + 2h)$ and so on. This is a simple numerical method to solve differential equations.
+This equation can be used to solve the differential equation numerically. We can start from an initial value of $y(x)$ and use the equation above to calculate the value of $y(x + h)$. This value can be used to calculate the next value of $y(x + 2h)$ and so on:
+
+* Step 1 -  we know value of $y$ for a given $x$ which is 
+
+$$y(x)$$
+
+* Step 2 - we can calculate the value of $y$ for the next point $x + h$ using 
+
+$$y(x + h) = y(x) + 2xh$$
+
+* Step 3 - we can calculate the value of $y$ for the next point $x + 2h$ using 
+
+$$y(x + 2h) = y(x + h) + 2(x + h)h$$
+
+* Step 4 - we can calculate the value of $y$ for the next point $x + 3h$ using 
+
+$$y(x + 3h) = y(x + 2h) + 2(x + 2h)h$$
+
+* and so on
 
 Let us compare the numerical solution with the analytical solution.
 
