@@ -1,9 +1,3 @@
----
-title: "Tytuł strony"
-description: "Opis strony"
-author: "Autor"
-date: 2025-01-15
----
 
 
 # Całkowanie - Podstawowe Pojęcia
@@ -83,6 +77,3 @@ Kilka przydatnych wzorów:
    \int u \, dv = uv - \int v \, du
    $$
 
----
-
-Jeśli masz dodatkowe pytania lub chcesz coś rozszerzyć, daj znać! 😊    
