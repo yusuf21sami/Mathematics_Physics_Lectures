@@ -513,7 +513,12 @@ and visualize functions in a single Geogebra notebook.
    - $h(x) = 1/(1-x)$ around $x = 0$ up to the 4rd degree.
    - $g(x) = \sin(x)$ around $x = \pi$ up to the 4rd degree.
 
-2. Find a tangent line $y = f'(x_0) (x-x_0) + f(x_0)$ to the function $f(x) = e^{\sin(x)}$ at $x_0 = \pi$. Hints for Geogebra visualization: define f(x), include slider s, define y = f'(s) (x-s) + f(s), and include point P(s, f(s)).
+2. Find a tangent line $y = f'(x_0) (x-x_0) + f(x_0)$ to the function $f(x) = e^{\sin(x)}$ at $x_0 = \pi$. 
+Hints for Geogebra visualization: 
+      * define f(x)
+      * include slider s
+      * define y = f'(s) (x-s) + f(s)
+      * include point P(s, f(s)).
 
 ## 24. Integrals
 
