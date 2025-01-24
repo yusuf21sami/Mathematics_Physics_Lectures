@@ -425,6 +425,11 @@ Define the function $f: \mathbb{R} \times \mathbb{R} \to \mathbb{R} \times \math
 3. Find the inverse function $f^{-1}$.
 4. Find the composition $f \circ f^{-1}$ and $f^{-1} \circ f$.
 
+
+## Combinatorics
+
+
+
 ## **Sequences and series**
 
 #### Task 1
@@ -525,27 +530,6 @@ $$
 \frac{n}{4n+1}
 $$
 
-## Requrece
-
-
-#### Task 1
-
-Compute first 5 elements of the following sequences:
-
-1. $a_0 = 1$, $a_{n+1} = 2a_n + 1$ for $n \in \mathbb{N}\setminus\{0\}$.
-2. $b_0 = 2$, $b_{n+1} = b_n^2 - 1$ for $n \in \mathbb{N}\setminus\{0\}$.
-3. $c_0 = 2,\ c_1 = 3$, $c_{n+2} = c_{n+1} \cdot c_n$ for $n \in \mathbb{N}\setminus\{0,1\}$.
-4. $d_0 = 1,\ d_1 = 2$, $d_{n+2} = d_{n+1}/d_n$ for $n \in \mathbb{N}\setminus\{0,1\}$.
-
-#### Task 2
-
-Define folowing formulas and sequences using recurence:
-
-1. $n!=1\cdot 2\cdot 3\cdot \ldots \cdot n$ for $n\geq 1$.
-2. Fibonacci numbers.
-3. Napier's number
-4. $(2,2^2, (2^2)^2,((2^2)^2)^2,\ldots)$
-5. $(2,2^2, 2^{2^{2}}, 2^{2^{2^{2}}},\ldots)$
 
 ## Number theory
 
@@ -593,3 +577,31 @@ Solve congruences of the form $ax \equiv b \pmod{m}$:
 3. $4x \equiv 5 \pmod{6}$
 4. $5x \equiv 6 \pmod{8}$
 5. $6x \equiv 7 \pmod{9}$
+
+
+
+## Requrece
+
+#### Task 1
+
+Compute first 5 elements of the following sequences:
+
+1. $a_0 = 1$, $a_{n+1} = 2a_n + 1$ for $n \in \mathbb{N}\setminus\{0\}$.
+2. $b_0 = 2$, $b_{n+1} = b_n^2 - 1$ for $n \in \mathbb{N}\setminus\{0\}$.
+3. $c_0 = 2,\ c_1 = 3$, $c_{n+2} = c_{n+1} \cdot c_n$ for $n \in \mathbb{N}\setminus\{0,1\}$.
+4. $d_0 = 1,\ d_1 = 2$, $d_{n+2} = d_{n+1}/d_n$ for $n \in \mathbb{N}\setminus\{0,1\}$.
+
+#### Task 2
+
+Define folowing formulas and sequences using recurence:
+
+1. $n!=1\cdot 2\cdot 3\cdot \ldots \cdot n$ for $n\geq 1$.
+2. Fibonacci numbers.
+3. Napier's number
+4. $(2,2^2, (2^2)^2,((2^2)^2)^2,\ldots)$
+5. $(2,2^2, 2^{2^{2}}, 2^{2^{2^{2}}},\ldots)$
+
+
+## Graph Theory
+
+#### Task 1
