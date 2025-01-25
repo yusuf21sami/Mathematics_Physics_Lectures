@@ -49,7 +49,12 @@ nav:
     - 🎓 Lecture Notes:
       - Discrete Mathematics: Discrete_Mathematics/Discrete_Mathematics.html
     - Student Problems:
-      - Exercises: Discrete_Mathematics/Exercises.md
+      - Set Theory and ...: Discrete_Mathematics/1_Set_theory_and_.md
+      - Number Theory and ...: Discrete_Mathematics/2_Number_theory_and_.md
+      - Recurrence and ...: Discrete_Mathematics/3_Recurrence_and_.md
+      - Graph Theory and ...: Discrete_Mathematics/4_Graph_theory_and_.md
+      - Logic and ...: Discrete_Mathematics/5_Logic_and.md
+
 
 theme:
   name: material
