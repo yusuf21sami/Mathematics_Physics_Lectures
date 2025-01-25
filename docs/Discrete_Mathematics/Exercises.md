@@ -6,15 +6,15 @@
 
 Write down five elements for each of the following sets:
 
-1. $n \in \mathbb{N}: n$ is divisible by 5
-2. $\{2n + 1: n \in \mathbb{P}\}$
-3. $\mathcal{P}(\{1, 2, 3, 4, 5\})$
+1. $\{n \in \mathbb{N}: n\}$ is divisible by 5
+2. $\{2n + 1: n \in \mathbb{N}_{+}\}$
+3. $\mathcal{P}(\{1, 2, 3, 4, 5\})$ (power set!)
 4. $\{2^n: n \in \mathbb{N}\}$
 5. $\{1/n: n \in \mathbb{P}\}$
 6. $\{r \in \mathbb{Q}: 0 < r < 1\}$
 7. $\{n \in \mathbb{N}: n + 1$ is a prime number$\}$
 
-Whre $\mathbb{P}$ denotes the positive integers.
+Whre $\mathbb{N}_{+}$ denotes the positive integers.
 
 #### Task 2
 
@@ -124,7 +124,7 @@ Write the elements of the following sets:
 
 ## **Functions**
 
-### **Basics**
+**Basics**
 
 #### Task 1
 
@@ -193,7 +193,7 @@ Qestions:
 2. Which of these functions map $\mathbb{N}$ onto $\mathbb{N}$?
 
 
-###  **Function composition**
+**Function composition**
 
 #### Task 1
 
@@ -234,7 +234,7 @@ $$
 3. Show that $g \circ f \neq f \circ g$ and that $g \circ f$ takes the value 0 wherever $f$ takes even values.
 
 
-### **Inverse functions**
+**Inverse functions**
 
 #### Task 1
 
@@ -565,7 +565,7 @@ Probe that if $m' \equiv m \pmod{p}$ and $n' \equiv n \pmod{p}$, then:
 1. $m'+n' \equiv m+n \pmod{p}$.
 2. $m'n' \equiv mn \pmod{p}$.
 
-### Task 3
+#### Task 3
 
 Compute the following greatest common divisors:
 
@@ -574,7 +574,7 @@ Compute the following greatest common divisors:
 3. $\gcd(72, 15)$
 4. $\gcd(45, 12)$
 
-### Task 4
+#### Task 4
 
 Solve congruences of the form $ax \equiv b \pmod{m}$:
 
