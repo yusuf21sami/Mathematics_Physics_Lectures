@@ -62,13 +62,28 @@ Prove the following statements by induction:
 
 1. $1+3+5+\dots+(2n-1)=n^2$ for all $n \in \mathbb{N}$.
 
-### Task 2
+### Task 3
 
 Prove the following statements by induction:
 
 1. $1^2 + 2^2 + \dots + n^2 = \frac{n(n+1)(2n+1)}{6}$ for all $n \in \mathbb{N}$.
 
-### Task 3
+### Task 4
+
+Prove the following statements by induction:
+
+$$
+\binom{n}{0} + \binom{n}{1} + \binom{n}{2} + \dots + \binom{n}{n} = 2^n
+$$
+
+### Task 5
+
+$$
+\binom{n}{0}^2 + \binom{n}{1}^2 + \binom{n}{2}^2 + \dots + \binom{n}{n}^2 = \binom{2n}{n}
+$$
+
+
+### Task 6
 
 Prove the following statements by induction:
 
