@@ -74,7 +74,15 @@ Consider the sets $\{0, 1\}$, $(0, 1)$, and $[0, 1)$. Are the following statemen
 
 ### Task 6
 
-Let $U = \{1, 2, 3, 4, 5, \dots, 12\}$, $A = \{1, 3, 5, 7, 11\}$, $B = \{2, 3, 5, 7, 11\}$, $C = \{2, 3, 6, 12\}$, and $D = \{2, 4, 8\}$. Determine the following sets:
+Let 
+
+* $U = \{1, 2, 3, 4, 5, \dots, 12\}$
+* $A = \{1, 3, 5, 7, 11\}$
+* $B = \{2, 3, 5, 7, 11\}$
+* $C = \{2, 3, 6, 12\}$
+* $D = \{2, 4, 8\}$. 
+
+Determine the following sets:
 
 1. $A \cup B$
 2. $A \cap C$
