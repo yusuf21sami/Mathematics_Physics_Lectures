@@ -41,19 +41,19 @@ $$
 \end{pmatrix}
 $$
 
-###### 1. Calculate
+#### 1. Calculate
 
 * $\mathbf{A}+\mathbf{B}$
 * $\mathbf{B}-\mathbf{A}$
 * $\mathbf{A}+\mathbf{C}$; $\mathbf{D}+\mathbf{E}$. 
 
-###### 2. Calculate 
+#### 2. Calculate 
 
 * $\frac{1}{2}\mathbf{A}$
 * $2\mathbf{B}$, $-3\mathbf{C}$
 * $4\mathbf{D}$.
 
-###### 3. Calculate the products 
+#### 3. Calculate the products 
 
 * $\mathbf{A}\cdot \mathbf{B}$
 * $\mathbf{B} \cdot \mathbf{A}$
@@ -64,7 +64,7 @@ $$
 
 Calculate the determinants for the 2x2 and 3x3 matrices given below.
 
-##### 2x2 Matrices:
+#### 2x2 Matrices:
 
 $$
 \mathbf{A} =
@@ -86,7 +86,7 @@ $$
 \end{pmatrix}
 $$
 
-##### 3x3 Matrices:
+#### 3x3 Matrices:
 
 $$
 \mathbf{D} =
@@ -168,7 +168,7 @@ $$
 
 ### 5. Inverse of a Matrix from the formula
 
-##### 1. Find the inverse matrix for matrix 
+#### 1. Find the inverse matrix for matrix 
 
 $$\mathbf{A}=\begin{pmatrix}
 2 & 0 & 1 \\
@@ -178,7 +178,7 @@ $$\mathbf{A}=\begin{pmatrix}
 
 and verify if the result is correct.
 
-##### 2. Determine the rank of the matrix:
+#### 2. Determine the rank of the matrix:
 
 $$\mathbf{B} =
 \begin{pmatrix}
@@ -217,25 +217,32 @@ $$
 
 Solve the following systems of equations without using matrices:
 
-* System 1
-      - $3x-2y=5$
-      - $2x+3y=7$,
-* System 2
-      - $2x-3y=10$
-      - $4x+5y=20$,
-* System 3
-      - $2x - y + z = 3$ 
-      - $x + 2y - z = 1$
-      - $3x - y + 2z = 11$.
-* System 4
-      - $2x-3y+4z+2t=2$
-      - $3x+2y-5z+3t=3$
-      - $4x-3y+2z-5t=4$
-      - $5x+4y-3z+2t=5$.
+#### System 1
+
+- $3x-2y=5$
+- $2x+3y=7$,
+
+#### System 2
+
+- $2x-3y=10$
+- $4x+5y=20$,
+
+#### System 3
+
+- $2x - y + z = 3$ 
+- $x + 2y - z = 1$
+- $3x - y + 2z = 11$.
+
+#### System 4
+
+- $2x-3y+4z+2t=2$
+- $3x+2y-5z+3t=3$
+- $4x-3y+2z-5t=4$
+- $5x+4y-3z+2t=5$.
 
 ### 8. Linear equations by Cramer's Rule
 
-##### 1. Solve the system of equations:
+#### 1. Solve the system of equations:
 
 $$
 \begin{cases}
@@ -244,7 +251,7 @@ $$
 \end{cases}
 $$
 
-##### 2. Solve the system of equations:
+#### 2. Solve the system of equations:
 
 $$
 \begin{cases}
@@ -254,7 +261,7 @@ $$
 \end{cases}
 $$
 
-3. Solve the system of equations:
+#### 3. Solve the system of equations:
 
 $$\begin{cases}
    x + y + z - t = 2 \\
@@ -263,7 +270,7 @@ $$\begin{cases}
    3x + y + 3z - 4t = -2
 \end{cases}$$
 
-4. Why can't the following system of equations be solved using Cramer's rule?
+#### 4. Why can't the following system of equations be solved using Cramer's rule?
 
 $$\begin{cases}
 x_1 + 2x_2 + 3x_3 = 3 \\
@@ -273,7 +280,7 @@ x_1 + 2x_2 + 3x_3 = 3 \\
 
 ### 9. Linear equations by Gauss Elimination
 
-##### System 1
+#### System 1
 
 $$\begin{cases}
 x + 2y - 2z = 4 \\
@@ -282,7 +289,7 @@ x + 2y - 2z = 4 \\
 \end{cases}
 $$
 
-##### System 2
+#### System 2
 
 $$
 \begin{cases}
@@ -293,7 +300,7 @@ x + y + z - t = 2 \\
 \end{cases}
 $$
 
-##### System 3
+#### System 3
 
 $$
 \begin{cases}
@@ -306,7 +313,7 @@ $$
 
 ### 10. Linear equations by Matrix Inversion
 
-##### 1. Solve the system of linear equations using the inverse matrix method:
+#### 1. Solve the system of linear equations using the inverse matrix method:
 
 $$
 \begin{cases}
@@ -316,7 +323,7 @@ x + 2y + 3z = 5, \\
 \end{cases}
 $$
 
-##### 2. Solve the system of linear equations using the inverse matrix method:
+#### 2. Solve the system of linear equations using the inverse matrix method:
 
 $$
 \begin{cases}
@@ -416,90 +423,116 @@ $$
 
 ### 18. Functions
 
-1. Draw in a single Geogebra notebook the following functions:
-      - $f(x) = x^2$
-      - $g(x) = \sqrt{x}$
-      - $h(x) = \frac{1}{x}$
-      - $j(x) = \sin(x)$
+#### 1. Task 
+
+Draw in a single Geogebra notebook the following functions:
+
+- $f(x) = x^2$
+- $g(x) = \sqrt{x}$
+- $h(x) = \frac{1}{x}$
+- $j(x) = \sin(x)$
 
 Find value of all the above functions at $x = 2$.
 
-2. Let $f(x) = 3x - 1$ and $g(x) = \sqrt{x}$. Find:
-      - $f(g(x))$
-      - $g(f(x))$
-      - $f(f(x))$
-      - $g(g(x))$
+#### 2. Task
+
+Let $f(x) = 3x - 1$ and $g(x) = \sqrt{x}$. Find:
+
+- $f(g(x))$
+- $g(f(x))$
+- $f(f(x))$
+- $g(g(x))$
 
 and visualize functions in a single Geogebra notebook.
 
-3. Let $f(x) = e^x$ and $g(x) = \ln(x)$. Check: $f(g(x))$ and $g(f(x))$. What do you notice?
+#### 3. Task
 
-4. We have function $f=\{(1,7), (2,9), (3,11)\}$. Give inverse function $f^{-1}$.
+Let $f(x) = e^x$ and $g(x) = \ln(x)$. Check: $f(g(x))$ and $g(f(x))$. What do you notice?
 
-5. We have function $f=\{(1,7), (2,7), (3,11)\}$. Give inverse function $f^{-1}$.
+#### 4. Task
 
-6. We have function $f(x)= x-1$. Give inverse function $f^{-1}$. Show both functions on the same Geogebra notebook.
+We have function $f=\{(1,7), (2,9), (3,11)\}$. Give inverse function $f^{-1}$.
+
+#### 5. Task
+
+We have function $f=\{(1,7), (2,7), (3,11)\}$. Give inverse function $f^{-1}$.
+
+#### 6. Task
+
+We have function $f(x)= x-1$. Give inverse function $f^{-1}$. Show both functions on the same Geogebra notebook.
 
 ### 19. Limits of Sequences
 
-1. Calculate:
-      - $\displaystyle \lim_{n \to \infty} \frac{n^2 + 3n}{2 n^2 - 2n}$
-      - $\displaystyle \lim_{n \to \infty} \frac{(2n+3)^3}{n^3-1}$
+#### 1. Calculate:
 
-2. Prove using the squeeze theorem:
-      - $\displaystyle\lim_{n \to \infty} \frac{\sin(n)}{n}$
+- $\displaystyle \lim_{n \to \infty} \frac{n^2 + 3n}{2 n^2 - 2n}$
+- $\displaystyle \lim_{n \to \infty} \frac{(2n+3)^3}{n^3-1}$
 
-4. Find the limit of the sequence:
-      - $a_n = (1+\frac{1}{n})^n$
+#### 2. Prove using the squeeze theorem:
+
+- $\displaystyle\lim_{n \to \infty} \frac{\sin(n)}{n}$
+
+#### 3. Find the limit of the sequence:
+
+- $a_n = (1+\frac{1}{n})^n$
 
 ### 20. Limits of Real Functions
 
-1. Compute:
-      - $\displaystyle\lim_{x \to \infty} \frac{x^3 + 2x^2}{x^4 - 3x^3}$
+#### 1. Compute:
 
-2. Find:
+- $\displaystyle\lim_{x \to \infty} \frac{x^3 + 2x^2}{x^4 - 3x^3}$
+
+#### 2. Find:
    
-      - $\displaystyle \lim_{x \to 0} \frac{\sin(3x)}{2x+1}$.
+- $\displaystyle \lim_{x \to 0} \frac{\sin(3x)}{2x+1}$.
 
-4. Find the asymptotes of the function:
+#### 3. Find the asymptotes of the function:
   
-      - $f(x) = \frac{x^2 - 1}{x^2 + 1}$
-      - $g(x) = \frac{\sin(x)}{x^2+1}$
+- $f(x) = \frac{x^2 - 1}{x^2 + 1}$
+- $g(x) = \frac{\sin(x)}{x^2+1}$
 
 ### 21. Derivatives
 
-1. Compute derivatives of functions:
+#### 1. Task
 
-      * $y(x) = -3x+3$
-      * $y(x) = \pi x + \sin(1)$
-      * $y(x) = 4+\sin(2)$
-      * $y(x) = 2x^3 - 3x^2 + 8x - 9$
-      * $y(x) = 6 x^{1/3}$
-      * $y(x) = \sqrt{x}$
-      * $y(x) = \cos(x) + \sin(x)$
-      * $y(x) = 2\sin(x) \cos(x)$
-      * $y(x) = x\sin(x)$
-      * $y(x) = (x+1)(x+1)$
-      * $y(x) = \frac{x}{x+1}$
-      * $y(x) = (x+1)\exp(x)$
-      * $y(x) = \sin(x^2)$
-      * $y(x) = \exp(-2x)$
-      * $y(x) = \frac{1}{\sin(x+1)}$
-      * $y(x) = \sqrt{2x+1}$
+Compute derivatives of functions:
 
-2. Prove:
-      - $\frac{d}{dx} (\ln(\sin(x))) = \cot(x)$
+* $y(x) = -3x+3$
+* $y(x) = \pi x + \sin(1)$
+* $y(x) = 4+\sin(2)$
+* $y(x) = 2x^3 - 3x^2 + 8x - 9$
+* $y(x) = 6 x^{1/3}$
+* $y(x) = \sqrt{x}$
+* $y(x) = \cos(x) + \sin(x)$
+* $y(x) = 2\sin(x) \cos(x)$
+* $y(x) = x\sin(x)$
+* $y(x) = (x+1)(x+1)$
+* $y(x) = \frac{x}{x+1}$
+* $y(x) = (x+1)\exp(x)$
+* $y(x) = \sin(x^2)$
+* $y(x) = \exp(-2x)$
+* $y(x) = \frac{1}{\sin(x+1)}$
+* $y(x) = \sqrt{2x+1}$
 
-3. For $f(x) = \cos(x)$, verify that $f''(x) = -f(x)$.
+#### 2. Task
 
-4. Using de l'Hospital's Rule, find the improper limits:
-      - $\displaystyle \lim_{x\to 0} \frac{\sin{x}}{x}$
+Prove $\frac{d}{dx} (\ln(\sin(x))) = \cot(x)$
 
-      - $\displaystyle \lim_{x\to \infty} \frac{\ln x}{x}$
+#### 3. Task 
 
-      - $\displaystyle \lim_{x\to \infty} \frac{\exp(x)}{x}$
+For $f(x) = \cos(x)$, verify that $f''(x) = -f(x)$.
 
-5. In physics, the position of a particle is given by $x(t) = 3t^2 - 6t + 1$. Find the velocity $V(t)=x'(t)$ and acceleration $a(t)=V'(t)=x''(t)$ of the particle at time $t = 2$.
+#### 4. Task
+
+Using de l'Hospital's Rule, find the improper limits:
+
+- $\displaystyle \lim_{x\to 0} \frac{\sin{x}}{x}$
+- $\displaystyle \lim_{x\to \infty} \frac{\ln x}{x}$
+- $\displaystyle \lim_{x\to \infty} \frac{\exp(x)}{x}$
+
+#### 5. Task
+
+In physics, the position of a particle is given by $x(t) = 3t^2 - 6t + 1$. Find the velocity $V(t)=x'(t)$ and acceleration $a(t)=V'(t)=x''(t)$ of the particle at time $t = 2$.
 
 ### 22. Extremum
 
