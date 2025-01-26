@@ -1,7 +1,7 @@
 ## **Logic**
 
 
-#### Task 1
+### Task 1
 
 Let $p$, $q$, and $r$ be the following statements:
 
@@ -17,7 +17,7 @@ Write the following statements using logical symbols with $p$, $q$, $r$, and log
 4. The sun is shining if and only if it is not raining.
 5. If there are no clouds in the sky, then the sun is shining.
 
-#### Task 2
+### Task 2
 
 Let $p$, $q$, and $r$ be as defined in Task 1. Translate the following logical expressions into plain English:
 
@@ -26,11 +26,11 @@ Let $p$, $q$, and $r$ be as defined in Task 1. Translate the following logical e
 3. $\neg (p \lor q \lor r)$
 4. $(p \rightarrow r) \rightarrow q$
 
-#### Task 3
+### Task 3
 
 Provide the truth values of the statements in Tasks 1 and 2.
 
-#### Task 4
+### Task 4
 
 Determine which of the following expressions are statements. Provide their truth values:
 
@@ -40,14 +40,14 @@ Determine which of the following expressions are statements. Provide their truth
 4. $x^2 = x$ for exactly one $x \in \mathbb{R}$
 5. $xy = z$ implies $y = z$ for all $x, y, z \in \mathbb{R}$
 
-#### Task 5
+### Task 5
 
 Rewrite the ambiguous expression $x^2 = y^2$ as:
 
 1. A precise statement whose logical value is true.
 2. A precise statement whose logical value is false.
 
-#### Task 6
+### Task 6
 
 Provide the contrapositive of the following statements:
 
@@ -55,6 +55,6 @@ Provide the contrapositive of the following statements:
 2. "If $x^2 = x$, then $x = 0$ or $x = 1$."
 3. "If $2 + 2 = 4$, then $2 + 4 = 8$."
 
-#### Task 7
+### Task 7
 
 Verify Goldbach's conjecture for small numbers, such as 6, 8, and 10. Check it for the number 98.

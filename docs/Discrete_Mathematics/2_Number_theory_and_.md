@@ -1,6 +1,6 @@
 ## Number theory
 
-#### Task 1
+### Task 1
 
 Check the following congruences:
 
@@ -10,14 +10,14 @@ Check the following congruences:
 4. $23 \equiv 3 \pmod{4}$
 
 
-#### Task 2
+### Task 2
 
 Probe that if $m' \equiv m \pmod{p}$ and $n' \equiv n \pmod{p}$, then:
 
 1. $m'+n' \equiv m+n \pmod{p}$.
 2. $m'n' \equiv mn \pmod{p}$.
 
-#### Task 3
+### Task 3
 
 Compute the following greatest common divisors:
 
@@ -26,7 +26,7 @@ Compute the following greatest common divisors:
 3. $\gcd(72, 15)$
 4. $\gcd(45, 12)$
 
-#### Task 4
+### Task 4
 
 Compute the following least common multiples:
 
@@ -35,7 +35,7 @@ Compute the following least common multiples:
 3. $\text{lcm}(72, 25)$
 4. $\text{lcm}(45, 60)$
 
-#### Task 5
+### Task 5
 
 Solve congruences of the form $ax \equiv b \pmod{m}$:
 

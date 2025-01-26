@@ -1,6 +1,6 @@
 ## Set theory
 
-#### Task 1
+### Task 1
 
 Write down five elements for each of the following sets:
 
@@ -14,7 +14,7 @@ Write down five elements for each of the following sets:
 
 Whre $\mathbb{N}_{+}$ denotes the positive integers.
 
-#### Task 2
+### Task 2
 
 Write the elements of the following sets:
 
@@ -24,7 +24,7 @@ Write the elements of the following sets:
 4. $\{2 + (-1)^n: n \in \mathbb{N}\}$
 
 
-#### Task 3
+### Task 3
 
 Determine the following sets, i.e., write down their elements if the sets are non-empty and write $\emptyset$ if they are empty:
 
@@ -40,7 +40,7 @@ Determine the following sets, i.e., write down their elements if the sets are no
 10. $\{3n + 1: n \in \mathbb{N} \land n \leq 6\}$
 11. $\{n \in \mathbb{P}: n$ is a prime number and $n \leq 15\}$
 
-#### Task 4
+### Task 4
 
 How many elements do the following sets have? Write $\infty$ if the set is infinite:
 
@@ -60,7 +60,7 @@ How many elements do the following sets have? Write $\infty$ if the set is infin
 14. $\{n \in \mathbb{N}: n$ is even or prime$\}$
 
 
-#### Task 5
+### Task 5
 
 Consider the sets $\{0, 1\}$, $(0, 1)$, and $[0, 1)$. Are the following statements true?
 
@@ -72,7 +72,7 @@ Consider the sets $\{0, 1\}$, $(0, 1)$, and $[0, 1)$. Are the following statemen
 6. $(0, 1) \cap \mathbb{Q} = \emptyset$
 
 
-#### Task 6
+### Task 6
 
 Let $U = \{1, 2, 3, 4, 5, \dots, 12\}$, $A = \{1, 3, 5, 7, 11\}$, $B = \{2, 3, 5, 7, 11\}$, $C = \{2, 3, 6, 12\}$, and $D = \{2, 4, 8\}$. Determine the following sets:
 
@@ -85,7 +85,7 @@ Let $U = \{1, 2, 3, 4, 5, \dots, 12\}$, $A = \{1, 3, 5, 7, 11\}$, $B = \{2, 3, 5
 
 Where $\oplus$ denotes the symmetric difference operation.
 
-#### Task 7
+### Task 7
 
 Let $A = \{1, 2, 3\}$, $B = \{n \in \mathbb{P}: n$ is even$\}$, and $C = \{n \in \mathbb{P}: n$ is odd$\}$. 
 
@@ -94,13 +94,13 @@ Let $A = \{1, 2, 3\}$, $B = \{n \in \mathbb{P}: n$ is even$\}$, and $C = \{n \in
 3. Which of the following sets: $A \oplus B$, $A \oplus C$, $A \setminus C$ are infinite?
 
 
-#### Task 8
+### Task 8
 
 What is the set $A \oplus A$ for any set $A$? What is $A \oplus \emptyset$?
 
 
 
-#### Task 9
+### Task 9
 
 Let $A = \{a, b, c\}$ and $B = \{a, b, d\}$.
 
@@ -108,7 +108,7 @@ Let $A = \{a, b, c\}$ and $B = \{a, b, d\}$.
 * Write or draw all ordered pairs from the set $A \times B$.
 * Write or draw all elements of the set $\{(x, y): x \in A, y \in B, x = y\}$.
 
-#### Task 10
+### Task 10
 
 Write the elements of the following sets:
 
@@ -121,7 +121,7 @@ Write the elements of the following sets:
 
 ## Relations
 
-#### Task 1
+### Task 1
 
 For the following relations in the set $S = \{0, 1, 2, 3\}$, determine which properties (Reflexive (Z), Irreflexive (PZ), Symmetric (S), Antisymmetric (AS), Transitive (P)) are satisfied:
 
@@ -131,7 +131,7 @@ For the following relations in the set $S = \{0, 1, 2, 3\}$, determine which pro
 4. $(m, n) \in R_4$, if $m + n \leq 4$,
 5. $(m, n) \in R_5$, if $\max\{m, n\} = 3$.
 
-#### Task 2
+### Task 2
 
 Let $A = \{-1, 0, 1, 2\}$. Each of the following statements defines a relation $R$ in $A$, i.e., $(m, n) \in R$ if the statement is true for $m, n \in A$. Write each relation as a set of ordered pairs:
 
@@ -145,11 +145,11 @@ Let $A = \{-1, 0, 1, 2\}$. Each of the following statements defines a relation $
 8. $mn = 2$,
 9. $\max\{m, n\} = 1$.
 
-#### Task 3
+### Task 3
 
 Which of the relations from Task 2 are reflexive, and which are symmetric?
 
-#### Task 4
+### Task 4
 
 In the set $\mathbb{N}$, the following binary relations are defined:
 
@@ -157,23 +157,23 @@ In the set $\mathbb{N}$, the following binary relations are defined:
 2. Write the relation $R_2$ defined by $\max\{m, n\} = 2$ as a set of ordered pairs.
 3. Determine if $R_3$, defined by $m^3 - n^3 \equiv 0 \pmod{5}$, contains infinitely many ordered pairs. Write some examples.
 
-#### Task 5
+### Task 5
 
 For each relation from Task 4, determine which properties: symmetric, antisymmetric, transitive, reflexive, irreflexive, are satisfied.
 
 
-#### Task 6
+### Task 6
 
 Provide an example of a relation that is:
 
 1. Antisymmetric and transitive but not reflexive,
 2. Symmetric but not reflexive or transitive.
 
-#### Task 7
+### Task 7
 
 Draw the graph of each relation from Task 1. Do not draw arrows if the relation is symmetric.
 
-#### Task 8
+### Task 8
 
 Draw the graph of each relation from Task 2. Do not draw arrows if the relation is symmetric.
 
@@ -181,7 +181,7 @@ Draw the graph of each relation from Task 2. Do not draw arrows if the relation 
 
 **Basics**
 
-#### Task 1
+### Task 1
 
 For function $f: \mathbb{R} \to \mathbb{R}$ defined as follows:
 
@@ -199,7 +199,7 @@ $$
 3. Determine $\text{Im}(f)$.
 
 
-#### Task 2
+### Task 2
 
 Let $S = \{1, 2, 3, 4, 5\}$ and $T = \{a, b, c, d\}$. For each of the following questions, answer YES or NO. Provide a brief justification for your answer:
 
@@ -209,7 +209,7 @@ Let $S = \{1, 2, 3, 4, 5\}$ and $T = \{a, b, c, d\}$. For each of the following 
 4. Are there **surjective** functions from $T$ to $S$?
 5. Are there **bijections** between $S$ and $T$?
 
-#### Task 4
+### Task 4
 
 Let $S = \{1, 2, 3, 4, 5\}$Consider the following functions defined on $S$:
 
@@ -224,7 +224,7 @@ Exercises:
 2. Sketch the graph of each function.
 3. Which of these functions are injective?
 
-#### Task 5
+### Task 5
 
 Define the function $f: \mathbb{N} \times \mathbb{N} \to \mathbb{N}$ as $f(m, n) = 2^{m + 3n}$.
 
@@ -233,7 +233,7 @@ Define the function $f: \mathbb{N} \times \mathbb{N} \to \mathbb{N}$ as $f(m, n)
 3. Does $f$ map $\mathbb{N} \times \mathbb{N}$ onto $\mathbb{N}$? Justify your answer.
 4. Show that $g(m, n) = 2^{4m}n$ defines a function from $\mathbb{N} \times \mathbb{N}$ to $\mathbb{N}$ that is not injective.
 
-#### Task 6
+### Task 6
 
 Define the following functions on $\mathbb{N}$:
 
@@ -250,7 +250,7 @@ Qestions:
 
 **Function composition**
 
-#### Task 1
+### Task 1
 
 Define three functions mapping $\mathbb{R} \to \mathbb{R}$ as follows:
 
@@ -265,12 +265,12 @@ Find:
 3. $h \circ g$,
 4. $g \circ h$.
 
-#### Task 2
+### Task 2
 
 Show that if $f: S \to T$ and $g: T \to U$ are injective functions, then $g \circ f$ is also injective.
 
 
-#### Task 15
+### Task 15
 
 Let $f$ and $g$ map $\mathbb{Z}$ to $\mathbb{Z}$, where $f(n) = n - 1$ for all $n \in \mathbb{Z}$, and $g$ is the characteristic function of even numbers in $\mathbb{Z}$:
 
@@ -291,7 +291,7 @@ $$
 
 **Inverse functions**
 
-#### Task 1
+### Task 1
 
 Find the inverse functions of the following functions mapping $\mathbb{R}$ to $\mathbb{R}$:
 
@@ -300,14 +300,14 @@ Find the inverse functions of the following functions mapping $\mathbb{R}$ to $\
 3. $h(x) = (x - 2)^3$
 4. $k(x) = \sqrt{x} + 7$
 
-#### Task 2
+### Task 2
 
 The functions $\log x$, $x^2$, $\sqrt{x}$, and $1/x$ are commonly available on calculators.
 
 1. Determine the domains of these functions.
 2. Which of these functions are inverses of each other?
 
-#### Task 3
+### Task 3
 
 Here are several functions mapping $\mathcal{P}(N) \times \mathcal{P}(N)$ to $\mathcal{P}(N)$:
 
@@ -321,7 +321,7 @@ Show that:
 2. Prove that none of these functions is injective.
 3. Determine the size of the set $F^{-1}(\{0\})$ and $F^{-1}(\{4\})$ for each of these functions $F$.
 
-#### Task 4
+### Task 4
 
 The following two functions map $\mathbb{N} \to \mathbb{N}$:
 
@@ -337,7 +337,7 @@ Show that:
 5. Prove that $g \circ f = 1_\mathbb{N}$ but $f \circ g \neq 1_\mathbb{N}$.
 
 
-#### Task 5
+### Task 5
 
 If $f: S \to S$ and $f \circ f = 1_S$, then $f$ is its own inverse. Show that the following functions are their own inverses:
 
@@ -346,12 +346,12 @@ If $f: S \to S$ and $f \circ f = 1_S$, then $f$ is its own inverse. Show that th
 3. $f(x) = 1 - x$ (for $x \in \mathbb{R}$).
 
 
-#### Task 6
+### Task 6
 
 Let $f: S \to T$ and $g: T \to U$ be bijections. Prove that $g \circ f$ is also a bijection and that $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$.
 
 
-#### Task 7
+### Task 7
 
 Define the function $f: \mathbb{R} \times \mathbb{R} \to \mathbb{R} \times \mathbb{R}$ as $f(x, y) = (x + y, x - y)$. 
 

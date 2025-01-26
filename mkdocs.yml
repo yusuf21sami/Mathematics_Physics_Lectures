@@ -74,12 +74,12 @@ theme:
   features:
     - content.code.copy
   toc:
-    depth: 3
+    depth: 2
 
 markdown_extensions:
   - toc:
       permalink: true
-      toc_depth: 3
+      toc_depth: 2
   - tables
   - pymdownx.arithmatex:
       generic: true
