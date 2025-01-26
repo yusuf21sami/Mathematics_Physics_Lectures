@@ -62,9 +62,9 @@ theme:
     - scheme: default
       primary: indigo # dostępne kolory: red, pink, purple, deep purple, indigo, blue, light blue, cyan, teal, green, light green, lime, yellow, amber, orange, deep orange, brown, grey, blue grey, black, white
       accent: indigo
-      toggle:
-        icon: material/brightness-7
-        name: Przełącz na tryb ciemny
+      # toggle:
+      #   icon: material/brightness-7
+      #   name: Przełącz na tryb ciemny
     - scheme: slate
       primary: deep purple
       accent: deep purple
@@ -97,7 +97,8 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js
 
 extra_css:
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css
+  # - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css
+  - extra.css
 
 extra:
   highlightjs: true

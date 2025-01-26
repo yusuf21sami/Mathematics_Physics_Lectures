@@ -9,7 +9,7 @@
 
 ## Graph representation
 
-### **Task 1**
+### Task 1
 
 We have 3 ways to represent a graph:
 
@@ -46,7 +46,12 @@ Undirected graph
 Undirected graph
 
 ```python
-{1: [4], 2: [4], 3: [5, 6], 4: [1, 2, 6], 5: [3], 6: [3, 4]}
+{1: [4],
+ 2: [4], 
+ 3: [5, 6], 
+ 4: [1, 2, 6], 
+ 5: [3], 
+ 6: [3, 4]}
 ```
 
 #### Graph 4
@@ -69,16 +74,21 @@ Directed graph
  [1 0 0 1 0 1]
  [0 1 0 1 1 0]]
 ```
-
+*Task
 #### Graph 6
 
 Directed graph
 
 ```python
-{1: [2, 6], 2: [1, 4], 3: [4, 5], 4: [1, 6], 5: [2, 3], 6: [1, 3, 5]}
+{1: [2, 6], 
+ 2: [1, 4], 
+ 3: [4, 5], 
+ 4: [1, 6], 
+ 5: [2, 3], 
+ 6: [1, 3, 5]}
 ```
 
-### **Task 2**  
+### Task 2  
 
 For the following undirected graph:
 
@@ -107,6 +117,7 @@ Answer the following questions:
 9. What is the length of the shortest path from vertex 5 to vertex 8?
 10. Does the graph contain a cycle? If yes, what is the length of one cycle?
 
-### **Task 3**
+
+### Task 3
 
 Consider above graph again, but this time, consider the graph as a directed graph.

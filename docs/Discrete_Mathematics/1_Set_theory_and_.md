@@ -1,14 +1,14 @@
-## **Set theory**
+## Set theory
 
 #### Task 1
 
 Write down five elements for each of the following sets:
 
-1. $\{n \in \mathbb{N}: n\}$ is divisible by 5
+1. $\{n \in \mathbb{N}: n \text{ is divisible by 5}\}$
 2. $\{2n + 1: n \in \mathbb{N}_{+}\}$
 3. $\mathcal{P}(\{1, 2, 3, 4, 5\})$ (power set!)
 4. $\{2^n: n \in \mathbb{N}\}$
-5. $\{1/n: n \in \mathbb{P}\}$
+5. $\{1/n: n \in \mathbb{N}_{+}\}$
 6. $\{r \in \mathbb{Q}: 0 < r < 1\}$
 7. $\{n \in \mathbb{N}: n + 1$ is a prime number$\}$
 
@@ -119,7 +119,7 @@ Write the elements of the following sets:
 5. $\{(m, n) \in \mathbb{N}^2: \max(m, n) = 3\}$
 
 
-## **Relations**
+## Relations
 
 #### Task 1
 
@@ -177,7 +177,7 @@ Draw the graph of each relation from Task 1. Do not draw arrows if the relation 
 
 Draw the graph of each relation from Task 2. Do not draw arrows if the relation is symmetric.
 
-## **Functions**
+## Functions
 
 **Basics**
 
