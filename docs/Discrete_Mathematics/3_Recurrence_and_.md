@@ -1,7 +1,7 @@
 ## Combinatorics
 
 
-## **Sequences and series**
+## Sequences and series
 
 ### Task 1
 

@@ -1,4 +1,4 @@
-## **Logic**
+## Logic
 
 
 ### Task 1
