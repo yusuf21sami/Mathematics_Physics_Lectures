@@ -535,6 +535,8 @@ AC is the standard for electricity distribution due to its efficiency over long 
 
 ![Source: Wikipedia](./pics/circuits/alternating.png)
 
+![](./pics/circuits/direct_alternating.png)
+
 The mathematical representation of AC is given by:
 
 $$V(t) = V_{max} \sin(\omega t + \phi)
@@ -562,7 +564,7 @@ Three-phase systems use three AC currents, each phase shifted by 120° from the 
 
 This arrangement enhances power distribution efficiency by the  $\sqrt{3}$ factor. The total power in a three-phase system is given by:
 
-$$P_{\text{total}} = 3 \times V_{\text{line}} \times I_{\text{line}} \times \cos(\phi)
+$$P_{\text{total}} = 3 \cdot V_{\text{line}} \cdot I_{\text{line}} \cdot \cos(\phi)
 $$
 
 where $V_{\text{line}}$ is the line voltage, $I_{\text{line}}$ is the line current, and $\phi$ is the phase angle.

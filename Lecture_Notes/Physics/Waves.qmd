@@ -388,6 +388,118 @@ The vapor cone, also known as the shock collar or shock egg, is a visible cloud 
 - [Interference applet](https://phet.colorado.edu/sims/html/wave-interference/latest/wave-interference_all.html)
 
 
+## Cummulative wave
+
+A supersonic plane is flying at a speed greater than the speed of sound, emitting sound waves that reach an observer at a fixed time. The animation shows the plane's trajectory, the sound waves emitted at different times, and the impulses that reach the observer simultaneously.
+
+```python
+
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+from IPython.display import HTML
+
+# Parameters
+c = 1.0          # Speed of sound [m/s]
+v = 2.0          # Speed of the plane (v > c) [m/s]
+T = 5.0          # Time at which all sound waves reach the observer [s]
+k = c / np.sqrt(v**2 - c**2)  # Spiral parameter
+impulse_interval = 0.5  # Time between sound impulses [s]
+
+# Range of angles θ for the spiral (avoid division by zero as t → T)
+theta_max = (np.sqrt(v**2 - c**2) / c) * np.log(T / 1e-6)  # Maximum angle
+theta = np.linspace(0, theta_max, 1000)  # Angle range
+
+# Logarithmic spiral equation
+r_spiral = c * T * np.exp(-k * theta)
+
+# Convert to Cartesian coordinates
+x_spiral = r_spiral * np.cos(theta)
+y_spiral = r_spiral * np.sin(theta)
+
+# Initialize the animation
+fig, ax = plt.subplots(figsize=(10, 10))
+ax.set_xlim(-c * T, c * T)
+ax.set_ylim(-c * T, c * T)
+ax.set_aspect('equal')
+ax.grid(True)
+ax.set_title("Supersonic Plane and Sound Waves Reaching the Observer Simultaneously")
+
+# Animation elements
+plane, = ax.plot([], [], 'ko', markersize=8, label='Plane')
+sound_waves = ax.scatter([], [], color='grey', s=0.1, alpha=1, label='Sound Waves')  # Use scatter for sound waves
+trajectory, = ax.plot(x_spiral, y_spiral, 'b--', alpha=0.5, label='Plane Trajectory')
+observer = ax.plot(0, 0, 'kx', markersize=12, label='Observer')[0]
+time_text = ax.text(0.05, 0.95, '', transform=ax.transAxes)
+
+# List to store sound wave impulses
+impulses = []
+
+def init():
+    """Initialize the animation."""
+    plane.set_data([], [])
+    sound_waves.set_offsets(np.empty((0, 2)))  # Initialize scatter with empty data
+    time_text.set_text('')
+    return plane, sound_waves, time_text
+
+def update(frame):
+    """Update the animation for each frame."""
+    global impulses
+    t_current = frame * T / 100  # Current time (0 to T)
+
+    # Plane position at time t_current
+    r_plane = c * (T - t_current)
+    theta_plane = (np.sqrt(v**2 - c**2) / c) * np.log(T / (T - t_current + 1e-6))
+    x_plane = r_plane * np.cos(theta_plane)
+    y_plane = r_plane * np.sin(theta_plane)
+
+    # Sound wave positions (emitted earlier)
+    t_emitted = np.linspace(0, t_current, 200)  # Past emission times
+    r_sound = c * (T - t_current)  # Radius of sound waves at time t_current
+    theta_sound = (np.sqrt(v**2 - c**2) / c) * np.log(T / (T - t_emitted + 1e-6))
+    x_sound = r_sound * np.cos(theta_sound)
+    y_sound = r_sound * np.sin(theta_sound)
+
+    # Update animation elements
+    plane.set_data([x_plane], [y_plane])  # Ensure sequences are passed
+    sound_waves.set_offsets(np.column_stack((x_sound, y_sound)))  # Update scatter positions
+    time_text.set_text(f'Time: {t_current:.1f}s / {T:.1f}s')
+
+    # Add new sound impulses every 0.25 seconds
+    if t_current % impulse_interval < 0.05:  # Check if 0.25 seconds have passed
+        # Calculate the position from which the sound will reach (0,0) at time T
+        t_emit = t_current  # Emission time of the impulse
+        r_emit = c * (T - t_emit)  # Distance from the observer at emission time
+        theta_emit = (np.sqrt(v**2 - c**2) / c) * np.log(T / (T - t_emit + 1e-6))
+        x_emit = r_emit * np.cos(theta_emit)
+        y_emit = r_emit * np.sin(theta_emit)
+        impulses.append({'time': t_emit, 'radius': 0, 'x': x_emit, 'y': y_emit})
+
+    # Update existing impulses
+    for impulse in impulses:
+        impulse['radius'] += c * (T / 100)  # Increase the radius of the impulse
+
+    # Draw impulses
+    for impulse in impulses:
+        circle = plt.Circle((impulse['x'], impulse['y']), impulse['radius'], color='r', fill=False, alpha=0.3)
+        ax.add_artist(circle)
+
+    # Remove impulses that are too large
+    impulses = [impulse for impulse in impulses if impulse['radius'] < c * T]
+
+    return plane, sound_waves, time_text
+
+# Create the animation
+ani = FuncAnimation(fig, update, frames=100, init_func=init, blit=False, interval=50)
+
+# Display the animation in Google Colab
+plt.close()  # Close the static plot to avoid showing it alongside the animation
+HTML(ani.to_html5_video())
+
+```
+
+
+
 ## Definition of Wave
 
 **Wave** is a disturbance that propagates through space or a medium, and transports energy without transporting mass.
