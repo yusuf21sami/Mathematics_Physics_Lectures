@@ -1,28 +1,79 @@
-# New Lecture plan
 
-1. **Introduction**  
-This course combines foundational physics principles with modern computational tools, creating an engaging and interdisciplinary learning experience. From Newtonian mechanics to quantum mechanics and cosmology, students will explore physics concepts while applying numerical methods and simulations using Python, Jupyter Notebooks, and Geogebra. By connecting theory with real-world applications, the course emphasizes critical thinking, hands-on problem-solving, and innovation.
 
-2. **Mechanics**  
- Motion, Newton's Laws, Types of Motion, Energy, Momentum, Differential Equations in Mechanics.
+# Całkowanie - Podstawowe Pojęcia
 
-3. **Classical dynamical systems from computational view**  
- Numerical Computations, Simulations, and Animations using tools like Python, JavaScript, Geogebra, Jupyter, etc.
+## 1. Całka Nieoznaczona
 
-4. **Waves**  
- Wave Characteristics, Classification of Waves, Wave Dynamics, Polarization, Wave Interference, Doppler Effect, Applications numerical methods to waves.
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
 
-5. **Electromagnetism**  
- Electric Charge, Coulomb’s Law, Electric Fields, Electric Potential, Magnetism, Magnetic Fields and Currents, Lorentz Force, Electromagnetic Induction, Maxwell’s Equations, Electromagnetic Waves, Optics, Antennas, Applications of numerical methods to electromagnetism.
+> [!TIP]
+> Helpful advice for doing things better or more easily.
 
-6. **Circuits**  
- Circuit Elements, Voltage and Current Sources, Circuit Analysis and Measurement, Alternating and Direct Currents, Transformers, Conductors, Semiconductors, Insulators, Diodes, Transistors, RLC Circuits, and Complex Numbers in Circuit Analysis. Applications of numerical methods to circuits.
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
 
-7. **Measurements**  
- Measurements (Direct and Indirect, Analog and Digital, Absolute and Relative), Precision and Accuracy, Error and Uncertainty, Quantifying Uncertainty, Mean, Median, Standard Deviation, Important historical and modern measurements (Measurement of gravitational acceleration with a pendulum, Measurement of the mass of the Earth using a pendulum), Measurement Concept (Classical versus Quantum Measurement).
+> [!WARNING]
+> Urgent info that needs immediate user attention to avoid problems.
 
-8. **Modern Physics I**  
- Universe at different scales (from Earth, Moon, and Solar System, through Stars and the Milky Way and other galaxies), Observational Astronomy, Newtonian Gravity, Kepler's Laws, Stellar Evolution, Energy from the Sun, Speed of Light, and Special Relativity, General Relativity, Black Holes, Gravitational Waves, Cosmology, Olbers' Paradox, Big Bang Theory, Inflation Theory, Chronology of the Universe, Cosmic Microwave Background, Dark Matter and Dark Energy, Expansion of the Universe, Exoplanets.
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.
 
-9. **Modern Physics II**
- Introduction to Quantum Mechanics, Historical Development, Fundamental Principles, Key Experiments, Wavefunction, Operators and Observables, Commutators and Uncertainty, Quantum Tunneling, Superposition and Entanglement, Quantum Spin, Potential Well, Quantum Harmonic Oscillator, Quantum computers.
+Całka nieoznaczona to funkcja pierwotna, czyli funkcja, której pochodna daje zadaną funkcję. Ogólna postać to:
+
+$$
+\int f(x) \, dx = F(x) + C
+$$
+
+Gdzie:
+- $f(x)$ to funkcja podcałkowa,
+- $F(x)$ to funkcja pierwotna,
+- $C$ to stała całkowania.
+
+**Przykład**:  
+Jeśli $f(x) = 2x$, to $F(x) = x^2 + C$.
+
+---
+
+## 2. Całka Oznaczona
+Całka oznaczona reprezentuje pole pod wykresem funkcji $f(x)$ w przedziale $[a, b]$. Oblicza się ją według wzoru:
+
+$$
+\int_a^b f(x) \, dx = F(b) - F(a)
+$$
+
+Gdzie $F(x)$ to funkcja pierwotna.
+
+**Przykład**:  
+Pole pod wykresem funkcji $f(x) = x^2$ w przedziale $[0, 2]$:  
+$$
+\int_0^2 x^2 \, dx = \left[ \frac{x^3}{3} \right]_0^2 = \frac{2^3}{3} - \frac{0^3}{3} = \frac{8}{3}.
+$$
+
+---
+
+## 3. Wzory Podstawowe
+Kilka przydatnych wzorów:
+
+1. $\int x^n \, dx = \frac{x^{n+1}}{n+1} + C$, dla $n \neq -1$,
+2. $\int e^x \, dx = e^x + C$,
+3. $\int \frac{1}{x} \, dx = \ln|x| + C$,
+4. $\int \sin(x) \, dx = -\cos(x) + C$,
+5. $\int \cos(x) \, dx = \sin(x) + C$.
+
+---
+
+## 4. Metody Całkowania
+1. **Przez podstawianie**  
+   Zamieniasz zmienną na prostszą.  
+   **Przykład**:  
+   $$
+   \int (2x + 1)^3 \, dx
+   $$
+
+2. **Przez części**  
+   Dla iloczynu dwóch funkcji:  
+   $$
+   \int u \, dv = uv - \int v \, du
+   $$
+

@@ -49,7 +49,12 @@ nav:
     - 🎓 Lecture Notes:
       - Discrete Mathematics: Discrete_Mathematics/Discrete_Mathematics.html
     - Student Problems:
-      - Exercises: Discrete_Mathematics/Exercises.md
+      - Set Theory and ...: Discrete_Mathematics/1_Set_theory_and_.md
+      - Number Theory and ...: Discrete_Mathematics/2_Number_theory_and_.md
+      - Recurrence and ...: Discrete_Mathematics/3_Recurrence_and_.md
+      - Graph Theory and ...: Discrete_Mathematics/4_Graph_theory_and_.md
+      - Logic and ...: Discrete_Mathematics/5_Logic_and.md
+
 
 theme:
   name: material
@@ -57,9 +62,9 @@ theme:
     - scheme: default
       primary: indigo # dostępne kolory: red, pink, purple, deep purple, indigo, blue, light blue, cyan, teal, green, light green, lime, yellow, amber, orange, deep orange, brown, grey, blue grey, black, white
       accent: indigo
-      toggle:
-        icon: material/brightness-7
-        name: Przełącz na tryb ciemny
+      # toggle:
+      #   icon: material/brightness-7
+      #   name: Przełącz na tryb ciemny
     - scheme: slate
       primary: deep purple
       accent: deep purple
@@ -69,12 +74,12 @@ theme:
   features:
     - content.code.copy
   toc:
-    depth: 3
+    depth: 2
 
 markdown_extensions:
   - toc:
       permalink: true
-      toc_depth: 3
+      toc_depth: 2
   - tables
   - pymdownx.arithmatex:
       generic: true
@@ -92,7 +97,8 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js
 
 extra_css:
-  - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css
+  # - https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css
+  - extra.css
 
 extra:
   highlightjs: true
