@@ -7,7 +7,7 @@ format:
     toc-depth: 3
     highlight-style: tango
     code-line-numbers: true
-    code-fold: show
+    code-fold: true
     code-summary: "Show the code"
     code-tools: true
     code-block-bg: "rgba(42, 174, 42, 0.02)"
@@ -26,7 +26,10 @@ format:
 
 Mechanical waves arise as a result of the application of simple harmonic motion rules to interconnected systems. At their core, such waves can be visualized as particles connected by springs, where each particle's motion influences the next. This elegant interplay between force, displacement, and energy transfer forms the foundation of mechanical wave dynamics.
 
-To illustrate this concept, imagine a chain of small masses connected by springs. When one mass is displaced, the motion propagates through the entire system, creating a wave-like pattern. You can explore this phenomenon in action with a simulation of ten masses linked by springs: [Wave simulation](wave_example.html).
+To illustrate this concept, imagine a chain of small masses connected by springs. When one mass is displaced, the motion propagates through the entire system, creating a wave-like pattern. You can explore this phenomenon in action with a simulation of ten masses linked by springs: 
+
+* [Wave simulation 1](wave_example_1.html) 
+* [Wave simulation 2](wave_example_2.html)
 
 ## Plane Harmonic Wave
 
