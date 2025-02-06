@@ -28,8 +28,8 @@ Mechanical waves arise as a result of the application of simple harmonic motion 
 
 To illustrate this concept, imagine a chain of small masses connected by springs. When one mass is displaced, the motion propagates through the entire system, creating a wave-like pattern. You can explore this phenomenon in action with a simulation of ten masses linked by springs: 
 
-* [Wave simulation 1](wave_example_1.html) 
-* [Wave simulation 2](wave_example_2.html)
+* [Wave simulation 1](wave_exe_1.html) 
+* [Wave simulation 2](wave_exe_2.html)
 
 ## Plane Harmonic Wave
 
@@ -501,23 +501,3 @@ HTML(ani.to_html5_video())
 
 ```
 
-
-
-## Definition of Wave
-
-**Wave** is a disturbance that propagates through space or a medium, and transports energy without transporting mass.
-
-
-### To be considered...
-
-**Vibration**
-
-- Wiggle in time
-- $u(t) = A \sin(\omega t)$
-
-**Wave**
-
-- Wiggle in time and space
-- $u(t, x) = A \sin(\omega t - kx)$
-
----
