@@ -628,15 +628,22 @@ $$
 f(x, y) = \sin(x)\cos(y).
 $$
 
-Its gradient is:
+Let us compute partial derivatives of this function. Derivative with respect to $x$ is:
+
+$$
+\frac{\partial f(x,y)}{\partial x} = frac{\partial}{\partial x}[\sin(x)\cos(y)] = \cos(x)\cos(y).
+$$
+
+Derivative with respect to $y$ is:
+
+$$
+\frac{\partial f(x,y)}{\partial y} = frac{\partial}{\partial y}[\sin(x)\cos(y)] = -\sin(x)\sin(y).
+$$
+
+so the gradient of the function $f(x, y)$ is:
 
 $$
 \nabla f(x, y) = 
-\Bigl(
-\frac{\partial}{\partial x}[\sin(x)\cos(y)],\; 
-\frac{\partial}{\partial y}[\sin(x)\cos(y)]
-\Bigr)
-=
 \bigl(\cos(x)\cos(y),\; -\sin(x)\sin(y)\bigr).
 $$
 
