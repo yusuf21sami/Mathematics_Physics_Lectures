@@ -21,154 +21,20 @@ format:
         href: https://dchorazkiewicz.github.io/Mathematics_Physics_Lectures
 ---
 
-## History of Electromagnetism
-
-### 1820: Ørsted 
-
-discovered that a current-carrying wire deflects a compass needle.
-Hans Christian Ørsted’s discovery marked the first demonstration of a link between electricity and magnetism.  
-
-**Implications**:  
-
-- **Connection between electricity and magnetism**: Ørsted's work revealed that electric currents produce magnetic fields, laying the groundwork for the field of electromagnetism.  
-- **Foundation for future research**: This observation inspired scientists like André-Marie Ampère, Jean-Baptiste Biot, and Félix Savart to further investigate the interactions between electric currents and magnetic forces.  
-
-### 1820: Ampère 
-
-discovered that two current-carrying wires attract or repel each other.
-André-Marie Ampère demonstrated that parallel current-carrying wires exert attractive or repulsive forces on each other, depending on the direction of the currents. His work led to Ampère's Law.  
-
-**Implications**:  
-
-- **Quantitative understanding of magnetic forces**: Ampère’s Law provided a mathematical description of the relationship between electric currents and the magnetic fields they produce.  
-- **Technological impact**: This discovery underpins technologies such as electromagnets, electric motors, and transformers.  
-
-### 1820: Biot and Savart 
-
-formulated a law for the magnetic field produced by a current-carrying wire.
-The Biot-Savart Law describes the magnetic field at a point in space as being proportional to the current and inversely proportional to the distance from the wire.  
-
-**Implications**:  
-
-- **Precision in magnetic field calculations**: This law remains a key tool in calculating magnetic fields for complex geometries.  
-- **Applications in engineering**: It is essential for designing devices like inductors, solenoids, and magnetic field sensors.  
-
-### 1831: Faraday
-
-discovered that a changing magnetic field produces an electric field.
-Michael Faraday’s experiments revealed electromagnetic induction, the process by which a changing magnetic field generates an electric current.  
-
-**Implications**:  
-
-- **Electricity generation**: This principle is the foundation of power generation in electric generators and transformers.  
-- **Electromagnetic wave theory**: Faraday’s findings were crucial for understanding how electric and magnetic fields interact dynamically.  
-
-### 1834: Faraday
-
-discovered electromagnetic induction.
-Michael Faraday formalized the concept that a time-varying magnetic field induces an electromotive force (EMF) in a conductor.  
-
-**Implications**:  
-
-- **Basis for modern power systems**: Electromagnetic induction is the principle behind electric power generation, including in alternators and dynamo machines.  
-- **Understanding of energy transfer**: It clarified how magnetic energy can be converted into electrical energy and vice versa.  
-
-### 1864: Maxwell 
-
-formulated the equations of electromagnetism.
-James Clerk Maxwell unified the concepts of electricity and magnetism into a comprehensive set of equations, showing that light itself is an electromagnetic wave.  
-
-**Implications**:  
-
-- **Unified field theory**: Maxwell’s equations describe how electric and magnetic fields propagate and interact, leading to the prediction of electromagnetic waves.  
-- **Revolution in physics**: His work bridged classical physics and quantum theory, influencing the development of technologies like wireless communication, radar, and modern optics.
+## Electrostatics
 
 
-## Coulomb's Law
 
-### Charles-Augustin de Coulomb's contribution to electromagnetism
+### Coulomb's Law
 
 In 1785, Charles-Augustin de Coulomb formulated the law that describes the force between two electrically charged particles. This foundational principle quantifies the interaction between charged objects and laid the groundwork for the study of electrostatics.
 
 **Coulomb's Law**:  
 
-The magnitude of the electrostatic force $F$ between two point charges $q_1$ and $q_2$ separated by a distance $r$ is given by:  
+Suppose we have a two point charges $q$ and $Q$ at positions $\mathbf{r}=(x,y,z)$ and $\mathbf{r}'=(x',y',z')$ respectively. The force $\mathbf{F}$ acting on $Q$ by $q$ is given by
 
 $$
-F = k_e \frac{|q_1 q_2|}{r^2}
+\mathbf{F} = \frac{1}{4\pi\epsilon_0}\frac{qQ}{|\mathbf{r}-\mathbf{r}'|^3}(\mathbf{r}-\mathbf{r}')
 $$
 
-Where:  
-- $F$ is the force between the charges (in newtons, N),  
-- $q_1$ and $q_2$ are the magnitudes of the charges (in coulombs, C),  
-- $r$ is the distance between the charges (in meters, m),  
-- $k_e$ is Coulomb's constant, $k_e = \frac{1}{4\pi\epsilon_0} \approx 8.987 \times 10^9 \, \text{N·m}^2/\text{C}^2$.
-
-
-```{python}
-import matplotlib.pyplot as plt
-
-# Set up the figure and axes
-fig, ax = plt.subplots(figsize=(8, 8))
-
-# Define charge positions
-repulsion_charge1_pos = (-2, 1)  # Position of first repelling charge
-repulsion_charge2_pos = (2, 1)   # Position of second repelling charge
-attraction_charge1_pos = (-2, -1)  # Position of first attracting charge
-attraction_charge2_pos = (2, -1)   # Position of second attracting charge
-
-# Define vector lengths and directions for forces
-repulsion_vector1 = [-1, 0]  # Corrected repulsion direction for charge 1
-repulsion_vector2 = [1,0]   # Corrected repulsion direction for charge 2
-attraction_vector1 = [1, 0]  # Attraction direction for charge 1
-attraction_vector2 = [-1, 0]  # Attraction direction for charge 2
-
-# Draw filled circles for charges (with smaller radius)
-circle_radius = 0.2
-circle1 = plt.Circle(repulsion_charge1_pos, circle_radius, color='blue', label="Charge $q_1 > 0$")
-circle2 = plt.Circle(repulsion_charge2_pos, circle_radius, color='blue', label="Charge $q_2 > 0$")
-circle3 = plt.Circle(attraction_charge1_pos, circle_radius, color='blue', label="Charge $q_3 > 0$")
-circle4 = plt.Circle(attraction_charge2_pos, circle_radius, color='red', label="Charge $q_4 < 0$")
-
-ax.add_artist(circle1)
-ax.add_artist(circle2)
-ax.add_artist(circle3)
-ax.add_artist(circle4)
-
-# Draw vectors for repulsion
-ax.quiver(*repulsion_charge1_pos, *repulsion_vector1, color='black', angles='xy', scale_units='xy', scale=1, width=0.01)
-ax.quiver(*repulsion_charge2_pos, *repulsion_vector2, color='black', angles='xy', scale_units='xy', scale=1, width=0.01)
-
-# Draw vectors for attraction
-ax.quiver(*attraction_charge1_pos, *attraction_vector1, color='black', angles='xy', scale_units='xy', scale=1, width=0.01)
-ax.quiver(*attraction_charge2_pos, *attraction_vector2, color='black', angles='xy', scale_units='xy', scale=1, width=0.01)
-
-# Add labels to the charges
-ax.text(*repulsion_charge1_pos, "$q_1$", fontsize=15, ha='center', va='center', color='white')
-ax.text(*repulsion_charge2_pos, "$q_2$", fontsize=15, ha='center', va='center', color='white')
-ax.text(*attraction_charge1_pos, "$q_3$", fontsize=15, ha='center', va='center', color='white')
-ax.text(*attraction_charge2_pos, "$q_4$", fontsize=15, ha='center', va='center', color='white')
-
-# Adjust plot settings
-ax.set_title("Coulomb's Law", fontsize=14)
-ax.axhline(0, color='black', linewidth=5)  # Thick x-axis
-ax.axvline(0, color='black', linestyle='--', linewidth=0.5)
-ax.set_xlim(-3.5, 3.5)
-ax.set_ylim(-2, 2)
-ax.set_aspect('equal', adjustable='box')
-ax.legend(fontsize=10, loc="upper center")
-
-# Show plot
-plt.tight_layout()
-plt.show()
-
-
-```
-
-**Implications**:  
-
-- **Inverse-square relationship**: The force decreases with the square of the distance, meaning the interaction becomes weaker as the charges move farther apart.  
-- **Symmetry**: The force is equal in magnitude and opposite in direction for the two charges, satisfying Newton's third law.  
-- **Superposition principle**: For systems with multiple charges, the total force on any charge is the vector sum of the forces exerted by all other charges.  
-
-This law is fundamental to understanding electrostatics and serves as a precursor to the broader field of electromagnetism.
+where $\epsilon_0$ is the vacuum permittivity.
