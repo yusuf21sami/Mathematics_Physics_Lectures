@@ -1,6 +1,6 @@
 ## Mechanics
 
-### Problem 1 1 
+### Problem 1 
 
 <span style="font-size: 1.2em; font-weight: bold;">Investigating the Range as a Function of the Angle of Projection</span>
 
